@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('questionary','QuestionaryController@index')->name('questionary.index');
+Route::get('questionary/form','QuestionaryController@form')->name('questionary.form');
+Route::post('questionary/store','QuestionaryController@store')->name('questionary.store');
+
+Route::get('candybox','CandyboxController@index')->name('candybox.index');
