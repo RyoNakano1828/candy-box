@@ -11,6 +11,11 @@ class EatTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('eats')->insert([
+            [
+                'id' => 1,
+                'name' => 'カレー'
+            ],
+        ]);
     }
 }

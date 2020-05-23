@@ -11,6 +11,11 @@ class EmotionTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('emotions')->insert([
+            [
+                'id' => 1,
+                'name' => '楽しい',
+            ],
+        ]);
     }
 }

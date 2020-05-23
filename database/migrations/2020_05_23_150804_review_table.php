@@ -16,7 +16,7 @@ class ReviewTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->increments('id');
             $table->text('review');
-            $table->double('score');
+            $table->integer('score');
             $table->integer('candy_id');
             // $table->foreign('candy_id')->references('id')->on('candies');
         });

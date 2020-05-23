@@ -11,6 +11,11 @@ class WorkTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('works')->insert([
+            [
+                'id' => 1,
+                'name' => 'IT'
+            ],
+        ]);
     }
 }

@@ -11,6 +11,13 @@ class PurchaseTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('purchases')->insert([
+            [
+                'id' => 1,
+                'candy_id' => 1,
+                'questionary_id' => 1,
+                'page_info' => '1-2-34-5-4-3-2'
+            ],
+        ]);
     }
 }

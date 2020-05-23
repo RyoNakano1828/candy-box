@@ -11,6 +11,13 @@ class ReviewTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('reviews')->insert([
+            [
+                'id' => 1,
+                'review' => 'とてもおいしかったです',
+                'score' => 4,
+                'candy_id' => 1
+            ],
+        ]);
     }
 }

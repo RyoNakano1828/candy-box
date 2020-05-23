@@ -11,6 +11,11 @@ class HobbyTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('hobbies')->insert([
+            [
+                'id' => 1,
+                'name' => '読書',
+            ],
+        ]);
     }
 }

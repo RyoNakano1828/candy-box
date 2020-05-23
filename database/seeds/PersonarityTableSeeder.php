@@ -11,6 +11,11 @@ class PersonarityTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('personarities')->insert([
+            [
+                'id' => 1,
+                'name' => '楽観的',
+            ],
+        ]);
     }
 }
