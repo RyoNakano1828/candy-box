@@ -13,7 +13,7 @@ class PersonalityTable extends Migration
      */
     public function up()
     {
-        Schema::create('personarities', function (Blueprint $table) {
+        Schema::create('personalities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
         });

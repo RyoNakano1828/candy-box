@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PersonarityTableSeeder extends Seeder
+class PersonalityTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class PersonarityTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('personarities')->insert([
+        DB::table('personalities')->insert([
             [
                 'id' => 1,
                 'name' => '楽観的',

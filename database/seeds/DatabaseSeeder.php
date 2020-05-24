@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             EatTableSeeder::class,
             EmotionTableSeeder::class,
             HobbyTableSeeder::class,
-            PersonarityTableSeeder::class,
+            PersonalityTableSeeder::class,
             PurchaseTableSeeder::class,
             QuestionaryTableSeeder::class,
             ReviewTableSeeder::class,

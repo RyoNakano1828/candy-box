@@ -13,11 +13,13 @@
         <div>
             <form name="questionary" action="/questionay/store" method="post">
                 @csrf
-                <div>
-                    <input type='text'/>
+                <label><input class="check" type="checkbox" id="hoge"  value="hoge">hoge</label>
+                <label><input class="check" type="checkbox" id="hoge2" value="hoge2">hoge2</label>
+                <label><input class="check" type="checkbox" id="hoge3" value="hoge3">hoge3</label>
+                <div class="menu-submit">
+                    <button type="submit" value="送信">次へ</button>
                 </div>
             </form>
         </div>
-        <button>次へ</button>
     </body>
 </html>
