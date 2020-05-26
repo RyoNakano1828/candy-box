@@ -32,8 +32,8 @@ class CandyboxController extends Controller
     {
         $candies = Candy::all();
         $candy_id = '';
-        $candy_id .= $request->session()->get('candy_info').'-'.$request->post('candy_id');
-        $request->session()->put('candy_info', $candy_id);
+        $candy_id .= $request->session()->get('page_info').'-'.$request->post('candy_id');
+        $request->session()->put('page_info', $candy_id);
         $request->session()->push('candy_list', $request->post('candy_id'));
         $carts = $request->session()->get('candy_list');
 
@@ -46,16 +46,50 @@ class CandyboxController extends Controller
                 ->with('carts',$carts);
     }
 
+    public function delete(Request $request)
+    {
+        $candies = Candy::all();
+        // $request->delete('candy_id');
+        $candy_list = $request->session()->get('candy_list');
+        if($candy_list){
+            foreach($candy_list as $key => $candy){
+                if ($candy == $request->post('candy_id')){
+                    // echo $request->post('candy_id');
+                    unset($candy_list[$key]);
+                }
+            }
+        }
+        $request->session()->forget('candy_list');
+        foreach($candy_list as $candy){
+            $request->session()->push('candy_list', $candy);
+        }
+        $carts = $request->session()->get('candy_list');
+        $data = $request->session()->all();
+        log::debug($data);
+        
+        Session::flash('message', '削除しました!');
+        return redirect('/candybox')
+                ->with('candies',$candies)
+                ->with('carts',$carts);
+
+    }
+
     public function store(Request $request)
     {
-        $candy_info = $request->session()->get('candy_info');
-        $candy_info = ltrim($candy_info, '-');
+        $page_info = $request->session()->get('page_info');
+        $page_info = ltrim($page_info, '-');
         $questionary_id = $request->session()->get('questionary_id');
+        $candy_list = $request->session()->get('candy_list');
+        $candy_info = '';
+        foreach($candy_list as $candy){
+            $candy_info .= $candy.'-';
+        }
+        $candy_info = rtrim($candy_info, '-');
 
         $purchase = new Purchase();
         $purchase->questionary_id = $questionary_id;
         $purchase->candy_info = $candy_info;
-        $purchase->page_info = '1-2-3-4-5-5';
+        $purchase->page_info = $page_info;
         $purchase->timestamps = false;
         $purchase->save();
         $request->session()->flush();

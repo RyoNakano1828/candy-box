@@ -24,4 +24,4 @@ Route::post('questionary/store','QuestionaryController@store');
 Route::get('candybox','CandyboxController@index')->name('candybox.index');
 Route::post('candybox','CandyboxController@add')->name('candybox.add');
 Route::post('candybox/store','CandyboxController@store')->name('candybox.store');
-Route::delete('/candybox/{cartItem}', 'CartItemController@destroy');
+Route::post('/candybox/{id}/delete', 'CandyboxController@delete');

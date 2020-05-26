@@ -59,7 +59,16 @@
                     @foreach ($candies as $candy)
                         @foreach ($carts as $cart)
                             @if ($candy->id == $cart)
-                                <div class="item-title">{{$candy->name}}</div>
+                                <form method="POST" action="candybox/{{$candy->id}}/delete" name="candybox">
+                                    {{ csrf_field() }}
+                                    <div class='flex'>
+                                        <div class="item-title">{{$candy->name}}</div>
+                                        <div class='delete_button'>
+                                            <input type="hidden" name="candy_id" value="{{ $candy->id }}">
+                                            <button type="submit">削除する</button>
+                                        </div>
+                                    </div>
+                                </form>
                             @endif
                         @endforeach
                     @endforeach
