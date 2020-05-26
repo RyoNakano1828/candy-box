@@ -66,4 +66,38 @@ fieldset {
     outline-style: auto;
     outline-width: 5px;
 } */
+.item-img {
+padding: 0;
+}
+.item-body {
+padding: 0;
+}
+.item-title {
+margin: 0 0 8px;
+font-size: 20px;
+font-weight: 700;
+color: #ef5350;
+}
+.item-body p {
+font-size: 16px;
+font-weight: 400;
+color: #333;
+}
+.items {
+    margin: 30px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+  }
 
+.imageSize {
+    width: 250px;
+}
+.item {
+    width: 250px;
+    text-align: center;
+    border: 2px solid;
+    margin: 10px
+}
+  

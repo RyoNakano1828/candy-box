@@ -22,3 +22,5 @@ Route::get('questionary/form','QuestionaryController@form')->name('questionary.f
 Route::post('questionary/store','QuestionaryController@store')->name('questionary.store');
 
 Route::get('candybox','CandyboxController@index')->name('candybox.index');
+Route::post('candybox','CandyboxController@add')->name('candybox.add');
+Route::delete('/candybox/{cartItem}', 'CartItemController@destroy');
