@@ -70,9 +70,9 @@
                     <input type="text" name="weight">
                 </div>
 
-                <label><input name="aa" type="checkbox" value="hoge">1</label>
-                <label><input name="bb" type="checkbox" value="hoge2">2</label>
-                <label><input name="cc" type="checkbox" value="hoge3">3</label>
+                @foreach ($eats as $eat)
+                    <label><input name="eat{{$eat->id}}" type="checkbox" value="{{$eat->id}}">{{$eat->name}}</label>
+                @endforeach
                 <div class="menu-submit">
                     <button type="submit">次へ</button>
                 </div>

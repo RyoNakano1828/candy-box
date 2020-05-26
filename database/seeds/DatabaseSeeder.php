@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             QuestionaryTableSeeder::class,
             ReviewTableSeeder::class,
             WorkTableSeeder::class,
+            MusicTableSeeder::class,
         ]);
     }
 }
