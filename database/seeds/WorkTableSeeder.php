@@ -16,6 +16,26 @@ class WorkTableSeeder extends Seeder
                 'id' => 1,
                 'name' => 'IT'
             ],
+            [
+                'id' => 2,
+                'name' => '教育'
+            ],
+            [
+                'id' => 3,
+                'name' => '事務'
+            ],
+            [
+                'id' => 4,
+                'name' => '警察'
+            ],
+            [
+                'id' => 5,
+                'name' => '学生'
+            ],
+            [
+                'id' => 6,
+                'name' => 'アパレル'
+            ],
         ]);
     }
 }

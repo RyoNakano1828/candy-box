@@ -16,6 +16,26 @@ class EmotionTableSeeder extends Seeder
                 'id' => 1,
                 'name' => '楽しい',
             ],
+            [
+                'id' => 2,
+                'name' => '悲しい'
+            ],
+            [
+                'id' => 3,
+                'name' => '面白い'
+            ],
+            [
+                'id' => 4,
+                'name' => '驚き'
+            ],
+            [
+                'id' => 5,
+                'name' => 'うれしい'
+            ],
+            [
+                'id' => 6,
+                'name' => 'やさしい'
+            ],
         ]);
     }
 }

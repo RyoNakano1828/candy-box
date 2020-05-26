@@ -16,6 +16,26 @@ class PersonalityTableSeeder extends Seeder
                 'id' => 1,
                 'name' => '楽観的',
             ],
+            [
+                'id' => 2,
+                'name' => '悲観的'
+            ],
+            [
+                'id' => 3,
+                'name' => '明るい'
+            ],
+            [
+                'id' => 4,
+                'name' => '静か'
+            ],
+            [
+                'id' => 5,
+                'name' => 'よくしゃべる'
+            ],
+            [
+                'id' => 6,
+                'name' => 'スマート'
+            ],
         ]);
     }
 }

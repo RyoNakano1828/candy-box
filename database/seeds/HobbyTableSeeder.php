@@ -16,6 +16,26 @@ class HobbyTableSeeder extends Seeder
                 'id' => 1,
                 'name' => '読書',
             ],
+            [
+                'id' => 2,
+                'name' => '漫画'
+            ],
+            [
+                'id' => 3,
+                'name' => 'スポーツ'
+            ],
+            [
+                'id' => 4,
+                'name' => 'ゲーム'
+            ],
+            [
+                'id' => 5,
+                'name' => '楽器'
+            ],
+            [
+                'id' => 6,
+                'name' => 'アニメ'
+            ],
         ]);
     }
 }

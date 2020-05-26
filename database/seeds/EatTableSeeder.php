@@ -16,6 +16,23 @@ class EatTableSeeder extends Seeder
                 'id' => 1,
                 'name' => 'カレー'
             ],
+            [
+                'id' => 2,
+                'name' => 'パスタ'
+            ],
+            [
+                'id' => 3,
+                'name' => '回鍋肉'
+            ],[
+                'id' => 4,
+                'name' => '寿司'
+            ],[
+                'id' => 5,
+                'name' => 'ラーメン'
+            ],[
+                'id' => 6,
+                'name' => 'つけ麺'
+            ],
         ]);
     }
 }
