@@ -71,6 +71,6 @@
                 </div>
             </form>
         </div>
-        <script src="/js/birthday.js"></script>
+        <!-- <script src="/js/birthday.js"></script> -->
     </body>
 </html>

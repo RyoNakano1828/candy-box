@@ -19,8 +19,9 @@ Route::get('/', function () {
 
 Route::get('questionary','QuestionaryController@index')->name('questionary.index');
 Route::get('questionary/form','QuestionaryController@form')->name('questionary.form');
-Route::post('questionary/store','QuestionaryController@store')->name('questionary.store');
+Route::post('questionary/store','QuestionaryController@store');
 
 Route::get('candybox','CandyboxController@index')->name('candybox.index');
 Route::post('candybox','CandyboxController@add')->name('candybox.add');
+Route::post('candybox/store','CandyboxController@store')->name('candybox.store');
 Route::delete('/candybox/{cartItem}', 'CartItemController@destroy');

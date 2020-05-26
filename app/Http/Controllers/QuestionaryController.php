@@ -11,7 +11,7 @@ use App\Models\Hobby;
 use App\Models\Personality;
 use App\Models\Work;
 use App\Models\Music;
-
+use App\Models\Candy;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -43,6 +43,8 @@ class QuestionaryController extends Controller
     }
 
     public function store(Request $req){
+
+        $candies = Candy::all();
 
         $gender = $req->input('gender');
         $age = $req->input('age');
@@ -105,6 +107,7 @@ class QuestionaryController extends Controller
         log::debug($eat_info);
         log::debug('テストテスト');
 
+
         $questionary = new Questionary();
         $questionary->gender = $gender;
         $questionary->age = $age;
@@ -118,6 +121,8 @@ class QuestionaryController extends Controller
         $questionary->work_info = $work_info;
         $questionary->save();
 
-        return view('candybox.index');
+        $req->session()->put('questionary_id', $questionary->id);
+
+        return redirect('/candybox');
     }
 }

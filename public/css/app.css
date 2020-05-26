@@ -92,12 +92,13 @@ color: #333;
   }
 
 .imageSize {
-    width: 250px;
+    width: 200px;
 }
 .item {
     width: 250px;
     text-align: center;
     border: 2px solid;
-    margin: 10px
+    margin: 10px;
+    padding: 5px;
 }
   
