@@ -15,52 +15,19 @@
                 {{ csrf_field() }}
                 
                 <fieldset>
-                <input id="item-1" class="radio-inline__input2" type="radio" name="accessible-radio" value="1" checked=""/>
+                <input id="item-1" class="radio-inline__input2" type="radio" name="gender" value="1" checked=""/>
                 <label class="radio-inline__label2" for="item-1">
                     男性
                 </label>
-                <input id="item-2" class="radio-inline__input" type="radio" name="accessible-radio" value="2"/>
+                <input id="item-2" class="radio-inline__input" type="radio" name="gender" value="2"/>
                 <label class="radio-inline__label" for="item-2">
                     女性
                 </label>
                 </fieldset>
                 <div>
-                    <label>生年月日</label>
-                    <input type="date" name="birthday" value="">
+                    <label>年齢</label>
+                    <input type="text" name="age">
                 </div>      
-                <div>
-
-                    <label>生年月日</label>
-                    <select id="year" name="year">
-                        <option value="">---</option>
-                        <?php $years = array_reverse(range(today()->year - 100, today()->year)); ?>
-                        @foreach($years as $year)
-                        <option
-                            value="{{ $year }}"
-                            {{ old('year') == $year ? 'selected' : '' }}
-                        >{{ $year }}</option>
-                        @endforeach
-                    </select>
-                    <label for="year">年</label>
-
-                    <select id="month" name="month">
-                        <option value="">---</option>
-                        @foreach(range(1, 12) as $month)
-                        <option
-                            value="{{ $month }}"
-                            {{ old('month') == $month ? 'selected' : '' }}
-                        >{{ $month }}</option>
-                        @endforeach
-                    </select>
-                    <label for="month">月</label>
-
-                    <select
-                        id="day"
-                        name="day"
-                        data-old-value="{{ old('day') }}"
-                    ></select>
-                    <label for="day">日</label>
-                </div>
                 <div>
                     <label for="height">身長</label>
                     <input type="text" name="height">
@@ -69,10 +36,36 @@
                     <label for="weight">体重</label>
                     <input type="text" name="weight">
                 </div>
-
+                <div>
                 @foreach ($eats as $eat)
                     <label><input name="eat{{$eat->id}}" type="checkbox" value="{{$eat->id}}">{{$eat->name}}</label>
                 @endforeach
+                </div>
+                <div>
+                @foreach ($emotions as $emotion)
+                    <label><input name="emotion{{$emotion->id}}" type="checkbox" value="{{$emotion->id}}">{{$emotion->name}}</label>
+                @endforeach
+                </div>
+                <div>
+                @foreach ($hobbies as $hobby)
+                    <label><input name="hobby{{$hobby->id}}" type="checkbox" value="{{$hobby->id}}">{{$hobby->name}}</label>
+                @endforeach
+                </div>
+                <div>
+                @foreach ($personalities as $personality)
+                    <label><input name="personality{{$personality->id}}" type="checkbox" value="{{$personality->id}}">{{$personality->name}}</label>
+                @endforeach
+                </div>
+                <div>
+                @foreach ($works as $work)
+                    <label><input name="work{{$work->id}}" type="checkbox" value="{{$work->id}}">{{$work->name}}</label>
+                @endforeach
+                </div>
+                <div>
+                @foreach ($musics as $music)
+                    <label><input name="music{{$music->id}}" type="checkbox" value="{{$music->id}}">{{$music->name}}</label>
+                @endforeach
+                </div>
                 <div class="menu-submit">
                     <button type="submit">次へ</button>
                 </div>
