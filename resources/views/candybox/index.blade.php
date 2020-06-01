@@ -14,6 +14,10 @@
     </head>
     <body>
         <h1>Part2</h1>
+        <!-- 切り替えボタンの設定 -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
+        カートを見る
+        </button>
         @if (Session::has('message'))
             <p class="flash_message">{{ session('message') }}</p>
         @endif
@@ -36,11 +40,7 @@
                 </div> 
             @endforeach
         </div>
-        <h1>モーダルサンプル</h1>
-        <!-- 切り替えボタンの設定 -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal">
-        カートを見る
-        </button>
+        
 
         <!-- モーダルの設定 -->
 
