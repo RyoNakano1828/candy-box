@@ -24,7 +24,7 @@
         <div class='items'>
            @foreach ($candies as $candy)
                 <div class='item'>
-                    <div class="item-img"><img class="imageSize" src="images/test.jpg" alt="test"></div>
+                    <div class="item-img"><img class="imageSize" src="images/{{$candy->id}}.png" alt="test"></div>
                     <div class="item-body">
                     <div class="item-title">{{$candy->name}}</div>
                     <p>価格：{{$candy->price}}円</p>
