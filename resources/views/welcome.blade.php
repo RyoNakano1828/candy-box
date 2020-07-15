@@ -1,3 +1,5 @@
+@extends('layouts.common')
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -63,6 +65,19 @@
             }
         </style>
     </head>
+    <header>
+    <nav class="my-navbar">
+      <button class="navbar-toggler" type="button" onClick="javascript:SidemenuBtn();" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">   
+          <i class="fas fa-bars" style="color:#fff; font-size:28px;"></i>
+        </span>
+      </button>
+      <a class="my-navbar-brand" style="position:relative; left:5%" href="/">Candy-Box</a>
+      <div class="my-navbar-control bg-white rounded px-3 py-2 ">
+          <span>|</span>
+      </div>
+    </nav>
+  </header>
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
