@@ -139,36 +139,7 @@
                     <label for="weight">体重</label>
                     <input type="text" name="weight">
                 </div> -->
-                <div>
-                @foreach ($eats as $eat)
-                    <label><input name="eat{{$eat->id}}" type="checkbox" value="{{$eat->id}}">{{$eat->name}}</label>
-                @endforeach
-                </div>
-                <div>
-                @foreach ($emotions as $emotion)
-                    <label><input name="emotion{{$emotion->id}}" type="checkbox" value="{{$emotion->id}}">{{$emotion->name}}</label>
-                @endforeach
-                </div>
-                <div>
-                @foreach ($hobbies as $hobby)
-                    <label><input name="hobby{{$hobby->id}}" type="checkbox" value="{{$hobby->id}}">{{$hobby->name}}</label>
-                @endforeach
-                </div>
-                <div>
-                @foreach ($personalities as $personality)
-                    <label><input name="personality{{$personality->id}}" type="checkbox" value="{{$personality->id}}">{{$personality->name}}</label>
-                @endforeach
-                </div>
-                <div>
-                @foreach ($works as $work)
-                    <label><input name="work{{$work->id}}" type="checkbox" value="{{$work->id}}">{{$work->name}}</label>
-                @endforeach
-                </div>
-                <div>
-                @foreach ($musics as $music)
-                    <label><input name="music{{$music->id}}" type="checkbox" value="{{$music->id}}">{{$music->name}}</label>
-                @endforeach
-                </div>
+                
                 <div class="menu-submit">
                     <button type="submit">次へ</button>
                 </div>

@@ -24,22 +24,8 @@ class QuestionaryController extends Controller
     }
 
     public function form(){
-        $eats = Eat::all();
-        $emotions = Emotion::all();
-        $hobbies = Hobby::all();
-        $personalities = Personality::all();
-        $works = Work::all();
-        $musics = Music::all();
-        // foreach ($eats as $eat) {
-        //     echo $eat->name;
-        // }
-        return view('questionary.form')
-                ->with('eats',$eats)
-                ->with('emotions',$emotions)
-                ->with('hobbies',$hobbies)
-                ->with('personalities',$personalities)
-                ->with('works',$works)
-                ->with('musics',$musics);
+        
+        return view('questionary.form');
     }
 
     public function store(Request $req){
