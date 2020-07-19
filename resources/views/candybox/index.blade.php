@@ -5,8 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/css/app.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <title>QuestionaryToppage</title>
 
@@ -76,16 +74,9 @@
                     <p>カートにアイテムはありません</p>
                 @endif
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                <form method="POST" action="candybox/store" name="candybox">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="candy_id" value="{{ $candy->id }}">
-                    <button type="submit" class="btn btn-primary">購入</button>
-                </form>
+            
             </div>
-            </div>
-        </div>
+        </div>  
         </div>
 
         <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
