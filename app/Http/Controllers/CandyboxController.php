@@ -17,6 +17,9 @@ class CandyboxController extends Controller
 {
     public function index(Request $request){
         $candies = Candy::all();
+        $reviews = Review::all();
+        $categories = Category::all();
+
         $carts = [];
         $carts = $request->session()->get('candy_list');
 

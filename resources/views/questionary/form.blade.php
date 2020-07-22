@@ -20,7 +20,7 @@
                             <h5 class="card-header">性別を教えてください</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="gender" id="radio1" value="1"> 男性</label>
+                                    <label><input type="radio" name="gender" id="radio1" value="1" checked> 男性</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="gender" id="radio2" value="2"> 女性</label>
@@ -67,7 +67,7 @@
                             <h5 class="card-header">普段インターネットショッピングはどれくらいしますか</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="ec_frequency" id="radio1" value="1"> ほぼ毎日</label>
+                                    <label><input type="radio" name="ec_frequency" id="radio1" value="1" checked> ほぼ毎日</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="ec_frequency" id="radio2" value="2"> 週に3回以上</label>
@@ -94,7 +94,7 @@
                             <h5 class="card-header">普段どれくらいお菓子を食べますか</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="eat_frequency" id="radio1" value="1"> ほぼ毎日</label>
+                                    <label><input type="radio" name="eat_frequency" id="radio1" value="1" checked> ほぼ毎日</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="eat_frequency" id="radio2" value="2"> 週に3回以上</label>
@@ -121,7 +121,7 @@
                             <h5 class="card-header">普段何時頃にお菓子を食べることが多いですか</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sweets_time" id="radio1" value="1"> 8:00~12:00</label>
+                                    <label><input type="radio" name="sweets_time" id="radio1" value="1" checked> 8:00~12:00</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="sweets_time" id="radio2" value="2"> 12:00~16:00</label>
@@ -148,7 +148,7 @@
                             <h5 class="card-header">経済的な余裕がある方だ</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="money" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="money" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="money" id="radio2" value="2"> 少し当てはまる</label>
@@ -175,7 +175,7 @@
                             <h5 class="card-header">時間的なゆとりがある方だ</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="margin" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="margin" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="margin" id="radio2" value="2"> 少し当てはまる</label>
@@ -202,7 +202,7 @@
                             <h5 class="card-header">インターネットやパソコンなどに詳しい方だ</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="it" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="it" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="it" id="radio2" value="2"> 少し当てはまる</label>
@@ -229,7 +229,7 @@
                             <h5 class="card-header">買い物に行くときは先に買うものが決まっている</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="plan" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="plan" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="plan" id="radio2" value="2"> 少し当てはまる</label>
@@ -256,7 +256,7 @@
                             <h5 class="card-header">よく衝動買いをしてしまう</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="impulse" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="impulse" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="impulse" id="radio2" value="2"> 少し当てはまる</label>
@@ -283,7 +283,7 @@
                             <h5 class="card-header">時間をかけて安いものを選ぶようにしている</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="cheap" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="cheap" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="cheap" id="radio2" value="2"> 少し当てはまる</label>
@@ -310,7 +310,7 @@
                             <h5 class="card-header">よく同じお菓子を買う</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="repeat" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="repeat" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="repeat" id="radio2" value="2"> 少し当てはまる</label>
@@ -337,7 +337,7 @@
                             <h5 class="card-header">セールやクーポンを意識して買い物をする</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sale" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="sale" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="sale" id="radio2" value="2"> 少し当てはまる</label>
@@ -364,7 +364,7 @@
                             <h5 class="card-header">甘いものが好きである</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sweet" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="sweet" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="sweet" id="radio2" value="2"> 少し当てはまる</label>
@@ -391,7 +391,7 @@
                             <h5 class="card-header">辛いものが好きである</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="spicy" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="spicy" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="spicy" id="radio2" value="2"> 少し当てはまる</label>
@@ -418,7 +418,7 @@
                             <h5 class="card-header">すっぱいものが好きである</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sour" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="sour" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="sour" id="radio2" value="2"> 少し当てはまる</label>
@@ -445,7 +445,7 @@
                             <h5 class="card-header">しょっぱいものが好きである</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="salty" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="salty" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="salty" id="radio2" value="2"> 少し当てはまる</label>
@@ -472,7 +472,7 @@
                             <h5 class="card-header">ストレス解消のためにお菓子を食べることがある</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="stress" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="stress" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="stress" id="radio2" value="2"> 少し当てはまる</label>
@@ -499,7 +499,7 @@
                             <h5 class="card-header">お酒のつまみでお菓子を食べることがある</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sake" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="sake" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="sake" id="radio2" value="2"> 少し当てはまる</label>
@@ -526,7 +526,7 @@
                             <h5 class="card-header">仕事や勉強をしながらお菓子を食べることがある</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="work" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="work" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="work" id="radio2" value="2"> 少し当てはまる</label>
@@ -553,7 +553,7 @@
                             <h5 class="card-header">お菓子を食べるときに罪悪感を感じる</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="guilty" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="guilty" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="guilty" id="radio2" value="2"> 少し当てはまる</label>
@@ -580,7 +580,7 @@
                             <h5 class="card-header">新商品を見るとつい買ってしまう</h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="new_item" id="radio1" value="1"> 良く当てはまる</label>
+                                    <label><input type="radio" name="new_item" id="radio1" value="1" checked> 良く当てはまる</label>
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="new_item" id="radio2" value="2"> 少し当てはまる</label>

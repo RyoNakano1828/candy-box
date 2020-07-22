@@ -7,8 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <title>QuestionaryToppage</title>
-
-        
     </head>
     <body>
         <h1>Part2</h1>
@@ -19,24 +17,29 @@
         @if (Session::has('message'))
             <p class="flash_message">{{ session('message') }}</p>
         @endif
-        <div class='items'>
-           @foreach ($candies as $candy)
-                <div class='item'>
-                    <div class="item-img"><img class="imageSize" src="images/{{$candy->id}}.png" alt="test"></div>
-                    <div class="item-body">
-                    <div class="item-title">{{$candy->name}}</div>
-                    <p>価格：{{$candy->price}}円</p>
-                    <p>容量：{{$candy->weight}}</p>
-                    <p>評価：{{$candy->score}}</p>
-                    </div>
-                    <form method="POST" action="candybox" name="candybox">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="candy_id" value="{{ $candy->id }}">
-                        <button type="submit" class="">カートに入れる</button>
-                    </form>
-                    <!-- <button type="button" class="add_candy" onclick='add_candy'>カートに入れる</button> -->
-                </div> 
-            @endforeach
+        <div class='container'>
+            <div class='row'>
+                @foreach ($candies as $candy)
+                    <div class='col-sm-2 col-6 mx-auto p-1 my-1 border'>
+                        <div class="w-100"><img class="w-100" src="images/{{$candy->id}}.png" alt="{{ $candy->name }}"></div>
+                        <div class="w-100">
+                            <p style="height:60px">{{$candy->name}}</p>
+                            <p>価格：<strong>{{$candy->price}}</strong> 円</p>
+                            <p style="height:40px">容量：{{$candy->weight}}</p>
+                            <p>評価：{{$candy->score}}</p>
+                        </div>
+                        <div class='row p-0 m-1'>
+                            <form class='col p-0'method="POST" action="candybox" name="candybox">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="candy_id" value="{{ $candy->id }}">
+                                <button type="submit" class="w-100">追加 <i class="fas fa-cart-arrow-down"></i></button>
+                            </form>
+                            <button type="submit" class="col p-0">口コミ <i class="far fa-thumbs-up"></i></button>
+                        </div>
+                        <!-- <button type="button" class="add_candy" onclick='add_candy'>カートに入れる</button> -->
+                    </div> 
+                @endforeach
+            </div>
         </div>
         
 
@@ -88,9 +91,6 @@
 <script type="text/javascript">
     //大域変数
     var cart_list = [];
-
-
-
 
     // フラッシュメッセージのfadeout
     $(function(){
