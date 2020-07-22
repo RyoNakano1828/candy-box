@@ -50,7 +50,6 @@ class QuestionaryController extends Controller
         $questionary->eat_frequency = $req->input('eat_frequency');
         $questionary->sweets_time = $req->input('sweets_time');
         $questionary->family = $req->input('family');
-        $questionary->family = $req->input('family');
         $questionary->save();
         $req->session()->put('questionary_id', $questionary->id);
         return redirect('/candybox');

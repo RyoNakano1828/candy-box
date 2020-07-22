@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        // Commands\ImportDateCommand::class
+        // \App\Console\Commands\ImportDateCommand::class,
+        // \App\Console\Commands\ReviewImportCommand::class
     ];
 
     /**

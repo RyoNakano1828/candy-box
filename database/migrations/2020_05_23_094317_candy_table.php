@@ -16,11 +16,12 @@ class CandyTable extends Migration
         Schema::create('candies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('price');
+            $table->string('price');
             $table->string('weight')->nullable();
             $table->integer('category_id')->unsigned();
             // $table->foreign('category_id')->references('id')->on('categories');
             $table->string('score');
+            $table->timestamps();
         });
     }
 

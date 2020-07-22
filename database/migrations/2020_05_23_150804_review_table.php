@@ -18,6 +18,7 @@ class ReviewTable extends Migration
             $table->text('review');
             $table->integer('score');
             $table->integer('candy_id');
+            $table->timestamps();
             // $table->foreign('candy_id')->references('id')->on('candies');
         });
     }
