@@ -6,56 +6,92 @@
         <link rel="stylesheet" href="/css/app.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <title>QuestionaryToppage</title>
+        <title>CandyBox</title>
     </head>
     <body>
-        <h1>Part2</h1>
-        <!-- 切り替えボタンの設定 -->
+        <h1>CandyBox</h1>
         
         @if (Session::has('message'))
             <p class="flash_message">{{ session('message') }}</p>
         @endif
         <div class='container'>
             <div class="card">
-                <div class="card-header sticky-top bg-secondary row">
-                    <div class="dropdown col4 m-1 w-25">
-                        <button type="button" id="dropdown1"
-                            class="btn btn-secondary dropdown-toggle border w-100"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                            カテゴリ選択
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdown1">
-                            <a class="dropdown-item" href="#">Menu #1</a>
-                            <a class="dropdown-item" href="#">Menu #2</a>
-                            <a class="dropdown-item" href="#">Menu #3</a>
+                <form id="submit_form" method='GET' action="/candybox/search" class="sticky-top">
+                    <div class="card-header bg-secondary row">
+                        <div class="dropdown col3 m-1 w-25">
+                            <div class="form-group">
+                                <select id="submit_category" name="category_id" class="form-control">
+                                    <option disables value="">カテゴリ選択</option>
+                                    <option value="">すべて</option>
+                                        @foreach ($categories as $category)
+                                            @isset($searchCategory)
+                                                @if($searchCategory == $category->id)
+                                                    <option selected value="{{$category->id}}">{{$category->name}}</option>
+                                                @else
+                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                @endif
+                                            @else
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endisset
+                                        @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="dropdown col3 m-1 w-25">
+                            <div class="form-group">
+                                <select id="submit_sort" name="sort" class="form-control">
+                                    <option value="" disables>並び替え</option>
+                                        @isset($searchSort)
+                                            @if($searchSort == 1)
+                                                <option selected value="1">値段が安い順</option>
+                                                <option value="2">値段が高い順</option>
+                                                <option value="3">評価が低い順</option>
+                                                <option value="4">評価が高い順</option>
+                                            @elseif($searchSort == 2)
+                                                <option value="1">値段が安い順</option>
+                                                <option selected value="2">値段が高い順</option>
+                                                <option value="3">評価が低い順</option>
+                                                <option value="4">評価が高い順</option>
+                                            @elseif($searchSort == 3)
+                                                <option value="1">値段が安い順</option>
+                                                <option value="2">値段が高い順</option>
+                                                <option selected value="3">評価が低い順</option>
+                                                <option value="4">評価が高い順</option>
+                                            @elseif($searchSort == 4)
+                                                <option value="1">値段が安い順</option>
+                                                <option value="2">値段が高い順</option>
+                                                <option value="3">評価が低い順</option>
+                                                <option selected value="4">評価が高い順</option>
+                                            @endif
+                                        @else
+                                            <option value="1">値段が安い順</option>
+                                            <option value="2">値段が高い順</option>
+                                            <option value="3">評価が低い順</option>
+                                            <option value="4">評価が高い順</option>
+                                        @endisset
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col3 m-1 w-25 form-group">
+                            @isset($searchFreeword)
+                                <input id="" type="text" class="form-control" name="freeword" placeholder="{{$searchFreeword}}" value="{{$searchFreeword}}">
+                            @else
+                                <input id="" type="text" class="form-control" name="freeword" placeholder="商品名フリーワード検索">
+                            @endisset
+                        </div>
+                        <div class="col3 form-group m-1">
+                            <div class="submit_freeword">
+                                <button type="submit" class="btn btn-default border bg-primary">検索</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="dropdown col4 m-1 w-25">
-                        <button type="button" id="dropdown1"
-                            class="btn btn-secondary dropdown-toggle border w-100"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-                            並び替え
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdown1">
-                            <a class="dropdown-item" href="#">値段が安い順</a>
-                            <a class="dropdown-item" href="#">値段が高い順</a>
-                            <a class="dropdown-item" href="#">評価が低い順</a>
-                            <a class="dropdown-item" href="#">評価が高い順</a>
-                        </div>
-                    </div>
-                    <div class="col6 m-1 w-25">
-                        <input type="text" class="form-control" placeholder="自由検索">
-                    </div>
-                </div>
+                </form>
+                
                 <div class="card-body">
                     <div class='row'>
                         @foreach ($candies as $candy)
                             <div class='col-sm-2 col-6 mx-auto p-1 my-1 border'>
-                                <div class="w-100"><img class="w-100" src="images/{{$candy->id}}.png" alt="{{ $candy->name }}"></div>
+                                <div class="w-100"><img class="w-100" src="/images/{{$candy->id}}.png" alt="{{ $candy->name }}"></div>
                                 <div class="w-100">
                                     <p style="height:60px">{{$candy->name}}</p>
                                     <p>価格：<strong>{{$candy->price}}</strong> 円</p>
@@ -159,4 +195,17 @@
         $('.flash_message').fadeOut(3000);
     });
 
+</script>
+<script type="text/javascript">
+    $(function(){
+    $("#submit_category").change(function(){
+        $("#submit_form").submit();
+    });
+    $("#submit_sort").change(function(){
+        $("#submit_form").submit();
+    });
+    $("#submit_freeword").change(function(){
+        $("#submit_form").submit();
+    });
+    });
 </script>

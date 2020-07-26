@@ -25,9 +25,12 @@ class CandyboxController extends Controller
 
         $data = $request->session()->all();
         log::debug($data);
+        log::debug($categories);
         
         return view('candybox.index')
                 ->with('candies',$candies)
+                ->with('reviews',$reviews)
+                ->with('categories',$categories)
                 ->with('carts',$carts);
     }
 
@@ -98,5 +101,49 @@ class CandyboxController extends Controller
         $request->session()->flush();
 
         return redirect('/questionary')->with('flash_message', 'アンケートが完了しました');
+    }
+
+    public function search(Request $req)
+    {
+        log::debug($req->input('category_id'));
+        $searchCategory = $req->input('category_id');
+        $searchSort = $req->input('sort');
+        $searchFreeword = $req->input('freeword');
+        
+        $reviews = Review::all();
+        $categories = Category::all();
+        $query = Candy::query();
+        
+        if($searchCategory !== null && $searchCategory !== ''){
+            $query->where('category_id', $searchCategory);
+        }
+        if($searchFreeword !== null){
+            $query->where('name', 'like', '%'.$searchFreeword.'%');
+        }
+        if($searchSort == 1){
+            $candies = $query->orderBy("price",  "ASC")->get();
+        }else if($searchSort == 2){
+            $candies = $query->orderBy("price",  "DESC")->get();
+        }else if($searchSort == 3){
+            $candies = $query->orderBy("score",  "ASC")->get();
+        }else if($searchSort == 4){
+            $candies = $query->orderBy("score",  "DESC")->get();
+        }else{
+            $candies = $query->orderBy("score",  "DESC")->get();
+        }
+        log::debug($candies);
+
+        $carts = [];
+        $carts = $req->session()->get('candy_list');
+        $data = $req->session()->all();
+                
+        return view('candybox.index')
+                ->with('candies',$candies)
+                ->with('reviews',$reviews)
+                ->with('categories',$categories)
+                ->with('carts',$carts)
+                ->with('searchCategory',$searchCategory)
+                ->with('searchSort', $searchSort)
+                ->with('searchFreeword', $searchFreeword);
     }
 }
