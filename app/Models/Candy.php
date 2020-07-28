@@ -8,6 +8,6 @@ class Candy extends Model
 {
     public function reviews()
     {
-        return $this->hasMany('App\Models\Review', 'candy');
+        return $this->hasMany('App\Models\Review', 'candy_id');
     }
 }

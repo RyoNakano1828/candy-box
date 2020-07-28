@@ -95,7 +95,7 @@ class ReviewImportCommand extends Command
         $review = new Review;
         $review->review = $records[2];
         $review->score = $records[3];
-        $review->candy_id = $records[1];
+        $review->candy_id = $records[1]+1;
         $review->timestamps = false;
         $review->save();
     }

@@ -93,6 +93,7 @@
                             <div class='col-sm-2 col-6 mx-auto p-1 my-1 border'>
                                 @php
                                     $image_num = $candy->id - 1;
+                                    $reviews = $candy->reviews;
                                 @endphp
                                 <div class="w-100"><img class="w-100" src="/images/{{$image_num}}.png" alt="{{ $candy->name }}"></div>
                                 <div class="w-100">
@@ -107,7 +108,7 @@
                                         <input type="hidden" name="candy_id" value="{{ $candy->id }}">
                                         <button type="submit" class="w-100">追加 <i class="fas fa-cart-arrow-down"></i></button>
                                     </form>
-                                    <button type="button" class="col p-0 btn btn-primary" data-toggle="modal" data-target="#modal1">
+                                    <button type="button" class="col p-0 btn btn-primary" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}'>
                                         口コミ <i class="far fa-thumbs-up"></i>
                                     </button>
                                 </div>
@@ -119,18 +120,13 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="label1">口コミ</h5>
+                                            <h5 class="modal-title" id="label1"></h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            口コミデータ取得
-                                            @foreach($reviews as $review)
-                                                @if($review->candy_id == $candy->id)
-                                                    <p>{{$review->review}}</p>
-                                                @endif
-                                            @endforeach
+                                            
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -204,6 +200,26 @@
     // フラッシュメッセージのfadeout
     $(function(){
         $('.flash_message').fadeOut(3000);
+    });
+
+    $(function(){
+        // モーダルウィンドウが開くときの処理    
+        $("#modal1").on('show.bs.modal',function(event){
+            var button = $(event.relatedTarget)
+            var reviews = button.data('reviews')
+            var candy = button.data('candy')
+            console.log(reviews)
+            var modal = $(this)
+            $(".modal-body").empty();
+            modal.find('.modal-title').text(candy.name+'の口コミ')
+            if(reviews.length != 0){
+                for(i=0; i<reviews.length; i++){
+                    modal.find('.modal-body').append('<p>'+reviews[i].review+'</p>')
+                }
+            }else{
+                modal.find('.modal-body').append('<p>この商品に口コミはありません</p>')
+            }
+        });
     });
 
 </script>

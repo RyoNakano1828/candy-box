@@ -8,6 +8,6 @@ class Review extends Model
 {
     public function candy()
     {
-        return $this->belongsTo('App\Models\Candy','reviews');
+        return $this->belongsTo('App\Models\Candy','id');
     }
 }
