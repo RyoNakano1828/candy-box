@@ -79,11 +79,11 @@
                                 <input id="" type="text" class="form-control" name="freeword" placeholder="商品名フリーワード検索">
                             @endisset
                         </div>
-                        <div class="col3 form-group m-1">
+                        <!-- <div class="col3 form-group m-1">
                             <div class="submit_freeword">
                                 <button type="submit" class="btn btn-default border bg-primary">検索</button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
                 
