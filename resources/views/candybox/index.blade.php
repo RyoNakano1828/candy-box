@@ -87,11 +87,14 @@
                     </div>
                 </form>
                 
-                <div class="card-body">
+                <div class="card-body mb-5">
                     <div class='row'>
                         @foreach ($candies as $candy)
                             <div class='col-sm-2 col-6 mx-auto p-1 my-1 border'>
-                                <div class="w-100"><img class="w-100" src="/images/{{$candy->id}}.png" alt="{{ $candy->name }}"></div>
+                                @php
+                                    $image_num = $candy->id - 1;
+                                @endphp
+                                <div class="w-100"><img class="w-100" src="/images/{{$image_num}}.png" alt="{{ $candy->name }}"></div>
                                 <div class="w-100">
                                     <p style="height:60px">{{$candy->name}}</p>
                                     <p>価格：<strong>{{$candy->price}}</strong> 円</p>
@@ -110,6 +113,70 @@
                                 </div>
                                 <!-- <button type="button" class="add_candy" onclick='add_candy'>カートに入れる</button> -->
                             </div> 
+
+                            <!-- 口コミモーダル -->
+                            <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="label1">口コミ</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            口コミデータ取得
+                                            @foreach($reviews as $review)
+                                                @if($review->candy_id == $candy->id)
+                                                    <p>{{$review->review}}</p>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- カートモーダル -->
+                            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Modal">カート内アイテム</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    @if ($carts)
+                                        @foreach ($candies as $candy)
+                                            @foreach ($carts as $cart)
+                                                @if ($candy->id == $cart)
+                                                    <form method="POST" action="candybox/{{$candy->id}}/delete" name="candybox">
+                                                        {{ csrf_field() }}
+                                                        <div class='flex'>
+                                                            <div class="item-title">{{$candy->name}}</div>
+                                                            <div class='delete_button'>
+                                                                <input type="hidden" name="candy_id" value="{{ $candy->id }}">
+                                                                <button type="submit">削除する</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                    @else
+                                        <p>カートにアイテムはありません</p>
+                                    @endif
+                                </div>
+                                
+                                </div>
+                            </div>  
+                            </div>
+
                         @endforeach
                     </div>
                 </div>
@@ -122,63 +189,7 @@
             
         </div>
        
-        <!-- 口コミモーダル -->
-        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="label1">口コミ</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        口コミデータ取得
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         
-        <!-- カートモーダル -->
-        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="Modal">カート内アイテム</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                @if ($carts)
-                    @foreach ($candies as $candy)
-                        @foreach ($carts as $cart)
-                            @if ($candy->id == $cart)
-                                <form method="POST" action="candybox/{{$candy->id}}/delete" name="candybox">
-                                    {{ csrf_field() }}
-                                    <div class='flex'>
-                                        <div class="item-title">{{$candy->name}}</div>
-                                        <div class='delete_button'>
-                                            <input type="hidden" name="candy_id" value="{{ $candy->id }}">
-                                            <button type="submit">削除する</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            @endif
-                        @endforeach
-                    @endforeach
-                @else
-                    <p>カートにアイテムはありません</p>
-                @endif
-            </div>
-            
-            </div>
-        </div>  
-        </div>
 
         <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

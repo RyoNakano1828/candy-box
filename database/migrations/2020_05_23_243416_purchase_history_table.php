@@ -15,10 +15,9 @@ class PurchaseHistoryTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('questionary_id');
+            $table->integer('questionary_id')->unsigned();
+            $table->foreign('questionary_id')->references('id')->on('questionaries')->onDelete('cascade');
             $table->string('candy_info');
-            // $table->foreign('candy_id')->references('id')->on('candies');
-            // $table->foreign('questionary_id')->references('id')->on('questionries');
             $table->string('page_info');
         });
     }

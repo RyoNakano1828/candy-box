@@ -17,9 +17,9 @@ class ReviewTable extends Migration
             $table->increments('id');
             $table->text('review');
             $table->integer('score');
-            $table->integer('candy_id');
+            $table->integer('candy_id')->unsigned();
+            $table->foreign('candy_id')->references('id')->on('candies')->onDelete('cascade');
             $table->timestamps();
-            // $table->foreign('candy_id')->references('id')->on('candies');
         });
     }
 
