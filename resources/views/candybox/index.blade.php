@@ -95,7 +95,8 @@
                                     $image_num = $candy->id - 1;
                                     $reviews = $candy->reviews;
                                 @endphp
-                                <div class="w-100"><img class="w-100" src="/images/{{$image_num}}.png" alt="{{ $candy->name }}"></div>
+                                
+                                <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $image_num }}.png" alt="{{ $candy->name }}"></div>
                                 <div class="w-100">
                                     <p style="height:60px">{{$candy->name}}</p>
                                     <p>価格：<strong>{{$candy->price}}</strong> 円</p>
@@ -103,7 +104,7 @@
                                     <p>評価：{{$candy->score}}</p>
                                 </div>
                                 <div class='row p-0 m-1'>
-                                    <form class='col p-0'method="POST" action="candybox" name="candybox">
+                                    <form class='col p-0'method="POST" action="/candybox/add" name="candybox">
                                         {{ csrf_field() }}
                                         <input type="hidden" name="candy_id" value="{{ $candy->id }}">
                                         <button type="submit" class="w-100">追加 <i class="fas fa-cart-arrow-down"></i></button>
@@ -151,7 +152,7 @@
                                         @foreach ($candies as $candy)
                                             @foreach ($carts as $cart)
                                                 @if ($candy->id == $cart)
-                                                    <form method="POST" action="candybox/{{$candy->id}}/delete" name="candybox">
+                                                    <form method="POST" action="/candybox/{{$candy->id}}/delete" name="candybox">
                                                         {{ csrf_field() }}
                                                         <div class='flex'>
                                                             <div class="item-title">{{$candy->name}}</div>
@@ -167,6 +168,12 @@
                                     @else
                                         <p>カートにアイテムはありません</p>
                                     @endif
+                                    <form method="POST" action="/candybox/store" name="candybox">
+                                        {{ csrf_field() }}
+                                        <div>
+                                            <button class='btn btn-primary' type="submit">購入する</button>
+                                        </div>
+                                    </form>
                                 </div>
                                 
                                 </div>
@@ -194,7 +201,7 @@
 </html>
 
 <script type="text/javascript">
-    //大域変数
+    //カートの中身
     var cart_list = [];
 
     // フラッシュメッセージのfadeout
@@ -222,17 +229,17 @@
         });
     });
 
-</script>
-<script type="text/javascript">
+    //自動検索
     $(function(){
-    $("#submit_category").change(function(){
-        $("#submit_form").submit();
+        $("#submit_category").change(function(){
+            $("#submit_form").submit();
+        });
+        $("#submit_sort").change(function(){
+            $("#submit_form").submit();
+        });
+        $("#submit_freeword").change(function(){
+            $("#submit_form").submit();
+        });
     });
-    $("#submit_sort").change(function(){
-        $("#submit_form").submit();
-    });
-    $("#submit_freeword").change(function(){
-        $("#submit_form").submit();
-    });
-    });
+
 </script>

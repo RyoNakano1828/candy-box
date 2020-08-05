@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class CandyboxController extends Controller
 {
@@ -23,38 +24,45 @@ class CandyboxController extends Controller
         $carts = [];
         $carts = $request->session()->get('candy_list');
 
-        $data = $request->session()->all();
-        log::debug($data);
-        log::debug($categories);
+        $url = config('filesystems.disks.s3.url');
+        
+        log::debug($url);
+
+        // $data = $request->session()->all();
+        // log::debug($data);
         
         return view('candybox.index')
                 ->with('candies',$candies)
                 ->with('reviews',$reviews)
                 ->with('categories',$categories)
-                ->with('carts',$carts);
+                ->with('carts',$carts)
+                ->with('url',$url);
     }
 
     public function add(Request $request)
     {
-        $candies = Candy::all();
+        // $candies = Candy::all();
+        // $reviews = Review::all();
+        // $categories = Category::all();
         $candy_id = '';
         $candy_id .= $request->session()->get('page_info').'-'.$request->post('candy_id');
         $request->session()->put('page_info', $candy_id);
         $request->session()->push('candy_list', $request->post('candy_id'));
-        $carts = $request->session()->get('candy_list');
 
-        $data = $request->session()->all();
-        log::debug($data);
+        // $data = $request->session()->all();
+        // log::debug($data);
+
+        $carts = $request->session()->get('candy_list');
         
-        Session::flash('message', 'カートに追加しました!');
-        return view('candybox.index')
-                ->with('candies',$candies)
-                ->with('carts',$carts);
+        // Session::flash('message', 'カートに追加しました!');
+        return redirect('/candybox');
     }
 
     public function delete(Request $request)
     {
         $candies = Candy::all();
+        $reviews = Review::all();
+        $categories = Category::all();
         // $request->delete('candy_id');
         $candy_list = $request->session()->get('candy_list');
         if($candy_list){
@@ -69,14 +77,14 @@ class CandyboxController extends Controller
         foreach($candy_list as $candy){
             $request->session()->push('candy_list', $candy);
         }
+        
+        // $data = $request->session()->all();
+        // log::debug($data);
+
         $carts = $request->session()->get('candy_list');
-        $data = $request->session()->all();
-        log::debug($data);
         
         Session::flash('message', '削除しました!');
-        return redirect('/candybox')
-                ->with('candies',$candies)
-                ->with('carts',$carts);
+        return redirect('/candybox');
 
     }
 
@@ -105,7 +113,6 @@ class CandyboxController extends Controller
 
     public function search(Request $req)
     {
-        log::debug($req->input('category_id'));
         $searchCategory = $req->input('category_id');
         $searchSort = $req->input('sort');
         $searchFreeword = $req->input('freeword');
@@ -113,6 +120,8 @@ class CandyboxController extends Controller
         $reviews = Review::all();
         $categories = Category::all();
         $query = Candy::query();
+
+        $url = config('filesystems.disks.s3.url');
         
         if($searchCategory !== null && $searchCategory !== ''){
             $query->where('category_id', $searchCategory);
@@ -131,11 +140,9 @@ class CandyboxController extends Controller
         }else{
             $candies = $query->orderBy("score",  "DESC")->get();
         }
-        log::debug($candies);
 
         $carts = [];
         $carts = $req->session()->get('candy_list');
-        $data = $req->session()->all();
                 
         return view('candybox.index')
                 ->with('candies',$candies)
@@ -144,6 +151,7 @@ class CandyboxController extends Controller
                 ->with('carts',$carts)
                 ->with('searchCategory',$searchCategory)
                 ->with('searchSort', $searchSort)
-                ->with('searchFreeword', $searchFreeword);
+                ->with('searchFreeword', $searchFreeword)
+                ->with('url', $url);
     }
 }
