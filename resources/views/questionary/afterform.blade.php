@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/css/app.css">
@@ -47,7 +48,6 @@
                             <h5 class="card-header">アンケートについての感想をお願いします。</h5>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="textarea1">入力:</label>
                                     <textarea id="textarea1" name='comment' class="form-control"></textarea>
                                 </div>
                             </div>

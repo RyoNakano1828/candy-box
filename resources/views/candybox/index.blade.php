@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -240,7 +241,7 @@
 
             //モーダル内に書き込み
             var modal = $(this)
-            $(".modal-body > .reviews").empty();
+            $(".modal-body > .reviews").empty();    
             modal.find('.modal-title').text(candy.name+'の口コミ')
             if(reviews.length != 0){
                 for(i=0; i<reviews.length; i++){
