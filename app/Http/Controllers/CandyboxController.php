@@ -20,13 +20,8 @@ class CandyboxController extends Controller
         $candies = Candy::all();
         $reviews = Review::all();
         $categories = Category::all();
-
         $url = config('filesystems.disks.s3.url');
-        log::debug($url);
-
-        // $data = $request->session()->all();
-        // log::debug($data);
-        
+        Log::debug($url);
         return view('candybox.index')
                 ->with('candies',$candies)
                 ->with('reviews',$reviews)
@@ -34,33 +29,38 @@ class CandyboxController extends Controller
                 ->with('url',$url);
     }
 
-   
-    
     public function store(Request $request)
     {
         Log::debug($request->input("purcahse"));
 
         //購入者ID
         $questionary_id = $request->session()->get('questionary_id');
-        //購入商品
+
+        //購入商品情報を文字列に変換
         $purchase_list = $request->input("purcahse");
-        //画面遷移情報
+        $purchase_info = '';
+        foreach($purchase_list as $candy){
+            $purchase_info .= $candy['id'].'-';
+        }
+        $purchase_info = rtrim($purchase_info, '-');
+        Log::debug($purchase_info);
+
+        //画面遷移情報を文字列に変換
         $move_list = $request->input("movement");
-        // $page_info = ltrim($page_info, '-');
-        $candy_info = '';
-        // foreach($candy_list as $candy){
-        //     $candy_info .= $candy.'-';
-        // }
-        // $candy_info = rtrim($candy_info, '-');
+        $move_info = '';
+        foreach($move_list as $move){
+            $move_info .= $move['id'].'-';
+        }
+        $move_info = rtrim($move_info, '-');
+        Log::debug($move_info);
 
         $purchase = new Purchase();
         $purchase->questionary_id = $questionary_id;
-        // $purchase->candy_info = $candy_info;
-        $purchase->candy_info = "test";
-        // $purchase->page_info = $page_info;
-        $purchase->page_info = "test";
-        $purchase->timestamps = false;
+        $purchase->candy_info = $purchase_info;
+        $purchase->page_info = $move_info;
         $purchase->save();
+
+        //sessionリセット
         $request->session()->flush();
         return response()->json(['url'=>url('/questionary')]);
     }
@@ -74,9 +74,9 @@ class CandyboxController extends Controller
         $reviews = Review::all();
         $categories = Category::all();
         $query = Candy::query();
-
         $url = config('filesystems.disks.s3.url');
-        
+        Log::debug($url);
+    
         if($searchCategory !== null && $searchCategory !== ''){
             $query->where('category_id', $searchCategory);
         }
@@ -94,7 +94,6 @@ class CandyboxController extends Controller
         }else{
             $candies = $query->orderBy("score",  "DESC")->get();
         }
-
         
         return view('candybox.index')
                 ->with('candies',$candies)

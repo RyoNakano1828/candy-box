@@ -105,16 +105,11 @@
                                     <p>評価：{{$candy->score}}</p>
                                 </div>
                                 <div class='row p-0 m-1'>
-                                    <!-- <form class='col p-0'method="POST" action="/candybox/add" name="candybox"> -->
-                                        <!-- {{ csrf_field() }} -->
-                                        <!-- <input type="hidden" name="candy_id" value="{{ $candy->id }}"> -->
-                                        <button type="button" class="add_cart col p-0" data-item='{{$candy->name}}' data-id='{{$candy->id}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
-                                    <!-- </form> -->
-                                    <button type="button" class="col p-0 btn btn-primary" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}'>
+                                    <button type="button" class="add_cart col p-0" data-item='{{$candy->name}}' data-id='{{$candy->id}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
+                                    <button type="button" class="col p-0 btn btn-primary" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
                                         口コミ <i class="far fa-thumbs-up"></i>
                                     </button>
                                 </div>
-                                <!-- <button type="button" class="add_candy" onclick='add_candy'>カートに入れる</button> -->
                             </div> 
 
                             <!-- 口コミモーダル -->
@@ -128,7 +123,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            
+                                            <div class="reviews">
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -140,25 +136,24 @@
                             
                             <!-- カートモーダル -->
                             <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="Modal">カート内アイテム</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="cart_items"></div>
-                                    <div>
-                                        <button class='btn btn-primary purchase' type="button">購入する</button>
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="Modal">カート内アイテム</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="cart_items">
+                                            </div>
+                                            <div>
+                                                <button class='btn btn-primary purchase' type="button">購入する</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                </div>
-                            </div>  
+                                </div>  
                             </div>
-
                         @endforeach
                     </div>
                 </div>
@@ -171,24 +166,24 @@
                 </footer>
             </div>
         </div>
-
-        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>
 
 <script type="text/javascript">
-    //カートの中身
-    // var cart_list = [];
-    //ページ遷移情報
-    var page_list = [];
-
-
-    // フラッシュメッセージのfadeout
-    $(function(){
-        $('.flash_message').fadeOut(3000);
-    });
+    
+    //ページ遷移情報追加メソッド
+    var add_page = function(page){
+        if(sessionStorage.getItem("page_list")){
+            var page_list = JSON.parse(sessionStorage.getItem("page_list"));
+        }else{
+            var page_list = [];
+        }
+        page_list.push({id:page})
+        console.log(page_list)
+        sessionStorage.setItem("page_list", JSON.stringify(page_list));
+    }
 
     //商品をカートに追加
     $(function(){
@@ -203,14 +198,19 @@
             cart_list.push({id:index, name:data})
             console.log(cart_list)
             sessionStorage.setItem("cart_list", JSON.stringify(cart_list));
-            var cart = sessionStorage.getItem("cart_list");
-            console.log("cart:"+cart)
+            
+            //ページ遷移情報追加
+            var page = 'addcart'+index;
+            add_page(page)
+
         });
     });
 
     //カートモーダル
     $(function(){
         $("#cartModal").on('show.bs.modal',function(event){
+            
+
             var cart_list = JSON.parse(sessionStorage.getItem("cart_list"));
             var modal = $(this)
             $(".modal-body > .cart_items").empty();
@@ -222,6 +222,9 @@
             }else{
                 modal.find('.modal-body > .cart_items').append('<p>カートにアイテムはありません</p>')
             }
+            //ページ遷移情報追加
+            var page = 'checkcart';
+            add_page(page)
         });
     });
 
@@ -232,19 +235,23 @@
             var button = $(event.relatedTarget)
             var reviews = button.data('reviews')
             var candy = button.data('candy')
-            console.log(reviews)
+            var index = button.data('id')
+            // console.log(reviews)
 
             //モーダル内に書き込み
             var modal = $(this)
-            $(".modal-body").empty();
+            $(".modal-body > .reviews").empty();
             modal.find('.modal-title').text(candy.name+'の口コミ')
             if(reviews.length != 0){
                 for(i=0; i<reviews.length; i++){
-                    modal.find('.modal-body').append('<p class="text-info">'+reviews[i].review+'</p>')
+                    modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
                 }
             }else{
-                modal.find('.modal-body').append('<p>この商品に口コミはありません</p>')
+                modal.find('.modal-body > .reviews').append('<p>この商品に口コミはありません</p>')
             }
+            //ページ遷移情報追加
+            var page = 'review'+index;
+            add_page(page)
         });
     });
 
@@ -265,7 +272,7 @@
     $(function() {
         $('.purchase').on('click', function() {
             var item = JSON.parse(sessionStorage.getItem("cart_list"));
-            var move = JSON.parse(sessionStorage.getItem("move_list"));
+            var move = JSON.parse(sessionStorage.getItem("page_list"));
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

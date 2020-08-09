@@ -64,13 +64,10 @@ class ReviewImportCommand extends Command
               // 文字コードを UTF-8 へ変換
             //   mb_convert_variables('UTF-8', 'sjis-win', $line);
 
-              log::debug($line[0]);
+              // log::debug($line[0]);
       
               // ヘッダーチェック
               if($flag==0 && !$this->checkHeaders($line)) {
-                // ここにヘッダーチェックエラー時の処理
-                // フォームからのアップロードであればヘッダーチェックは
-                // リクエストクラスで実装するのがおすすめ
                 throw new Exception('ヘッダーが合致しません');
               }
 
