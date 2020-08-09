@@ -93,7 +93,8 @@ class ReviewImportCommand extends Command
         $review->review = $records[2];
         $review->score = $records[3];
         $review->candy_id = $records[1]+1;
-        $review->timestamps = false;
+        $review->name = $records[4];
+        $review->review_time = $records[5];
         $review->save();
     }
 
@@ -109,6 +110,8 @@ class ReviewImportCommand extends Command
         "candy_id",
         "review",
         "score",
+        "name",
+        "time"
         ];
 
         return $head;

@@ -24,3 +24,8 @@ Route::post('questionary/store','QuestionaryController@store');
 Route::get('candybox','CandyboxController@index')->name('candybox.index');
 Route::post('candybox/store','CandyboxController@store')->name('candybox.store');
 Route::get('candybox/search', 'CandyboxController@search');
+
+Route::get('after_questionary/form','QuestionaryController@afterform')->name('questionary.afterform');
+Route::post('after_questionary/store','QuestionaryController@afterstore');
+
+Route::get('thanks','QuestionaryController@thanks')->name('questionary.thanks');

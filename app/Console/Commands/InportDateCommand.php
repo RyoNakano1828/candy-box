@@ -24,7 +24,7 @@ class InportDateCommand extends Command
      *
      * @var string
      */
-    protected $description = '¤•iƒf[ƒ^ƒCƒ“ƒ|[ƒg';
+    protected $description = 'ï¿½ï¿½ï¿½iï¿½fï¿½[ï¿½^ï¿½Cï¿½ï¿½ï¿½|ï¿½[ï¿½g';
 
     /**
      * Create a new command instance.
@@ -34,7 +34,7 @@ class InportDateCommand extends Command
     public function __construct()
     {
         parent::__construct();
-        // ƒwƒbƒ_€–Ú‚Ìİ’è
+        // ï¿½wï¿½bï¿½_ï¿½ï¿½ï¿½Ú‚Ìİ’ï¿½
         $this->head = $this->getHead();
         
     }
@@ -48,32 +48,32 @@ class InportDateCommand extends Command
     {
         $this->info('info');
         try {
-            // CSVƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
+            // CSVï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ì“Ç‚İï¿½ï¿½ï¿½
             $file = new \SplFileObject(storage_path('app/csv/candy2.csv'));
             
             $file->setFlags(
-              \SplFileObject::READ_CSV |           // CSV —ñ‚Æ‚µ‚Äs‚ğ“Ç‚İ‚Ş
-              \SplFileObject::READ_AHEAD |       // æ“Ç‚İ/Šª‚«–ß‚µ‚Å“Ç‚İo‚·B
-              \SplFileObject::SKIP_EMPTY |         // ‹ós‚Í“Ç‚İ”ò‚Î‚·
-              \SplFileObject::DROP_NEW_LINE    // s––‚Ì‰üs‚ğ“Ç‚İ”ò‚Î‚·
+              \SplFileObject::READ_CSV |           // CSV ï¿½ï¿½Æ‚ï¿½ï¿½Äsï¿½ï¿½Ç‚İï¿½ï¿½ï¿½
+              \SplFileObject::READ_AHEAD |       // ï¿½ï¿½Ç‚ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ï¿½Å“Ç‚İoï¿½ï¿½ï¿½B
+              \SplFileObject::SKIP_EMPTY |         // ï¿½ï¿½sï¿½Í“Ç‚İ”ï¿½Î‚ï¿½
+              \SplFileObject::DROP_NEW_LINE    // ï¿½sï¿½ï¿½ï¿½Ì‰ï¿½ï¿½sï¿½ï¿½Ç‚İ”ï¿½Î‚ï¿½
             );
       
       
-            // “Ç‚İ‚ñ‚¾CSVƒf[ƒ^‚ğƒ‹[ƒv
+            // ï¿½Ç‚İï¿½ï¿½ï¿½CSVï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½v
             $flag = 0;
             foreach ($file as $line) {
-              // •¶šƒR[ƒh‚ğ UTF-8 ‚Ö•ÏŠ·
+              // ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½ UTF-8 ï¿½Ö•ÏŠï¿½
               mb_convert_variables('UTF-8', 'sjis-win', $line);
 
               // log::debug($line[0]);
       
-              // ƒwƒbƒ_[ƒ`ƒFƒbƒN
+              // ï¿½wï¿½bï¿½_ï¿½[ï¿½`ï¿½Fï¿½bï¿½N
               if($flag==0 && !$this->checkHeaders($line)) {
-                throw new Exception('ƒwƒbƒ_[‚ª‡’v‚µ‚Ü‚¹‚ñ');
+                throw new Exception('ï¿½wï¿½bï¿½_ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½');
               }
 
               if($flag!=0){
-                // DB‚Ö‘‚«‚İ
+                // DBï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 $this->writeDb($line);
               }
               $flag++;
@@ -96,7 +96,7 @@ class InportDateCommand extends Command
         $candy->weight = $records[4];
         $candy->category_id = $records[1];
         $candy->score = $records[3];
-        $candy->timestamps = false;
+        // $candy->timestamps = false;
         $candy->save();
 
     }

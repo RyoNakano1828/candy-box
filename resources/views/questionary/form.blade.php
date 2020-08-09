@@ -602,8 +602,6 @@
                     </div>
                 </div>
                 
-
-                                
                 <div class="menu-submit">
                     <button type="submit">次へ</button>
                 </div>

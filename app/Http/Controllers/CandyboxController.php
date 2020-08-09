@@ -60,8 +60,6 @@ class CandyboxController extends Controller
         $purchase->page_info = $move_info;
         $purchase->save();
 
-        //sessionリセット
-        $request->session()->flush();
         return response()->json(['url'=>url('/questionary')]);
     }
 

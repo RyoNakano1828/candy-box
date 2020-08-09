@@ -17,8 +17,7 @@ class QuestionaryController extends Controller
         return view('questionary.index');
     }
 
-    public function form(){
-        
+    public function form(){     
         return view('questionary.form');
     }
 
@@ -74,5 +73,22 @@ class QuestionaryController extends Controller
         //回答者のIDをセッションに追加
         $req->session()->put('questionary_id', $questionary->id);
         return redirect('/candybox');
+    }
+
+    public function afterform(){
+        return view('questionary.afterform');
+    }
+
+    public function afterstore(Request $req){
+        Log::debug($req);
+
+        $questionary_id = $request->session()->get('questionary_id');
+
+        $after_questionary = new AfterQuestinary();
+        $after_questionary->questionary_id = $questionary_id;
+
+        //sessionリセット
+        $request->session()->flush();
+
     }
 }
