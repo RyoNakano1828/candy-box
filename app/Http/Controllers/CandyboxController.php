@@ -21,11 +21,7 @@ class CandyboxController extends Controller
         $reviews = Review::all();
         $categories = Category::all();
 
-        $carts = [];
-        $carts = $request->session()->get('candy_list');
-
         $url = config('filesystems.disks.s3.url');
-        
         log::debug($url);
 
         // $data = $request->session()->all();
@@ -35,80 +31,38 @@ class CandyboxController extends Controller
                 ->with('candies',$candies)
                 ->with('reviews',$reviews)
                 ->with('categories',$categories)
-                ->with('carts',$carts)
                 ->with('url',$url);
     }
 
-    public function add(Request $request)
-    {
-        // $candies = Candy::all();
-        // $reviews = Review::all();
-        // $categories = Category::all();
-        $candy_id = '';
-        $candy_id .= $request->session()->get('page_info').'-'.$request->post('candy_id');
-        $request->session()->put('page_info', $candy_id);
-        $request->session()->push('candy_list', $request->post('candy_id'));
-
-        // $data = $request->session()->all();
-        // log::debug($data);
-
-        $carts = $request->session()->get('candy_list');
-        
-        // Session::flash('message', 'カートに追加しました!');
-        return redirect('/candybox');
-    }
-
-    public function delete(Request $request)
-    {
-        $candies = Candy::all();
-        $reviews = Review::all();
-        $categories = Category::all();
-        // $request->delete('candy_id');
-        $candy_list = $request->session()->get('candy_list');
-        if($candy_list){
-            foreach($candy_list as $key => $candy){
-                if ($candy == $request->post('candy_id')){
-                    // echo $request->post('candy_id');
-                    unset($candy_list[$key]);
-                }
-            }
-        }
-        $request->session()->forget('candy_list');
-        foreach($candy_list as $candy){
-            $request->session()->push('candy_list', $candy);
-        }
-        
-        // $data = $request->session()->all();
-        // log::debug($data);
-
-        $carts = $request->session()->get('candy_list');
-        
-        Session::flash('message', '削除しました!');
-        return redirect('/candybox');
-
-    }
-
+   
+    
     public function store(Request $request)
     {
-        $page_info = $request->session()->get('page_info');
-        $page_info = ltrim($page_info, '-');
+        Log::debug($request->input("purcahse"));
+
+        //購入者ID
         $questionary_id = $request->session()->get('questionary_id');
-        $candy_list = $request->session()->get('candy_list');
+        //購入商品
+        $purchase_list = $request->input("purcahse");
+        //画面遷移情報
+        $move_list = $request->input("movement");
+        // $page_info = ltrim($page_info, '-');
         $candy_info = '';
-        foreach($candy_list as $candy){
-            $candy_info .= $candy.'-';
-        }
-        $candy_info = rtrim($candy_info, '-');
+        // foreach($candy_list as $candy){
+        //     $candy_info .= $candy.'-';
+        // }
+        // $candy_info = rtrim($candy_info, '-');
 
         $purchase = new Purchase();
         $purchase->questionary_id = $questionary_id;
-        $purchase->candy_info = $candy_info;
-        $purchase->page_info = $page_info;
+        // $purchase->candy_info = $candy_info;
+        $purchase->candy_info = "test";
+        // $purchase->page_info = $page_info;
+        $purchase->page_info = "test";
         $purchase->timestamps = false;
         $purchase->save();
         $request->session()->flush();
-
-        return redirect('/questionary')->with('flash_message', 'アンケートが完了しました');
+        return response()->json(['url'=>url('/questionary')]);
     }
 
     public function search(Request $req)
@@ -141,14 +95,11 @@ class CandyboxController extends Controller
             $candies = $query->orderBy("score",  "DESC")->get();
         }
 
-        $carts = [];
-        $carts = $req->session()->get('candy_list');
-                
+        
         return view('candybox.index')
                 ->with('candies',$candies)
                 ->with('reviews',$reviews)
                 ->with('categories',$categories)
-                ->with('carts',$carts)
                 ->with('searchCategory',$searchCategory)
                 ->with('searchSort', $searchSort)
                 ->with('searchFreeword', $searchFreeword)
