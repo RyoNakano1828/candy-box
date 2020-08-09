@@ -14,8 +14,8 @@ class AddNameTimeReviewTable extends Migration
     public function up()
     {
         Schema::table('reviews', function (Blueprint $table) {
-            $table->string('name');
-            $table->string('review_time');
+            $table->string('name')->nullable();
+            $table->string('review_time')->nullable();
         });
     }
 

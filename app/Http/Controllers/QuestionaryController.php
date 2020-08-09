@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Questionary;
+use App\Models\AfterQuestionary;
 
 
 use Illuminate\Support\Facades\DB;
@@ -82,13 +83,21 @@ class QuestionaryController extends Controller
     public function afterstore(Request $req){
         Log::debug($req);
 
-        $questionary_id = $request->session()->get('questionary_id');
+        $questionary_id = $req->session()->get('questionary_id');
 
-        $after_questionary = new AfterQuestinary();
+        $after_questionary = new AfterQuestionary();
         $after_questionary->questionary_id = $questionary_id;
+        $after_questionary->assessment = $req->input('assessment');
+        $after_questionary->comment = $req->input('comment');
+        $after_questionary->save();
 
         //sessionリセット
-        $request->session()->flush();
+        $req->session()->flush();
 
+        //サンクスページへ
+        return redirect('/thanks');
+    }
+    public function thanks(){
+        return view('questionary.thanks');
     }
 }

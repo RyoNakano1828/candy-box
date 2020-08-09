@@ -14,7 +14,7 @@ class AddDeviceQuestionaryTable extends Migration
     public function up()
     {
         Schema::table('questionaries', function (Blueprint $table) {
-            $table->string('device');
+            $table->string('device')->nullable();
         });
     }
 

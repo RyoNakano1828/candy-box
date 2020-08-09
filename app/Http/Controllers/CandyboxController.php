@@ -59,8 +59,8 @@ class CandyboxController extends Controller
         $purchase->candy_info = $purchase_info;
         $purchase->page_info = $move_info;
         $purchase->save();
-
-        return response()->json(['url'=>url('/questionary')]);
+        //事後アンケートへ
+        return response()->json(['url'=>url('/after_questionary/form')]);
     }
 
     public function search(Request $req)

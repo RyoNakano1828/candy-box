@@ -13,7 +13,14 @@ class AfterQuestionaryTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('after_questionaries', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('questionary_id')->unsigned();
+            $table->foreign('questionary_id')->references('id')->on('questionaries')->onDelete('cascade');
+            $table->integer('assessment')->nullable();
+            $table->string('comment')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
