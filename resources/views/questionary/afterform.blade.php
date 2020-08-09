@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Part1</h1>
+            <h1>Part3</h1>
             <form name="questionary" action="/after_questionary/store" method="post">
                 {{ csrf_field() }}
 
