@@ -76,9 +76,9 @@
                         </div>
                         <div class="col3 m-1 w-25 form-group">
                             @isset($searchFreeword)
-                                <input id="" type="text" class="form-control" name="freeword" placeholder="{{$searchFreeword}}" value="{{$searchFreeword}}">
+                                <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="{{$searchFreeword}}" value="{{$searchFreeword}}">
                             @else
-                                <input id="" type="text" class="form-control" name="freeword" placeholder="商品名フリーワード検索">
+                                <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="商品名フリーワード検索">
                             @endisset
                         </div>
                         <!-- <div class="col3 form-group m-1">
@@ -136,17 +136,24 @@
                             </div>
                             
                             <!-- カートモーダル -->
-                            <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
+                            <div class="modal fade show" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                    <div class="modal-content w-100">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="Modal">カート内アイテム</h5>
+                                            <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>5つ</strong>選んでください</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                                             <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="cart_items">
+                                            <p>※同じお菓子を複数選択しても構いません</p>
+                                            <p>※架空の販売サイトですので、実際に購入はされません</p>
+                                            <div class="cart_items row">
+                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item0"></div>
+                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item1"></div>
+                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item2"></div>
+                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item3"></div>
+                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item4"></div>
                                             </div>
                                             <div>
                                                 <button class='btn btn-primary purchase' type="button">購入する</button>
@@ -158,6 +165,7 @@
                         @endforeach
                     </div>
                 </div>
+                
                 <footer class="footer fixed-bottom bg-info p-1">
                     <div class="cart_items">
                     </div>
@@ -194,41 +202,86 @@
             }else{
                 var cart_list = [];
             }
-            var data = e.currentTarget.dataset['item'];
-            var index = e.currentTarget.dataset['id'];
-            cart_list.push({id:index, name:data})
-            console.log(cart_list)
-            sessionStorage.setItem("cart_list", JSON.stringify(cart_list));
-            
-            //ページ遷移情報追加
-            var page = 'addcart'+index;
-            add_page(page)
+            if(cart_list.length >= 5){
+                alert('5つ以上カートに入れることはできません。カートからアイテムを削除してください')
+            }else{
+                var data = e.currentTarget.dataset['item'];
+                var index = e.currentTarget.dataset['id'];
+                cart_list.push({id:index, name:data})
+                console.log(cart_list)
+                sessionStorage.setItem("cart_list", JSON.stringify(cart_list));
+                
+                //ページ遷移情報追加
+                var page = 'addcart'+index;
+                add_page(page)
 
+                //アラート表示
+                alert('カートに追加しました');
+            }
         });
     });
 
+    //商品をカートから削除
+    $(function(){
+        $(document).on('click', '.remove_cart', function(e) {
+            console.log('よばれた')
+            //カート情報と削除する商品IDを取得
+            var cart_list = JSON.parse(sessionStorage.getItem("cart_list"));
+            var index = e.currentTarget.dataset['id'];
+            for(var i=0; i<cart_list.length; i++){
+                if(cart_list[i].id == index){
+                    cart_list.splice(i, 1);
+                    break;
+                }
+            }
+            console.log(cart_list)
+            sessionStorage.setItem("cart_list", JSON.stringify(cart_list));
+            //ページ遷移情報追加
+            var page = 'removecart'+index;
+            add_page(page)
+
+            //アラート表示
+            alert('カートから削除しました');
+        });
+    });
+    
     //カートモーダル
     $(function(){
         $("#cartModal").on('show.bs.modal',function(event){
-            
-
             var cart_list = JSON.parse(sessionStorage.getItem("cart_list"));
             var modal = $(this)
-            $(".modal-body > .cart_items").empty();
-            modal.find('.modal-title').text('カート内アイテム')
+            $(".modal-body > .cart_items > div").empty();
             if(cart_list){
                 for(var i=0; i<cart_list.length; i++){
-                    modal.find('.modal-body > .cart_items').append('<p>'+cart_list[i].name+'</p>')
+                    const HTML = `
+                        <div class="w-100"><img class="w-100" src="{{$url}}/${cart_list[i].id-1}.png"></div>
+                        <div class="w-100">
+                            <p style="height:60px">${cart_list[i].name}</p>
+                            <p>価格：<strong>${cart_list[i].id}</strong> 円</p>
+                        </div>
+                        <div class="row p-0 m-1">
+                            <button type="button" class="remove_cart col p-0" data-id="${cart_list[i].id}">カートから削除 <i class="fas fa-cart-arrow-down"></i></button>
+                        </div>
+                    `
+                    modal.find('.modal-body > .cart_items > .cart_item'+i).append(HTML)
+                }
+                for(var j=0; j<5-cart_list.length; j++){
+                    var x = cart_list.length+j
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100">')
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<p style="height:60px">商品が選択されていません</p>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('</div>')
                 }
             }else{
-                modal.find('.modal-body > .cart_items').append('<p>カートにアイテムはありません</p>')
+                modal.find('.modal-body > .cart_items').append('<p>カートにアイテムはありません。</p>')
             }
+
             //ページ遷移情報追加
             var page = 'checkcart';
             add_page(page)
         });
     });
-
+    
     //口コミモーダル
     $(function(){
         $("#modal1").on('show.bs.modal',function(event){
@@ -259,12 +312,21 @@
     //自動検索
     $(function(){
         $("#submit_category").change(function(){
+            //ページ遷移情報追加
+            var page = document.getElementById("submit_category").value;
+            add_page("search_category"+page)
             $("#submit_form").submit();
         });
         $("#submit_sort").change(function(){
+            //ページ遷移情報追加
+            var page = document.getElementById("submit_sort").value;
+            add_page("search_sort"+page)
             $("#submit_form").submit();
         });
-        $("#submit_freeword").change(function(){
+        $(".submit_freeword").change(function(){
+            //ページ遷移情報追加
+            var page = document.querySelector("#submit_form > div > div.col3.m-1.w-25.form-group > input").value;
+            add_page("search_freeword"+page)
             $("#submit_form").submit();
         });
     });

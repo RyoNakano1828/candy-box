@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Storage;
 class CandyboxController extends Controller
 {
     public function index(Request $request){
-        $candies = Candy::all();
+        //ランダムに30件取得
+        $candies = Candy::inRandomOrder()->limit(30)->get();
         $reviews = Review::all();
         $categories = Category::all();
         $url = config('filesystems.disks.s3.url');
-        Log::debug($url);
         return view('candybox.index')
                 ->with('candies',$candies)
                 ->with('reviews',$reviews)
