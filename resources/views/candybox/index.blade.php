@@ -242,6 +242,7 @@
 
             //アラート表示
             alert('カートから削除しました');
+            $('#cartModal').modal('hide');
         });
     });
     
@@ -274,6 +275,13 @@
                 }
             }else{
                 modal.find('.modal-body > .cart_items').append('<p>カートにアイテムはありません。</p>')
+                for(var j=0; j<5; j++){
+                    var x = cart_list.length+j
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100">')
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<p style="height:60px">商品が選択されていません</p>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('</div>')
+                }
             }
 
             //ページ遷移情報追加
@@ -336,25 +344,30 @@
         $('.purchase').on('click', function() {
             var item = JSON.parse(sessionStorage.getItem("cart_list"));
             var move = JSON.parse(sessionStorage.getItem("page_list"));
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: '/candybox/store',
-                type: 'POST',
-                dataType: 'json',
-                data: {purcahse:item,movement:move},
-            })
-            // Ajaxリクエスト成功時の処理
-            .done(function(res) {
-                sessionStorage.clear()
-                window.location=res.url;
-                console.log("success!")
-            })
-            // Ajaxリクエスト失敗時の処理
-            .fail(function(data) {
-                alert('Ajaxリクエスト失敗したため購入できません');
-            });
+            if(item.length < 5){
+                alert('カートに5つの商品を追加してください');
+            }else{
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: '/candybox/store',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {purcahse:item,movement:move},
+                })
+                // Ajaxリクエスト成功時の処理
+                .done(function(res) {
+                    sessionStorage.clear()
+                    window.location=res.url;
+                    console.log("success!")
+                })
+                // Ajaxリクエスト失敗時の処理
+                .fail(function(e) {
+                    alert('Ajaxリクエスト失敗したため購入できません');
+                    console.log(e)
+                });
+            }
         });
     });
 
