@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Storage;
 
 class CandyboxController extends Controller
 {
+    public function explanation(){
+        return view('candybox.explanation');
+    }
+
     public function index(Request $request){
         //ランダムに30件取得
         $candies = Candy::inRandomOrder()->limit(30)->get();
