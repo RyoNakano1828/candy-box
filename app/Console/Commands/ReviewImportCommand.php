@@ -48,7 +48,7 @@ class ReviewImportCommand extends Command
         $this->info('info');
         try {
             // CSVファイルの読み込み
-            $file = new \SplFileObject(storage_path('app/csv/review.csv'));
+            $file = new \SplFileObject(storage_path('app/csv/review3.csv'));
             
             $file->setFlags(
               \SplFileObject::READ_CSV |           // CSV 列として行を読み込む
@@ -62,7 +62,7 @@ class ReviewImportCommand extends Command
             $flag = 0;
             foreach ($file as $line) {
               // 文字コードを UTF-8 へ変換
-              mb_convert_variables('UTF-8', 'sjis-win', $line);
+              // mb_convert_variables('UTF-8', 'sjis-win', $line);
 
               // log::debug($line[0]);
       
@@ -93,8 +93,8 @@ class ReviewImportCommand extends Command
         $review->review = $records[2];
         $review->score = $records[3];
         $review->candy_id = $records[1]+1;
-        // $review->name = $records[4];
-        // $review->review_time = $records[5];
+        $review->name = $records[4];
+        $review->review_time = $records[5];
         $review->save();
     }
 
@@ -110,8 +110,8 @@ class ReviewImportCommand extends Command
         "candy_id",
         "review",
         "score",
-        // "name",
-        // "time"
+        "name",
+        "time"
         ];
 
         return $head;

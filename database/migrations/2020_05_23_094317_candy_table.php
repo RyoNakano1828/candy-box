@@ -20,7 +20,7 @@ class CandyTable extends Migration
             $table->string('weight')->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->integer('score');
+            $table->string('score');
             $table->timestamps();
         });
     }

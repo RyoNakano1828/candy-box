@@ -49,7 +49,7 @@ class InportDateCommand extends Command
         $this->info('info');
         try {
             // CSV�t�@�C���̓ǂݍ���
-            $file = new \SplFileObject(storage_path('app/csv/candy2.csv'));
+            $file = new \SplFileObject(storage_path('app/csv/candy3.csv'));
             
             $file->setFlags(
               \SplFileObject::READ_CSV |           // CSV ��Ƃ��čs��ǂݍ���
@@ -63,7 +63,7 @@ class InportDateCommand extends Command
             $flag = 0;
             foreach ($file as $line) {
               // �����R�[�h�� UTF-8 �֕ϊ�
-              mb_convert_variables('UTF-8', 'sjis-win', $line);
+              // mb_convert_variables('UTF-8', 'sjis-win', $line);
 
               // log::debug($line[0]);
       
