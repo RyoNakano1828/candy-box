@@ -5,17 +5,43 @@
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/app.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <title>CandyBox</title>
     </head>
     <body>
-        <h1>CandyBox</h1>
+        <nav class="navbar row navbar-dark p-0">
+            <div class="col text-center border" style="background-color:gray;">
+                <p>Part0</p>
+                <p class="text-nowrap">説明</p>
+            </div>
+            <div class="col text-center border" style="background-color:gray;">
+                <p>Part1</p>
+                <p class="text-nowrap">事前アンケート</p>
+            </div>
+            <div class="col text-center border" style="background-color:orange;">
+                <p>Part2</p>
+                <p class="text-nowrap">CandyBox</p>
+            </div>
+            <div class="col text-center border" style="background-color:gray;">
+                <p>Part3</p>
+                <p class="text-nowrap">事後アンケート</p>
+            </div>
+        </nav>
+        <div class="container p-2">
+            <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>5つ</strong> 選んでください</h5>
+            <p class="m-0">※同じお菓子を複数選択しても構いません</p>
+            <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
+        </div>
         
-        @if (Session::has('message'))
-            <p class="flash_message">{{ session('message') }}</p>
-        @endif
         <div class='container'>
             <div class="card">
                 <form id="submit_form" method='GET' action="/candybox/search" class="sticky-top">
@@ -156,7 +182,7 @@
                                                 <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item4"></div>
                                             </div>
                                             <div>
-                                                <button class='btn btn-primary purchase' type="button">購入する</button>
+                                                <button class='btn btn-primary btn-block purchase' type="button">購入する</button>
                                             </div>
                                         </div>
                                     </div>
@@ -169,14 +195,14 @@
                 <footer class="footer fixed-bottom bg-info p-1">
                     <div class="cart_items">
                     </div>
-                    <button type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#cartModal">
+                    <button type="button" class="btn btn-primary btn-block m-1" data-toggle="modal" data-target="#cartModal">
                         カートを見る
                     </button>
                 </footer>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     </body>
 </html>
 

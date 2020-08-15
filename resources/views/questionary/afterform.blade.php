@@ -6,12 +6,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/css/app.css">
         <title>QuestionaryPart3</title>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
-        
+        <!-- Fonts -->
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
+        <nav class="navbar row navbar-dark p-0">
+            <div class="col text-center border" style="background-color:gray;">
+                <p>Part0</p>
+                <p class="text-nowrap">説明</p>
+            </div>
+            <div class="col text-center border" style="background-color:gray;">
+                <p>Part1</p>
+                <p class="text-nowrap">事前アンケート</p>
+            </div>
+            <div class="col text-center border" style="background-color:gray;">
+                <p>Part2</p>
+                <p class="text-nowrap">CandyBox</p>
+            </div>
+            <div class="col text-center border" style="background-color:orange;">
+                <p>Part3</p>
+                <p class="text-nowrap">事後アンケート</p>
+            </div>
+        </nav>
         <div class="container">
-            <h1>Part3</h1>
             <form name="questionary" action="/after_questionary/store" method="post">
                 {{ csrf_field() }}
 
@@ -56,7 +80,7 @@
                 </div>
                 
                 <div class="menu-submit">
-                    <button type="submit">回答する</button>
+                    <button type="submit" class="btn btn-primary btn-block">回答する</button>
                 </div>
             </form>
         </div>
