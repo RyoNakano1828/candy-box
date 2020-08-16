@@ -62,6 +62,9 @@
                     <td>約1分(2問)</td>
                 </tr>
             </table>
+            <p class="p-3 lead">
+                ご協力よろしくお願いいたします。
+            </p>
             <a href="{{ url('/questionary/form') }}">
                 <button class="btn btn-primary btn-block">Part1へ進む</button>
             </a>

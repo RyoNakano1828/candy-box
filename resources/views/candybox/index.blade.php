@@ -166,11 +166,11 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="reviews">
+                                                
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">OK</button>
                                         </div>
                                     </div>
                                 </div>
@@ -187,8 +187,6 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p class="m-0">※同じお菓子を複数追加しても構いません</p>
-                                            <p class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
                                             <div class="cart_items row">
                                                 <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item0"></div>
                                                 <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item1"></div>
@@ -348,6 +346,15 @@
             modal.find('.modal-title').text(candy.name+'の口コミ')
             if(reviews.length != 0){
                 for(i=0; i<reviews.length; i++){
+                    const HTML = `
+                        <hr class="m-1">
+                        <div class="row">
+                            <p class="col">${reviews[i].name}</p>
+                            <p class="col">投稿日：${reviews[i].review_time}</p>
+                            <p class="col">評価：${reviews[i].score}</p>
+                        </div>
+                    `
+                    modal.find('.modal-body > .reviews').append(HTML)
                     modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
                 }
             }else{
