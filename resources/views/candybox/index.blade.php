@@ -38,7 +38,19 @@
         </nav>
         <div class="container p-2">
             <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>5つ</strong> 選んでください</h5>
-            <p class="m-0">※同じお菓子を複数選択しても構いません</p>
+            <p class="m-0">※
+                <button type="button" class="p-0 m-1">追加 <i class="fas fa-cart-arrow-down"></i></button>
+                からお菓子を5つカートに追加して、
+                <button type="button" class="btn btn-primary m-1">
+                    カートを見る
+                </button>
+                ⇒
+                <button type="button" class="btn btn-primary m-1">
+                    購入する
+                </button>
+                を押してください
+            </p>
+            <p class="m-0">※同じお菓子を複数追加しても構いません</p>
             <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
         </div>
         
@@ -46,8 +58,9 @@
             <div class="card">
                 <form id="submit_form" method='GET' action="/candybox/search" class="sticky-top">
                     <div class="card-header bg-secondary row">
+                        <h5 class="col2 m-3 text-center text-white">商品検索</h5>
                         <div class="dropdown col3 m-1 w-25">
-                            <div class="form-group">
+                            <div class="form-group m-0">
                                 <select id="submit_category" name="category_id" class="form-control">
                                     <option disables value="">カテゴリ選択</option>
                                     <option value="">すべて</option>
@@ -66,7 +79,7 @@
                             </div>
                         </div>
                         <div class="dropdown col3 m-1 w-25">
-                            <div class="form-group">
+                            <div class="form-group m-0">
                                 <select id="submit_sort" name="sort" class="form-control">
                                     <option value="" disables>並び替え</option>
                                         @isset($searchSort)
@@ -100,12 +113,14 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col3 m-1 w-25 form-group">
-                            @isset($searchFreeword)
-                                <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="{{$searchFreeword}}" value="{{$searchFreeword}}">
-                            @else
-                                <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="商品名フリーワード検索">
-                            @endisset
+                        <div class="col m-1">
+                            <div class="form-group m-0">
+                                @isset($searchFreeword)
+                                    <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="{{$searchFreeword}}" value="{{$searchFreeword}}">
+                                @else
+                                    <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="商品名フリーワード検索">
+                                @endisset
+                            </div>
                         </div>
                         <!-- <div class="col3 form-group m-1">
                             <div class="submit_freeword">
@@ -132,8 +147,8 @@
                                     <p>評価：{{$candy->score}}</p>
                                 </div>
                                 <div class='row p-0 m-1'>
-                                    <button type="button" class="add_cart col p-0" data-item='{{$candy->name}}' data-id='{{$candy->id}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
-                                    <button type="button" class="col p-0 btn btn-primary" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
+                                    <button type="button" class="add_cart col p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
+                                    <button type="button" class="col p-0 btn btn-primary m-1" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
                                         口コミ <i class="far fa-thumbs-up"></i>
                                     </button>
                                 </div>
@@ -172,8 +187,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>※同じお菓子を複数選択しても構いません</p>
-                                            <p>※架空の販売サイトですので、実際に購入はされません</p>
+                                            <p class="m-0">※同じお菓子を複数追加しても構いません</p>
+                                            <p class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
                                             <div class="cart_items row">
                                                 <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item0"></div>
                                                 <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item1"></div>
@@ -278,6 +293,7 @@
             var cart_list = JSON.parse(sessionStorage.getItem("cart_list"));
             var modal = $(this)
             $(".modal-body > .cart_items > div").empty();
+            $(".modal-body > .cart_items > h5").empty();
             if(cart_list){
                 for(var i=0; i<cart_list.length; i++){
                     const HTML = `
@@ -300,13 +316,13 @@
                     modal.find('.modal-body > .cart_items > .cart_item'+x).append('</div>')
                 }
             }else{
-                modal.find('.modal-body > .cart_items').append('<p>カートにアイテムはありません。</p>')
+                $(".modal-body > .cart_items > h5").empty();
+                modal.find('.modal-body > .cart_items').append('<h5 class="text-center m-2">カートにお菓子を追加してください。</h5>')
                 for(var j=0; j<5; j++){
-                    var x = cart_list.length+j
-                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
-                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100">')
-                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<p style="height:60px">商品が選択されていません</p>')
-                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('</div>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100">')
+                    modal.find('.modal-body > .cart_items > .cart_item'+j).append('<p style="height:60px">商品が選択されていません</p>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+j).append('</div>')
                 }
             }
 
