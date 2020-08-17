@@ -34,7 +34,7 @@
                 <p class="text-nowrap small" style="font-size:9px;">事後アンケート</p>
             </div>
         </nav>
-        <div class="container m-1 mb-5">
+        <div class="container mb-5">
             <form name="questionary" action="/questionary/store" method="post">
                 {{ csrf_field() }}
                 <h5 class='m-3 text-center'>事前アンケートです。あまり考えず直感的に選んでください</h5>
