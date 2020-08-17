@@ -35,7 +35,7 @@
                 <p class="text-nowrap small" style="font-size:9px;">事後アンケート</p>
             </div>
         </nav>
-        <div class="container">
+        <div class="container mb-5">
             <form name="questionary" action="/after_questionary/store" method="post">
                 {{ csrf_field() }}
 
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mx-auto mb-5">
+                <div class="row mx-auto mb-3">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <h5 class="card-header">アンケートについての感想をお願いします。</h5>

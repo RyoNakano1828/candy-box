@@ -50,7 +50,12 @@
                 </button>
                 を押してください
             </p>
-            <p class="m-0">※商品検索からお菓子の検索ができます</p>
+            <p class="m-0">
+                ※
+                <button type="button" class="btn btn-primary m-1">
+                    商品検索
+                </button>からお菓子の検索ができます
+            </p>
             <p class="m-0">※同じお菓子を複数追加しても構いません</p>
             <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
         </div>
@@ -58,7 +63,7 @@
         <div class='container-fluid'>
             <div class="card">
                 <form id="submit_form" method='GET' action="/candybox/search" class="sticky-top">
-                    <div class="card-header bg-secondary row p-0 pb-2 pt-2">
+                    <div class="card-header bg-primary row p-0 pb-2 pt-2">
                         <div class="align-middle col-12 text-center text-white m-0 p-0">商品検索</div>
                         <div class="dropdown col-4 m-0 p-0 pl-1">
                             <div class="form-group m-0">
@@ -143,8 +148,8 @@
                                     <p>評価：{{$candy->score}}</p>
                                 </div>
                                 <div class='row p-0 m-1'>
-                                    <button type="button" class="add_cart col p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}' data-cost='{{$candy->price}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
-                                    <button type="button" class="col p-0 btn btn-primary m-1" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
+                                    <button type="button" class="add_cart col-sm-5 col-12 p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}' data-cost='{{$candy->price}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
+                                    <button type="button" class="col-sm-5 col-12 p-0 btn btn-primary m-1" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
                                         口コミ <i class="far fa-thumbs-up"></i>
                                     </button>
                                 </div>
@@ -298,7 +303,7 @@
                             <p>価格：<strong>${cart_list[i].cost}</strong> 円</p>
                         </div>
                         <div class="row p-0 m-1">
-                            <button type="button" class="remove_cart col p-0" data-id="${cart_list[i].id}">カートから削除 <i class="fas fa-cart-arrow-down"></i></button>
+                            <button type="button" class="remove_cart p-1" data-id="${cart_list[i].id}">カートから削除 <i class="fas fa-cart-arrow-down"></i></button>
                         </div>
                     `
                     modal.find('.modal-body > .cart_items > .cart_item'+i).append(HTML)
