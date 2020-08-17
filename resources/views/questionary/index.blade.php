@@ -15,32 +15,32 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="container-fluid">
-        <nav class="navbar row navbar-dark p-0">
+    <body class="">
+        <nav class="navbar row navbar-dark p-0 m-0">
             <div class="col-3 text-center border" style="background-color:orange;">
                 <p>Part0</p>
-                <p class="text-nowrap">説明</p>
+                <p class="text-nowrap small" style="font-size:9px;">説明</p>
             </div>
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part1</p>
-                <p class="text-nowrap">事前アンケート</p>
+                <p class="text-nowrap small" style="font-size:9px;">事前アンケート</p>
             </div>
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part2</p>
-                <p class="text-nowrap">CandyBox</p>
+                <p class="text-nowrap small" style="font-size:9px;">CandyBox</p>
             </div>
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part3</p>
-                <p class="text-nowrap">事後アンケート</p>
+                <p class="text-nowrap small" style="font-size:9px;">事後アンケート</p>
             </div>
         </nav>
-        <div class="p-2">
+        <div class="p-2 mb-4">
             <p class="p-3 lead">
             早稲田大学 創造理工学部 経営システム工学科 4年の中野と申します。</br></br>
             このアンケートの目的は、人はどのような時にどのようなお菓子を食べたくなるのかを架空のお菓子販売サイト（CandyBox）を用いて検証することです。</br></br>
             アンケートは3つのパートからなり、各パートの回答目安時間は下記のようになります。
             </P>
-            <table class="table table-bordered">
+            <table class="table table-bordered m-0">
                 <tr>
                     <th class="text-nowrap">タイトル</th>
                     <th class="text-nowrap">説明</th>
@@ -62,7 +62,7 @@
                     <td>約1分(2問)</td>
                 </tr>
             </table>
-            <p class="p-3 lead">
+            <p class="p-3 lead mb-3">
                 ご協力よろしくお願いいたします。
             </p>
             <a href="{{ url('/questionary/form') }}">

@@ -4,8 +4,8 @@
         <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -18,22 +18,22 @@
         <title>CandyBox</title>
     </head>
     <body>
-        <nav class="navbar row navbar-dark p-0">
+        <nav class="navbar row navbar-dark p-0 m-0">
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part0</p>
-                <p class="text-nowrap">説明</p>
+                <p class="text-nowrap small" style="font-size:9px;">説明</p>
             </div>
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part1</p>
-                <p class="text-nowrap">事前アンケート</p>
+                <p class="text-nowrap small" style="font-size:9px;">事前アンケート</p>
             </div>
             <div class="col-3 text-center border" style="background-color:orange;">
                 <p>Part2</p>
-                <p class="text-nowrap">CandyBox</p>
+                <p class="text-nowrap small" style="font-size:9px;">CandyBox</p>
             </div>
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part3</p>
-                <p class="text-nowrap">事後アンケート</p>
+                <p class="text-nowrap small" style="font-size:9px;">事後アンケート</p>
             </div>
         </nav>
         <div class="container p-2">
@@ -137,9 +137,9 @@
                                 
                                 <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $image_num }}.png" alt="{{ $candy->name }}"></div>
                                 <div class="w-100">
-                                    <p style="height:60px">{{$candy->name}}</p>
+                                    <p style="height:70px">{{$candy->name}}</p>
                                     <p>価格：<strong>{{$candy->price}}</strong> 円</p>
-                                    <p style="height:40px">容量：{{$candy->weight}}</p>
+                                    <p style="height:45px">容量：{{$candy->weight}}</p>
                                     <p>評価：{{$candy->score}}</p>
                                 </div>
                                 <div class='row p-0 m-1'>
@@ -294,7 +294,7 @@
                     const HTML = `
                         <div class="w-100"><img class="w-100" src="{{$url}}/${cart_list[i].id-1}.png"></div>
                         <div class="w-100">
-                            <p style="height:60px">${cart_list[i].name}</p>
+                            <p style="height:70px">${cart_list[i].name}</p>
                             <p>価格：<strong>${cart_list[i].cost}</strong> 円</p>
                         </div>
                         <div class="row p-0 m-1">
@@ -307,7 +307,7 @@
                     var x = cart_list.length+j
                     modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
                     modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100">')
-                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<p style="height:60px">商品が選択されていません</p>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<p style="height:70px">商品が選択されていません</p>')
                     modal.find('.modal-body > .cart_items > .cart_item'+x).append('</div>')
                 }
             }else{
@@ -316,7 +316,7 @@
                 for(var j=0; j<5; j++){
                     modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
                     modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100">')
-                    modal.find('.modal-body > .cart_items > .cart_item'+j).append('<p style="height:60px">商品が選択されていません</p>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+j).append('<p style="height:70px">商品が選択されていません</p>')
                     modal.find('.modal-body > .cart_items > .cart_item'+j).append('</div>')
                 }
             }

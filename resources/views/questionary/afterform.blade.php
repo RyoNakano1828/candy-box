@@ -17,22 +17,22 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar row navbar-dark p-0">
+    <nav class="navbar row navbar-dark p-0 m-0">
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part0</p>
-                <p class="text-nowrap">説明</p>
+                <p class="text-nowrap small" style="font-size:9px;">説明</p>
             </div>
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part1</p>
-                <p class="text-nowrap">事前アンケート</p>
+                <p class="text-nowrap small" style="font-size:9px;">事前アンケート</p>
             </div>
             <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part2</p>
-                <p class="text-nowrap">CandyBox</p>
+                <p class="text-nowrap small" style="font-size:9px;">CandyBox</p>
             </div>
             <div class="col-3 text-center border" style="background-color:orange;">
                 <p>Part3</p>
-                <p class="text-nowrap">事後アンケート</p>
+                <p class="text-nowrap small" style="font-size:9px;">事後アンケート</p>
             </div>
         </nav>
         <div class="container">
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mx-auto">
+                <div class="row mx-auto mb-5">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <h5 class="card-header">アンケートについての感想をお願いします。</h5>
