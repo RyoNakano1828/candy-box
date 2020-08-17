@@ -15,26 +15,26 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body>
+    <body class="container-fluid">
         <nav class="navbar row navbar-dark p-0">
-            <div class="col text-center border" style="background-color:orange;">
+            <div class="col-3 text-center border" style="background-color:orange;">
                 <p>Part0</p>
                 <p class="text-nowrap">説明</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part1</p>
                 <p class="text-nowrap">事前アンケート</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part2</p>
                 <p class="text-nowrap">CandyBox</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part3</p>
                 <p class="text-nowrap">事後アンケート</p>
             </div>
         </nav>
-        <div class="container p-2">
+        <div class="p-2">
             <p class="p-3 lead">
             早稲田大学 創造理工学部 経営システム工学科 4年の中野と申します。</br></br>
             このアンケートの目的は、人はどのような時にどのようなお菓子を食べたくなるのかを架空のお菓子販売サイト（CandyBox）を用いて検証することです。</br></br>
@@ -69,6 +69,5 @@
                 <button class="btn btn-primary btn-block">Part1へ進む</button>
             </a>
         </div>
-        
     </body>
 </html>

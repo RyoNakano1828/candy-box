@@ -17,19 +17,19 @@
     </head>
     <body>
         <nav class="navbar row navbar-dark p-0">
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part0</p>
                 <p class="text-nowrap">説明</p>
             </div>
-            <div class="col text-center border" style="background-color:orange;">
+            <div class="col-3 text-center border" style="background-color:orange;">
                 <p>Part1</p>
                 <p class="text-nowrap">事前アンケート</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part2</p>
                 <p class="text-nowrap">CandyBox</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part3</p>
                 <p class="text-nowrap">事後アンケート</p>
             </div>

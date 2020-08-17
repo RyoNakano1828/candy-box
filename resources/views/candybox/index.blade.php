@@ -19,19 +19,19 @@
     </head>
     <body>
         <nav class="navbar row navbar-dark p-0">
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part0</p>
                 <p class="text-nowrap">説明</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part1</p>
                 <p class="text-nowrap">事前アンケート</p>
             </div>
-            <div class="col text-center border" style="background-color:orange;">
+            <div class="col-3 text-center border" style="background-color:orange;">
                 <p>Part2</p>
                 <p class="text-nowrap">CandyBox</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part3</p>
                 <p class="text-nowrap">事後アンケート</p>
             </div>
@@ -50,19 +50,20 @@
                 </button>
                 を押してください
             </p>
+            <p class="m-0">※商品検索からお菓子の検索ができます</p>
             <p class="m-0">※同じお菓子を複数追加しても構いません</p>
             <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
         </div>
         
-        <div class='container'>
+        <div class='container-fluid'>
             <div class="card">
                 <form id="submit_form" method='GET' action="/candybox/search" class="sticky-top">
-                    <div class="card-header bg-secondary row">
-                        <h5 class="col2 m-3 text-center text-white">商品検索</h5>
-                        <div class="dropdown col3 m-1 w-25">
+                    <div class="card-header bg-secondary row p-0 pb-2 pt-2">
+                        <div class="align-middle col-12 text-center text-white m-0 p-0">商品検索</div>
+                        <div class="dropdown col-4 m-0 p-0 pl-1">
                             <div class="form-group m-0">
                                 <select id="submit_category" name="category_id" class="form-control">
-                                    <option disables value="">カテゴリ選択</option>
+                                    <option class="small" disables value="">カテゴリ選択</option>
                                     <option value="">すべて</option>
                                         @foreach ($categories as $category)
                                             @isset($searchCategory)
@@ -78,10 +79,10 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="dropdown col3 m-1 w-25">
+                        <div class="dropdown col-4 m-0 p-0 pl-1">
                             <div class="form-group m-0">
                                 <select id="submit_sort" name="sort" class="form-control">
-                                    <option value="" disables>並び替え</option>
+                                    <option class="small" value="" disables>並び替え</option>
                                         @isset($searchSort)
                                             @if($searchSort == 1)
                                                 <option selected value="1">値段が安い順</option>
@@ -113,27 +114,22 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col m-1">
+                        <div class="col-4 m-0 p-0 pl-1 pr-1">
                             <div class="form-group m-0">
                                 @isset($searchFreeword)
                                     <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="{{$searchFreeword}}" value="{{$searchFreeword}}">
                                 @else
-                                    <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="商品名フリーワード検索">
+                                    <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="商品名検索">
                                 @endisset
                             </div>
                         </div>
-                        <!-- <div class="col3 form-group m-1">
-                            <div class="submit_freeword">
-                                <button type="submit" class="btn btn-default border bg-primary">検索</button>
-                            </div>
-                        </div> -->
                     </div>
                 </form>
                 
                 <div class="card-body mb-5">
                     <div class='row'>
                         @foreach ($candies as $candy)
-                            <div class='col-sm-2 col-6 mx-auto p-1 my-1 border'>
+                            <div class='col-sm-2 col-4 mx-auto p-1 my-1 border'>
                                 @php
                                     $image_num = $candy->id - 1;
                                     $reviews = $candy->reviews;
@@ -188,11 +184,11 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="cart_items row">
-                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item0"></div>
-                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item1"></div>
-                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item2"></div>
-                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item3"></div>
-                                                <div class="col-sm-2 col-6 mx-auto p-1 my-1 border cart_item4"></div>
+                                                <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item0"></div>
+                                                <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item1"></div>
+                                                <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item2"></div>
+                                                <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item3"></div>
+                                                <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item4"></div>
                                             </div>
                                             <div>
                                                 <button class='btn btn-primary btn-block purchase' type="button">購入する</button>

@@ -18,19 +18,19 @@
     </head>
     <body>
         <nav class="navbar row navbar-dark p-0">
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part0</p>
                 <p class="text-nowrap">説明</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part1</p>
                 <p class="text-nowrap">事前アンケート</p>
             </div>
-            <div class="col text-center border" style="background-color:gray;">
+            <div class="col-3 text-center border" style="background-color:gray;">
                 <p>Part2</p>
                 <p class="text-nowrap">CandyBox</p>
             </div>
-            <div class="col text-center border" style="background-color:orange;">
+            <div class="col-3 text-center border" style="background-color:orange;">
                 <p>Part3</p>
                 <p class="text-nowrap">事後アンケート</p>
             </div>
@@ -42,7 +42,7 @@
                 <div class="row mx-auto">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
-                            <h5 class="card-header">アンケートでのお菓子のECサイトは使いやすかったですか？</h5>
+                            <h5 class="card-header">アンケートでのお菓子の販売サイトは使いやすかったですか？</h5>
                             <div class="card-body">
                                 <div class="radio">
                                     <label><input type="radio" name="assessment" id="radio1" value="1" checked> とても使いやすかった</label>
