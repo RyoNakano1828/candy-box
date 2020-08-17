@@ -243,7 +243,7 @@
                 var cart_list = [];
             }
             if(cart_list.length >= 5){
-                alert('5つ以上カートに入れることはできません。カートからアイテムを削除してください')
+                alert('5つ以上カートに入れることはできません。カートから商品を削除してください')
             }else{
                 var data = e.currentTarget.dataset['item'];
                 var index = e.currentTarget.dataset['id'];
@@ -265,7 +265,6 @@
     //商品をカートから削除
     $(function(){
         $(document).on('click', '.remove_cart', function(e) {
-            console.log('よばれた')
             //カート情報と削除する商品IDを取得
             var cart_list = JSON.parse(sessionStorage.getItem("cart_list"));
             var index = e.currentTarget.dataset['id'];
@@ -303,7 +302,7 @@
                             <p>価格：<strong>${cart_list[i].cost}</strong> 円</p>
                         </div>
                         <div class="row p-0 m-1">
-                            <button type="button" class="remove_cart p-1" data-id="${cart_list[i].id}">カートから削除 <i class="fas fa-cart-arrow-down"></i></button>
+                            <button type="button" class="remove_cart p-1" data-id="${cart_list[i].id}">削除する <i class="fas fa-trash-alt"></i></button>
                         </div>
                     `
                     modal.find('.modal-body > .cart_items > .cart_item'+i).append(HTML)
