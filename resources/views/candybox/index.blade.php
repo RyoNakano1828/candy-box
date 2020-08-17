@@ -147,7 +147,7 @@
                                     <p>評価：{{$candy->score}}</p>
                                 </div>
                                 <div class='row p-0 m-1'>
-                                    <button type="button" class="add_cart col p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
+                                    <button type="button" class="add_cart col p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}' data-cost='{{$candy->price}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
                                     <button type="button" class="col p-0 btn btn-primary m-1" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
                                         口コミ <i class="far fa-thumbs-up"></i>
                                     </button>
@@ -246,7 +246,8 @@
             }else{
                 var data = e.currentTarget.dataset['item'];
                 var index = e.currentTarget.dataset['id'];
-                cart_list.push({id:index, name:data})
+                var cost = e.currentTarget.dataset['cost'];
+                cart_list.push({id:index, name:data, cost:cost})
                 console.log(cart_list)
                 sessionStorage.setItem("cart_list", JSON.stringify(cart_list));
                 
@@ -298,7 +299,7 @@
                         <div class="w-100"><img class="w-100" src="{{$url}}/${cart_list[i].id-1}.png"></div>
                         <div class="w-100">
                             <p style="height:60px">${cart_list[i].name}</p>
-                            <p>価格：<strong>${cart_list[i].id}</strong> 円</p>
+                            <p>価格：<strong>${cart_list[i].cost}</strong> 円</p>
                         </div>
                         <div class="row p-0 m-1">
                             <button type="button" class="remove_cart col p-0" data-id="${cart_list[i].id}">カートから削除 <i class="fas fa-cart-arrow-down"></i></button>
