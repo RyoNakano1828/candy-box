@@ -302,7 +302,7 @@
                             <p>価格：<strong>${cart_list[i].cost}</strong> 円</p>
                         </div>
                         <div class="row p-0 m-1">
-                            <button type="button" class="remove_cart p-1" data-id="${cart_list[i].id}">削除する <i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="remove_cart p-1 w-100" data-id="${cart_list[i].id}">削除する <i class="fas fa-trash-alt"></i></button>
                         </div>
                     `
                     modal.find('.modal-body > .cart_items > .cart_item'+i).append(HTML)
