@@ -24,7 +24,7 @@ class InportDateCommand extends Command
      *
      * @var string
      */
-    protected $description = '���i�f�[�^�C���|�[�g';
+    protected $description = 'insert candies command';
 
     /**
      * Create a new command instance.
@@ -34,7 +34,6 @@ class InportDateCommand extends Command
     public function __construct()
     {
         parent::__construct();
-        // �w�b�_���ڂ̐ݒ�
         $this->head = $this->getHead();
         
     }
@@ -48,32 +47,27 @@ class InportDateCommand extends Command
     {
         $this->info('info');
         try {
-            // CSV�t�@�C���̓ǂݍ���
-            $file = new \SplFileObject(storage_path('app/csv/candy3.csv'));
+            $file = new \SplFileObject(storage_path('app/csv/candy5.csv'));
             
             $file->setFlags(
-              \SplFileObject::READ_CSV |           // CSV ��Ƃ��čs��ǂݍ���
-              \SplFileObject::READ_AHEAD |       // ��ǂ�/�����߂��œǂݏo���B
-              \SplFileObject::SKIP_EMPTY |         // ��s�͓ǂݔ�΂�
-              \SplFileObject::DROP_NEW_LINE    // �s���̉��s��ǂݔ�΂�
+              \SplFileObject::READ_CSV |         
+              \SplFileObject::READ_AHEAD |       
+              \SplFileObject::SKIP_EMPTY |      
+              \SplFileObject::DROP_NEW_LINE
             );
       
       
-            // �ǂݍ���CSV�f�[�^�����[�v
             $flag = 0;
             foreach ($file as $line) {
-              // �����R�[�h�� UTF-8 �֕ϊ�
-              // mb_convert_variables('UTF-8', 'sjis-win', $line);
+              mb_convert_variables('UTF-8', 'sjis-win', $line);
 
               // log::debug($line[0]);
       
-              // �w�b�_�[�`�F�b�N
               if($flag==0 && !$this->checkHeaders($line)) {
-                throw new Exception('�w�b�_�[�����v���܂���');
+                throw new Exception('error');
               }
 
               if($flag!=0){
-                // DB�֏�������
                 $this->writeDb($line);
               }
               $flag++;
@@ -96,6 +90,7 @@ class InportDateCommand extends Command
         $candy->weight = $records[4];
         $candy->category_id = $records[1];
         $candy->score = $records[3];
+        $candy->keyword_id = $records[6];
         // $candy->timestamps = false;
         $candy->save();
 
@@ -115,6 +110,7 @@ class InportDateCommand extends Command
         "score",
         "gram",
         "cost",
+        "keyword_id",
         ];
 
         return $head;

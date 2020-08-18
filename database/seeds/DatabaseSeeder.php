@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             CandyTableSeeder::class,
             ReviewTableSeeder::class,
             PurchaseTableSeeder::class,
+            KeywordTableSeeder::class,
         ]);
     }
 }

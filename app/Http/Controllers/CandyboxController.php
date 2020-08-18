@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candy;
 use App\Models\Category;
+use App\Models\Keyword;
 use App\Models\Review;
 use App\Models\Purchase;
 
@@ -25,10 +26,12 @@ class CandyboxController extends Controller
         $candies = Candy::inRandomOrder()->limit(30)->get();
         $reviews = Review::all();
         $categories = Category::all();
+        $keywords = Keyword::all();
         $url = config('filesystems.disks.s3.url');
         return view('candybox.index')
                 ->with('candies',$candies)
                 ->with('reviews',$reviews)
+                ->with('keywords',$keywords)
                 ->with('categories',$categories)
                 ->with('url',$url);
     }
@@ -71,10 +74,11 @@ class CandyboxController extends Controller
     {
         $searchCategory = $req->input('category_id');
         $searchSort = $req->input('sort');
-        $searchFreeword = $req->input('freeword');
+        $searchKeyword = $req->input('keyword_id');
         
         $reviews = Review::all();
         $categories = Category::all();
+        $keywords = Keyword::all();
         $query = Candy::query();
         $url = config('filesystems.disks.s3.url');
         Log::debug($url);
@@ -82,8 +86,8 @@ class CandyboxController extends Controller
         if($searchCategory !== null && $searchCategory !== ''){
             $query->where('category_id', $searchCategory);
         }
-        if($searchFreeword !== null){
-            $query->where('name', 'like', '%'.$searchFreeword.'%');
+        if($searchKeyword !== null && $searchKeyword !== ''){
+            $query->where('keyword_id', $searchKeyword);
         }
         if($searchSort == 1){
             $candies = $query->orderBy("price",  "ASC")->get();
@@ -101,9 +105,10 @@ class CandyboxController extends Controller
                 ->with('candies',$candies)
                 ->with('reviews',$reviews)
                 ->with('categories',$categories)
+                ->with('keywords',$keywords)
                 ->with('searchCategory',$searchCategory)
                 ->with('searchSort', $searchSort)
-                ->with('searchFreeword', $searchFreeword)
+                ->with('searchKeyword', $searchKeyword)
                 ->with('url', $url);
     }
 }

@@ -64,7 +64,10 @@
             <div class="card">
                 <form id="submit_form" method='GET' action="/candybox/search" class="sticky-top">
                     <div class="card-header bg-primary row p-0 pb-2 pt-2">
-                        <div class="align-middle col-12 text-center text-white m-0 p-0">商品検索</div>
+                        <div class="align-middle col-12 text-center text-white m-0 p-0">
+                            商品検索
+                        </div>
+
                         <div class="dropdown col-4 m-0 p-0 pl-1">
                             <div class="form-group m-0">
                                 <select id="submit_category" name="category_id" class="form-control">
@@ -84,7 +87,28 @@
                                 </select>
                             </div>
                         </div>
+    
                         <div class="dropdown col-4 m-0 p-0 pl-1">
+                            <div class="form-group m-0">
+                                <select id="submit_keyword" name="keyword_id" class="form-control">
+                                    <option class="small" disables value="">キーワード検索</option>
+                                    <option value="">すべて</option>
+                                        @foreach ($keywords as $keyword)
+                                            @isset($searchKeyword)
+                                                @if($searchKeyword == $keyword->id)
+                                                    <option selected value="{{$keyword->id}}">{{$keyword->name}}</option>
+                                                @else
+                                                    <option value="{{$keyword->id}}">{{$keyword->name}}</option>
+                                                @endif
+                                            @else
+                                                <option value="{{$keyword->id}}">{{$keyword->name}}</option>
+                                            @endisset
+                                        @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="dropdown col-4 m-0 p-0 pl-1 pr-1">
                             <div class="form-group m-0">
                                 <select id="submit_sort" name="sort" class="form-control">
                                     <option class="small" value="" disables>並び替え</option>
@@ -117,15 +141,6 @@
                                             <option value="4">評価が高い順</option>
                                         @endisset
                                 </select>
-                            </div>
-                        </div>
-                        <div class="col-4 m-0 p-0 pl-1 pr-1">
-                            <div class="form-group m-0">
-                                @isset($searchFreeword)
-                                    <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="{{$searchFreeword}}" value="{{$searchFreeword}}">
-                                @else
-                                    <input id="" type="text" class="form-control submit_freeword" name="freeword" placeholder="商品名検索">
-                                @endisset
                             </div>
                         </div>
                     </div>
@@ -381,10 +396,10 @@
             add_page("search_sort"+page)
             $("#submit_form").submit();
         });
-        $(".submit_freeword").change(function(){
+        $("#submit_keyword").change(function(){
             //ページ遷移情報追加
-            var page = document.querySelector("#submit_form > div > div.col3.m-1.w-25.form-group > input").value;
-            add_page("search_freeword"+page)
+            var page = document.getElementById("submit_keyword").value;
+            add_page("search_keyword"+page)
             $("#submit_form").submit();
         });
     });

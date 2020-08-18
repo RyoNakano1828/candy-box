@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CandyTable extends Migration
+class CreateKeywordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,9 @@ class CandyTable extends Migration
      */
     public function up()
     {
-        Schema::create('candies', function (Blueprint $table) {
+        Schema::create('keywords', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('price');
-            $table->string('weight')->nullable();
-            $table->integer('category_id')->unsigned();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->string('score');
-            $table->timestamps();
         });
     }
 
@@ -32,6 +26,5 @@ class CandyTable extends Migration
      */
     public function down()
     {
-        //
     }
 }
