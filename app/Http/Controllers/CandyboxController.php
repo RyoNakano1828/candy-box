@@ -23,7 +23,8 @@ class CandyboxController extends Controller
 
     public function index(Request $request){
         //ランダムに30件取得
-        $candies = Candy::inRandomOrder()->limit(30)->get();
+        $random_kyeword = random_int(1, 22);
+        $candies = Candy::where('keyword_id', $random_kyeword)->limit(12)->get();
         $reviews = Review::all();
         $categories = Category::all();
         $keywords = Keyword::all();

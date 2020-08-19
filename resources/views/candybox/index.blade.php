@@ -8,6 +8,7 @@
         <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <!-- <script src="{{ mix('js/app.js') }}" defer></script> -->
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -15,6 +16,9 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
+        
         <title>CandyBox</title>
     </head>
     <body>
@@ -36,23 +40,23 @@
                 <p class="text-nowrap small" style="font-size:9px;">事後アンケート</p>
             </div>
         </nav>
-        <div class="container p-2">
+        <div class="container p-2 mb-2 my-2 border-success bg-warning">
             <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>5つ</strong> 選んでください</h5>
             <p class="m-0">※
-                <button type="button" class="p-0 m-1">追加 <i class="fas fa-cart-arrow-down"></i></button>
+                <button type="button" class="p-1 m-1">追加 <i class="fas fa-cart-arrow-down"></i></button>
                 からお菓子を5つカートに追加して、
-                <button type="button" class="btn btn-primary m-1">
+                <button type="button" class="btn btn-primary m-1 p-1">
                     カートを見る
                 </button>
                 ⇒
-                <button type="button" class="btn btn-primary m-1">
+                <button type="button" class="btn btn-primary m-1 p-1">
                     購入する
                 </button>
                 を押してください
             </p>
             <p class="m-0">
                 ※
-                <button type="button" class="btn btn-primary m-1">
+                <button type="button" class="btn btn-primary m-1 p-1">
                     商品検索
                 </button>からお菓子の検索ができます
             </p>
@@ -147,28 +151,42 @@
                 </form>
                 
                 <div class="card-body mb-5">
-                    <div class='row'>
+                    <div id="app" class='row'>
                         @foreach ($candies as $candy)
-                            <div class='col-sm-2 col-4 mx-auto p-1 my-1 border'>
+                            <div class='col-sm-2 col-4 float-left p-1 my-1 border'>
                                 @php
                                     $image_num = $candy->id - 1;
                                     $reviews = $candy->reviews;
+                                    $review_count = 0
                                 @endphp
                                 
                                 <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $image_num }}.png" alt="{{ $candy->name }}"></div>
-                                <div class="w-100">
-                                    <p style="height:70px">{{$candy->name}}</p>
-                                    <p>価格：<strong>{{$candy->price}}</strong> 円</p>
-                                    <p style="height:45px">容量：{{$candy->weight}}</p>
-                                    <p>評価：{{$candy->score}}</p>
+                                <div class="w-100 text-center">
+                                    <p class="font-weight-bold overflow-auto mb-0" style="height:40px">{{$candy->name}}</p>
+                                    <star-rating :rating="{{$candy->score}}" 
+                                                    :read-only="true" 
+                                                    :increment="0.01"
+                                                    v-bind:star-size="15"
+                                                    v-bind:increment="0.1"
+                                    ></star-rating>
+                                    <p class="text-danger font-weight-bold mb-0 text-center">価格：<strong>{{$candy->price}}</strong> 円</p>
+                                    <p class="overflow-auto mb-0 text-center" style="height:30px">容量：{{$candy->weight}}</p>
+                                    @foreach($reviews as $review)
+                                        @if($review->candy_id == $candy->id)
+                                            @php
+                                                $review_count += 1;
+                                            @endphp
+                                        @endif
+                                    @endforeach
+                                    <button type="button" class="btn btn-link p-0 m-0 text-center" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
+                                        <p class="font-weight-bold p-0 mb-0 text-center">口コミ<i class="far fa-thumbs-up"></i>:{{$review_count}}件</p>
+                                    </button>
+                                    
                                 </div>
                                 <div class='row p-0 m-1'>
-                                    <button type="button" class="add_cart col-sm-5 col-12 p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}' data-cost='{{$candy->price}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
-                                    <button type="button" class="col-sm-5 col-12 p-0 btn btn-primary m-1" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
-                                        口コミ <i class="far fa-thumbs-up"></i>
-                                    </button>
+                                    <button type="button" class="add_cart col p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}' data-cost='{{$candy->price}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
                                 </div>
-                            </div> 
+                            </div>
 
                             <!-- 口コミモーダル -->
                             <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
@@ -236,7 +254,7 @@
 </html>
 
 <script type="text/javascript">
-    
+        
     //ページ遷移情報追加メソッド
     var add_page = function(page){
         if(sessionStorage.getItem("page_list")){
@@ -313,11 +331,11 @@
                     const HTML = `
                         <div class="w-100"><img class="w-100" src="{{$url}}/${cart_list[i].id-1}.png"></div>
                         <div class="w-100">
-                            <p style="height:70px">${cart_list[i].name}</p>
-                            <p>価格：<strong>${cart_list[i].cost}</strong> 円</p>
+                            <p class="font-weight-bold overflow-auto mb-0 text-center" style="height:60px">${cart_list[i].name}</p>
+                            <p class="text-danger mb-0 text-center">価格：<strong>${cart_list[i].cost}</strong> 円</p>
                         </div>
                         <div class="row p-0 m-1">
-                            <button type="button" class="remove_cart p-1 w-100" data-id="${cart_list[i].id}">削除する <i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="remove_cart p-1 w-100" data-id="${cart_list[i].id}">削除 <i class="fas fa-trash-alt"></i></button>
                         </div>
                     `
                     modal.find('.modal-body > .cart_items > .cart_item'+i).append(HTML)
@@ -326,7 +344,7 @@
                     var x = cart_list.length+j
                     modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
                     modal.find('.modal-body > .cart_items > .cart_item'+x).append('<div class="w-100">')
-                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<p style="height:70px">商品が選択されていません</p>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+x).append('<p style="height:60px">商品が選択されていません</p>')
                     modal.find('.modal-body > .cart_items > .cart_item'+x).append('</div>')
                 }
             }else{
@@ -335,7 +353,7 @@
                 for(var j=0; j<5; j++){
                     modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
                     modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100">')
-                    modal.find('.modal-body > .cart_items > .cart_item'+j).append('<p style="height:70px">商品が選択されていません</p>')
+                    modal.find('.modal-body > .cart_items > .cart_item'+j).append('<p style="height:60px">商品が選択されていません</p>')
                     modal.find('.modal-body > .cart_items > .cart_item'+j).append('</div>')
                 }
             }
@@ -364,10 +382,17 @@
                 for(i=0; i<reviews.length; i++){
                     const HTML = `
                         <hr class="m-1">
-                        <div class="row">
+                        <div id="app" class="row">
                             <p class="col">${reviews[i].name}</p>
-                            <p class="col">投稿日：${reviews[i].review_time}</p>
-                            <p class="col">評価：${reviews[i].score}</p>
+                            <p class="col">${reviews[i].review_time}</p>
+                            <p class="col">
+                                <star-rating :rating="${reviews[i].score}" 
+                                                        :read-only="true" 
+                                                        :increment="0.01"
+                                                        v-bind:star-size="15"
+                                                        v-bind:increment="0.1"
+                                ></star-rating>
+                            </p>
                         </div>
                     `
                     modal.find('.modal-body > .reviews').append(HTML)

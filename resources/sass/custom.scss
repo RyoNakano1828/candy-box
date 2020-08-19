@@ -1,0 +1,11 @@
+.star-rating-box {
+    position: relative; /* position: abosoluteの基準 */
+    display: inline-block; /* 最大星数に応じてdivのwidthを伸縮させるため */
+}
+.filled-star {
+    position: absolute; /* .filled-starと.empty-starを重ねる */
+    top: 0; /* 左上の基準位置に移動させる */
+    overflow: hidden; /* widthが足りない時、はみ出た分は表示しない */
+    white-space: nowrap; /* widthが足りない時に、折り返さないようにする。 */
+    width: 50%; /* 星1.5個 表示。= 100 * 1.5 / 3 */ 
+}
