@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Candy;
 use App\Models\Category;
-use App\Models\Keyword;
 use App\Models\Review;
 use App\Models\Purchase;
 
@@ -23,16 +22,13 @@ class CandyboxController extends Controller
 
     public function index(Request $request){
         //ランダムに30件取得
-        $random_kyeword = random_int(1, 22);
-        $candies = Candy::where('keyword_id', $random_kyeword)->limit(12)->get();
+        $candies = Candy::limit(12)->get();
         $reviews = Review::all();
         $categories = Category::all();
-        $keywords = Keyword::all();
         $url = config('filesystems.disks.s3.url');
         return view('candybox.index')
                 ->with('candies',$candies)
                 ->with('reviews',$reviews)
-                ->with('keywords',$keywords)
                 ->with('categories',$categories)
                 ->with('url',$url);
     }
@@ -79,7 +75,6 @@ class CandyboxController extends Controller
         
         $reviews = Review::all();
         $categories = Category::all();
-        $keywords = Keyword::all();
         $query = Candy::query();
         $url = config('filesystems.disks.s3.url');
         Log::debug($url);
