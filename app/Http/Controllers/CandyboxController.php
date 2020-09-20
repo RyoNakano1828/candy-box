@@ -22,7 +22,27 @@ class CandyboxController extends Controller
 
     public function index(Request $request){
         //ランダムに30件取得
-        $candies = Candy::limit(12)->get();
+        //1チョコ
+        $select_candy_list = [1,2,5,6,7,13,20,22,23];
+        //2スナック
+        $select_candy_list = array_merge($select_candy_list, [26,27,29,31,32,33,34,35,68]);
+        //3キャラメル・飴
+        $select_candy_list = array_merge($select_candy_list, [73,74,79,80,81,82,83,86,87]);
+        //4クッキー・おせんべい
+        $select_candy_list = array_merge($select_candy_list, [70,71,96,97,101,102,109,110,111]);
+        //5豆・ナッツ
+        $select_candy_list = array_merge($select_candy_list, [112,119,126,131,153,149,151,152,179]);
+        //6フルーツ
+        $select_candy_list = array_merge($select_candy_list, [113,114,125,130,144,146,166,167,168]);
+        //7おつまみ
+        $select_candy_list = array_merge($select_candy_list, [189,191,253,232,241,261,262,268,269]);
+        //8和菓子
+        $select_candy_list = array_merge($select_candy_list, [364,365,366,367,371,372,373,380,385]);
+        //9洋菓子・ケーキ
+        $select_candy_list = array_merge($select_candy_list, [386,387,391,392,393,404,407,408,409]);
+
+        $candies = Candy::whereIn('id',$select_candy_list)->get();
+        // $candies = Candy::where('category_id',9)->get();
         $reviews = Review::all();
         $categories = Category::all();
         $url = config('filesystems.disks.s3.url');
