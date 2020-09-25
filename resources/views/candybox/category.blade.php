@@ -60,89 +60,12 @@
         <form id="submit_form" method='GET' action="/candybox/search">
             <input type="hidden" id="category_id" name="category_id" value="">
             <div class='container-fluid'>
-                <div id="app" class='row'>
-                    @foreach ($candies as $candy)
-                        <div class='col-4 float-left p-1 my-1 border'>
-                            @php
-                                $image_num = $candy->id - 1;
-                                $reviews = $candy->reviews;
-                                $review_count = 0
-                            @endphp
-                            
-                            <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $image_num }}.png" alt="{{ $candy->name }}"></div>
-                            <div class="w-100 text-center">
-                                <p class="font-weight-bold overflow-auto mb-0" style="height:40px">{{$candy->name}}</p>
-                                <star-rating :rating="{{$candy->score}}" 
-                                                :read-only="true" 
-                                                :increment="0.01"
-                                                v-bind:star-size="15"
-                                                v-bind:increment="0.1"
-                                ></star-rating>
-                                <p class="text-danger font-weight-bold mb-0 text-center">価格：<strong>{{$candy->price}}</strong> 円</p>
-                                <p class="overflow-auto mb-0 text-center" style="height:30px">容量：{{$candy->weight}}</p>
-                                @foreach($reviews as $review)
-                                    @if($review->candy_id == $candy->id)
-                                        @php
-                                            $review_count += 1;
-                                        @endphp
-                                    @endif
-                                @endforeach
-                                <button type="button" class="btn btn-link p-0 m-0 text-center" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
-                                    <p class="font-weight-bold p-0 mb-0 text-center">口コミ<i class="far fa-thumbs-up"></i>:{{$review_count}}件</p>
-                                </button>
-                                
-                            </div>
-                            <div class='row p-0 m-1'>
-                                <button type="button" class="add_cart col p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}' data-cost='{{$candy->price}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- 口コミモーダル -->
-                        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="label1"></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="reviews">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- カートモーダル -->
-                        <div class="modal fade show" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-                            <div class="modal-dialog modal-xl" role="document">
-                                <div class="modal-content w-100">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>5つ</strong>選んでください</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="cart_items row">
-                                            <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item0"></div>
-                                            <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item1"></div>
-                                            <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item2"></div>
-                                            <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item3"></div>
-                                            <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item4"></div>
-                                        </div>
-                                        <div>
-                                            <button class='btn btn-primary btn-block purchase' type="button">購入する</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  
+                <div id="app" class='row'>
+                    @foreach ($categories as $category)
+                        <div id='category{{$category->id}}' class='col-4 float-left p-1 my-1 border'>
+                            <p class='text-center'>{{$category->name}}</p>
+                            <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
                         </div>
                     @endforeach
                     

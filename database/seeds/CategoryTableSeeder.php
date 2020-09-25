@@ -21,24 +21,24 @@ class CategoryTableSeeder extends Seeder
                 'name' => 'スナック菓子',
             ],
             [
-                'id' => 3,
-                'name' => 'クッキー・ビスケット',
-            ],
-            [
                 'id' => 4,
-                'name' => 'キャンディー・ガム・タブレット',
+                'name' => 'キャンディー・ガム・キャラメル',
             ],
             [
                 'id' => 5,
-                'name' => 'おせんべい',
+                'name' => 'クッキー・ビスケット',
+            ],
+            [
+                'id' => 3,
+                'name' => '豆・ナッツ',
             ],
             [
                 'id' => 6,
-                'name' => '豆菓子・ナッツ・ドライフルーツ',
+                'name' => 'フルーツ',
             ],
             [
                 'id' => 7,
-                'name' => 'おつまみ・珍味',
+                'name' => 'おつまみ',
             ],
             [
                 'id' => 8,
@@ -47,10 +47,6 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => 9,
                 'name' => '洋菓子',
-            ],
-            [
-                'id' => 10,
-                'name' => 'その他',
             ],
         ]);
     }
