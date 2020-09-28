@@ -52,7 +52,7 @@
 
                 <div id="app" class='row mb-5'>
                     @foreach ($categories as $category)
-                        <div id='category{{$category->id}}' class='col-4 float-left p-1 my-1 border'>
+                        <div id='category{{$category->id}}' class='fly col-4 float-left p-1 my-1 border'>
                             <p class='text-center'>{{$category->name}}</p>
                             <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
                         </div>
