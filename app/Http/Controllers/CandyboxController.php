@@ -30,7 +30,7 @@ class CandyboxController extends Controller
         //4キャラメル・飴
         $select_candy_list = array_merge($select_candy_list, [73,74,79,80,81,82,83,86,87]);
         //5クッキー・おせんべい
-        $select_candy_list = array_merge($select_candy_list, [70,71,96,97,101,102,109,110,111]);
+        $select_candy_list = array_merge($select_candy_list, [70,69,96,97,101,102,109,110,111]);
         //3豆・ナッツ
         $select_candy_list = array_merge($select_candy_list, [112,119,126,131,153,149,151,152,179]);
         //6フルーツ
@@ -115,7 +115,7 @@ class CandyboxController extends Controller
         //4キャラメル・飴
         $select_candy_list = array_merge($select_candy_list, [73,74,79,80,81,82,83,86,87]);
         //5クッキー・おせんべい
-        $select_candy_list = array_merge($select_candy_list, [70,71,96,97,101,102,109,110,111]);
+        $select_candy_list = array_merge($select_candy_list, [70,69,96,97,101,102,109,110,111]);
         //3豆・ナッツ
         $select_candy_list = array_merge($select_candy_list, [112,119,126,131,153,149,151,152,179]);
         //6フルーツ

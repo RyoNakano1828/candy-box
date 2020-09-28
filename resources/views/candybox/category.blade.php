@@ -42,18 +42,7 @@
         </nav>
         <div class="container p-2 mb-2 my-2 border-success bg-warning">
             <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>5つ</strong> 選んでください</h5>
-            <p class="m-0">※
-                <button type="button" class="p-1 m-1">追加 <i class="fas fa-cart-arrow-down"></i></button>
-                からお菓子を5つカートに追加して、
-                <button type="button" class="btn btn-primary m-1 p-1">
-                    カートを見る
-                </button>
-                ⇒
-                <button type="button" class="btn btn-primary m-1 p-1">
-                    購入する
-                </button>
-                を押してください
-            </p>
+            <p class="m-0">※カテゴリを選択してください</p>
             <p class="m-0">※同じお菓子を複数追加しても構いません</p>
             <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
         </div>
@@ -61,13 +50,39 @@
             <input type="hidden" id="category_id" name="category_id" value="">
             <div class='container-fluid'>
 
-                <div id="app" class='row'>
+                <div id="app" class='row mb-5'>
                     @foreach ($categories as $category)
                         <div id='category{{$category->id}}' class='col-4 float-left p-1 my-1 border'>
                             <p class='text-center'>{{$category->name}}</p>
                             <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
                         </div>
                     @endforeach
+
+                    <!-- カートモーダル -->
+                    <div class="modal fade show" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content w-100">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>5つ</strong>選んでください</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="cart_items row">
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item0"></div>
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item1"></div>
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item2"></div>
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item3"></div>
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item4"></div>
+                                    </div>
+                                    <div>
+                                        <button class='btn btn-primary btn-block purchase' type="button">購入する</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
                     
                     <footer class="footer fixed-bottom bg-info p-1">
                         <div class="cart_items">
