@@ -20,15 +20,6 @@
   /* 星1.5個 表示。= 100 * 1.5 / 3 */
 }
 
-.hover10 {
-  border-radius: 50%;
-  transition: all 0.6s ease 0s;
-}
-
-.hover10:hover {
-  cursor: pointer;
-  transform: scale(1.1, 1.1);
-}
 .fly {
   background-color: #3169d1;
   color: #fff !important;
