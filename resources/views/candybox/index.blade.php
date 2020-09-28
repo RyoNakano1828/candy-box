@@ -79,12 +79,15 @@
                                     <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $image_num }}.png" alt="{{ $candy->name }}"></div>
                                     <div class="w-100 text-center">
                                         <p class="font-weight-bold overflow-auto mb-0" style="height:40px">{{$candy->name}}</p>
-                                        <star-rating :rating="{{$candy->score}}" 
-                                                        :read-only="true" 
-                                                        :increment="0.01"
-                                                        v-bind:star-size="15"
-                                                        v-bind:increment="0.1"
-                                        ></star-rating>
+                                        <div class="m-auto w-50">
+                                            <star-rating
+                                                :rating="{{$candy->score}}" 
+                                                :read-only="true" 
+                                                :increment="0.01"
+                                                v-bind:star-size="15"
+                                                v-bind:increment="0.1"
+                                            ></star-rating>
+                                        </div>
                                         <p class="text-danger font-weight-bold mb-0 text-center">価格：<strong>{{$candy->price}}</strong> 円</p>
                                         <p class="overflow-auto mb-0 text-center" style="height:30px">容量：{{$candy->weight}}</p>
                                         @foreach($reviews as $review)
@@ -299,24 +302,86 @@
             modal.find('.modal-title').text(candy.name+'の口コミ')
             if(reviews.length != 0){
                 for(i=0; i<reviews.length; i++){
-                    const HTML = `
-                        <hr class="m-1">
-                        <div id="app" class="row">
-                            <p class="col">${reviews[i].name}</p>
-                            <p class="col">${reviews[i].review_time}</p>
-                            <p class="col">
-                                <star-rating :rating="${reviews[i].score}" 
-                                                        :read-only="true" 
-                                                        :increment="0.01"
-                                                        v-bind:star-size="15"
-                                                        v-bind:increment="0.1"
-                                ></star-rating>
-                            </p>
-                        </div>
-                    `
-                    modal.find('.modal-body > .reviews').append(HTML)
-                    modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                }
+                    if(reviews[i].score == 0){
+                        const HTML = `
+                            <hr class="m-1">
+                            <div id="app" class="row">
+                                <p class="col">${reviews[i].name}</p>
+                                <p class="col">${reviews[i].review_time}</p>
+                                <p class="col">
+                                    (${reviews[i].score})
+                                </p>
+                            </div>
+                        `
+                        modal.find('.modal-body > .reviews').append(HTML)
+                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
+                    }else if(reviews[i].score == 1){
+                        const HTML = `
+                            <hr class="m-1">
+                            <div id="app" class="row">
+                                <p class="col">${reviews[i].name}</p>
+                                <p class="col">${reviews[i].review_time}</p>
+                                <p class="col">
+                                    ★(${reviews[i].score})
+                                </p>
+                            </div>
+                        `
+                        modal.find('.modal-body > .reviews').append(HTML)
+                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
+                    }else if(reviews[i].score == 2){
+                        const HTML = `
+                            <hr class="m-1">
+                            <div id="app" class="row">
+                                <p class="col">${reviews[i].name}</p>
+                                <p class="col">${reviews[i].review_time}</p>
+                                <p class="col">
+                                    ★★(${reviews[i].score})
+                                </p>
+                            </div>
+                        `
+                        modal.find('.modal-body > .reviews').append(HTML)
+                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
+                    }else if(reviews[i].score == 3){
+                        const HTML = `
+                            <hr class="m-1">
+                            <div id="app" class="row">
+                                <p class="col">${reviews[i].name}</p>
+                                <p class="col">${reviews[i].review_time}</p>
+                                <p class="col">
+                                    ★★★(${reviews[i].score})
+                                </p>
+                            </div>
+                        `
+                        modal.find('.modal-body > .reviews').append(HTML)
+                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
+                    }else if(reviews[i].score == 4){
+                        const HTML = `
+                            <hr class="m-1">
+                            <div id="app" class="row">
+                                <p class="col">${reviews[i].name}</p>
+                                <p class="col">${reviews[i].review_time}</p>
+                                <p class="col">
+                                    ★★★★(${reviews[i].score})
+                                </p>
+                            </div>
+                        `
+                        modal.find('.modal-body > .reviews').append(HTML)
+                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
+                    }else if(reviews[i].score == 5){
+                        const HTML = `
+                            <hr class="m-1">
+                            <div id="app" class="row">
+                                <p class="col">${reviews[i].name}</p>
+                                <p class="col">${reviews[i].review_time}</p>
+                                <p class="col">
+                                    ★★★★★(${reviews[i].score})
+                                </p>
+                            </div>
+                        `
+                        modal.find('.modal-body > .reviews').append(HTML)
+                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
+                    }
+                } 
             }else{
                 modal.find('.modal-body > .reviews').append('<p>この商品に口コミはありません</p>')
             }
