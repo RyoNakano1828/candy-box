@@ -45,7 +45,7 @@ class ReviewImportCommand extends Command
      */
     public function handle()
     {
-        $this->info('info');
+        $this->info('import reviews!!');
         try {
             // CSVファイルの読み込み
             $file = new \SplFileObject(storage_path('app/csv/review3.csv'));

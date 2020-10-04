@@ -19,6 +19,7 @@ class PurchaseHistoryTable extends Migration
             $table->foreign('questionary_id')->references('id')->on('questionaries')->onDelete('cascade');
             $table->string('candy_info');
             $table->longtext('page_info');
+            $table->longtext('time_info');
             $table->timestamps();
         });
     }

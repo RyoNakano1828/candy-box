@@ -111,6 +111,17 @@
         page_list.push({id:page})
         console.log(page_list)
         sessionStorage.setItem("page_list", JSON.stringify(page_list));
+
+        if(sessionStorage.getItem("time_list")){
+            var time_list = JSON.parse(sessionStorage.getItem("time_list"));
+        }else{
+            var time_list = [];
+        }
+        const date = new Date();
+        // 2020/2/1 20:49:28
+        time_list.push({time:date.toLocaleString()})
+        console.log(time_list)
+        sessionStorage.setItem("time_list", JSON.stringify(time_list));
     }
 
     //商品をカートに追加
@@ -259,6 +270,7 @@
         $('.purchase').on('click', function() {
             var item = JSON.parse(sessionStorage.getItem("cart_list"));
             var move = JSON.parse(sessionStorage.getItem("page_list"));
+            var move_time = JSON.parse(sessionStorage.getItem("time_list"));
             if(item.length < 5){
                 alert('カートに5つの商品を追加してください');
             }else{
@@ -269,7 +281,7 @@
                     url: '/candybox/store',
                     type: 'POST',
                     dataType: 'json',
-                    data: {purcahse:item,movement:move},
+                    data: {purcahse:item,movement:move,movement_time:move_time},
                 })
                 // Ajaxリクエスト成功時の処理
                 .done(function(res) {

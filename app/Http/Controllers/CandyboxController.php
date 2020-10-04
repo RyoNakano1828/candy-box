@@ -89,10 +89,20 @@ class CandyboxController extends Controller
         $move_info = rtrim($move_info, '-');
         Log::debug($move_info);
 
+        //画面遷移時間情報を文字列に変換
+        $time_list = $request->input("movement_time");
+        $time_info = '';
+        foreach($time_list as $time){
+            $time_info .= $time['time'].'-';
+        }
+        $time_info = rtrim($time_info, '-');
+        Log::debug($time_info);
+
         $purchase = new Purchase();
         $purchase->questionary_id = $questionary_id;
         $purchase->candy_info = $purchase_info;
         $purchase->page_info = $move_info;
+        $purchase->time_info = $time_info;
         $purchase->save();
         //事後アンケートへ
         return response()->json(['url'=>url('/after_questionary/form')]);

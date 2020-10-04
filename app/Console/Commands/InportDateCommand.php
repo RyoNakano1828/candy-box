@@ -45,7 +45,7 @@ class InportDateCommand extends Command
      */
     public function handle()
     {
-        $this->info('info');
+        $this->info('import candies!!');
         try {
             $file = new \SplFileObject(storage_path('app/csv/candy6.csv'));
             
