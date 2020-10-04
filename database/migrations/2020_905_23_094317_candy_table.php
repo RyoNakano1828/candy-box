@@ -20,8 +20,6 @@ class CandyTable extends Migration
             $table->string('weight')->nullable();
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->integer('keyword_id')->unsigned()->nullable();
-            $table->foreign('keyword_id')->references('id')->on('keywords');
             $table->string('score');
             $table->timestamps();
         });

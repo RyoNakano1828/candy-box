@@ -73,7 +73,7 @@ class QuestionaryController extends Controller
         $questionary->save();
         //回答者のIDをセッションに追加
         $req->session()->put('questionary_id', $questionary->id);
-        return redirect('/candybox');
+        return redirect('/candybox/category');
     }
 
     public function afterform(){

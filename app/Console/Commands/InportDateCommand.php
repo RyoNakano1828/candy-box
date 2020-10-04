@@ -45,9 +45,9 @@ class InportDateCommand extends Command
      */
     public function handle()
     {
-        $this->info('info');
+        $this->info('import candies!!');
         try {
-            $file = new \SplFileObject(storage_path('app/csv/candy5.csv'));
+            $file = new \SplFileObject(storage_path('app/csv/candy6.csv'));
             
             $file->setFlags(
               \SplFileObject::READ_CSV |         
@@ -90,7 +90,6 @@ class InportDateCommand extends Command
         $candy->weight = $records[4];
         $candy->category_id = $records[1];
         $candy->score = $records[3];
-        $candy->keyword_id = $records[6];
         // $candy->timestamps = false;
         $candy->save();
 
@@ -110,7 +109,6 @@ class InportDateCommand extends Command
         "score",
         "gram",
         "cost",
-        "keyword_id",
         ];
 
         return $head;

@@ -42,133 +42,58 @@
         </nav>
         <div class="container p-2 mb-2 my-2 border-success bg-warning">
             <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>5つ</strong> 選んでください</h5>
-            <p class="m-0">※
-                <button type="button" class="p-1 m-1">追加 <i class="fas fa-cart-arrow-down"></i></button>
-                からお菓子を5つカートに追加して、
-                <button type="button" class="btn btn-primary m-1 p-1">
-                    カートを見る
-                </button>
-                ⇒
-                <button type="button" class="btn btn-primary m-1 p-1">
-                    購入する
-                </button>
-                を押してください
-            </p>
+            <p class="m-0">※カテゴリを選択してください</p>
             <p class="m-0">※同じお菓子を複数追加しても構いません</p>
             <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
         </div>
-        <form id="to-category" method='GET' action="/candybox/category">
-        
+        <form id="submit_form" method='GET' action="/candybox/search">
+            <input type="hidden" id="category_id" name="category_id" value="">
             <div class='container-fluid'>
-                <div class="card">
-                    <div class="card-header bg-primary row p-0 pb-2 pt-2 sticky-top">
-                        <button type="submit" class="btn btn-primary btn-block m-1">
-                                カテゴリ選択画面へ
-                        </button>
-                    </div>
-                    <div class="card-body mb-5">
-                        <div id="app" class='row'>
-                            @foreach ($candies as $candy)
-                                <div class='col-4 float-left p-1 my-1 border'>
-                                    @php
-                                        $image_num = $candy->id - 1;
-                                        $reviews = $candy->reviews;
-                                        $review_count = 0
-                                    @endphp
-                                    
-                                    <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $image_num }}.png" alt="{{ $candy->name }}"></div>
-                                    <div class="w-100 text-center">
-                                        <p class="font-weight-bold overflow-auto mb-0" style="height:40px">{{$candy->name}}</p>
-                                        <div class="m-auto w-50">
-                                            <star-rating
-                                                :rating="{{$candy->score}}" 
-                                                :read-only="true" 
-                                                :increment="0.01"
-                                                v-bind:star-size="15"
-                                                v-bind:increment="0.1"
-                                            ></star-rating>
-                                        </div>
-                                        <p class="text-danger font-weight-bold mb-0 text-center">価格：<strong>{{$candy->price}}</strong> 円</p>
-                                        <p class="overflow-auto mb-0 text-center" style="height:30px">容量：{{$candy->weight}}</p>
-                                        @foreach($reviews as $review)
-                                            @if($review->candy_id == $candy->id)
-                                                @php
-                                                    $review_count += 1;
-                                                @endphp
-                                            @endif
-                                        @endforeach
-                                        <button type="button" class="btn btn-link p-0 m-0 text-center" data-toggle="modal" data-target="#modal1" data-reviews='{{$reviews}}' data-candy='{{$candy}}' data-id='{{$candy->id}}'>
-                                            <p class="font-weight-bold p-0 mb-0 text-center">口コミ<i class="far fa-thumbs-up"></i>:{{$review_count}}件</p>
-                                        </button>
-                                        
-                                    </div>
-                                    <div class='row p-0 m-1'>
-                                        <button type="button" class="add_cart col p-0 m-1" data-item='{{$candy->name}}' data-id='{{$candy->id}}' data-cost='{{$candy->price}}'>追加 <i class="fas fa-cart-arrow-down"></i></button>
-                                    </div>
-                                </div>
 
-                                <!-- 口コミモーダル -->
-                                <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="label1"></h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="reviews">
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
+                <div id="app" class='row mb-5'>
+                    @foreach ($categories as $category)
+                        <div id='category{{$category->id}}' class='fly col-4 float-left p-1 my-1 border'>
+                            <p class='text-center'>{{$category->name}}</p>
+                            <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
+                        </div>
+                    @endforeach
+
+                    <!-- カートモーダル -->
+                    <div class="modal fade show" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content w-100">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>5つ</strong>選んでください</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="cart_items row">
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item0"></div>
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item1"></div>
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item2"></div>
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item3"></div>
+                                        <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item4"></div>
+                                    </div>
+                                    <div>
+                                        <button class='btn btn-primary btn-block purchase' type="button">購入する</button>
                                     </div>
                                 </div>
-                                
-                                <!-- カートモーダル -->
-                                <div class="modal fade show" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-                                    <div class="modal-dialog modal-xl" role="document">
-                                        <div class="modal-content w-100">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>5つ</strong>選んでください</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                                                <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="cart_items row">
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item0"></div>
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item1"></div>
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item2"></div>
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item3"></div>
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item4"></div>
-                                                </div>
-                                                <div>
-                                                    <button class='btn btn-primary btn-block purchase' type="button">購入する</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>  
-                                </div>
-                            @endforeach
-                            
-                            <footer class="footer fixed-bottom bg-info p-1">
-                                <div class="cart_items">
-                                </div>
-                                <button type="button" class="btn btn-primary btn-block m-1" data-toggle="modal" data-target="#cartModal">
-                                    カートを見る
-                                </button>
-                            </footer>
-                        </div>
+                            </div>
+                        </div>  
                     </div>
+                    
+                    <footer class="footer fixed-bottom bg-info p-1">
+                        <div class="cart_items">
+                        </div>
+                        <button type="button" class="btn btn-primary btn-block m-1" data-toggle="modal" data-target="#cartModal">
+                            カートを見る
+                        </button>
+                    </footer>
                 </div>
             </div>
         </form>
-          
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     </body>
@@ -176,7 +101,7 @@
 
 <script type="text/javascript">
         
-    //ページ遷移情報＆＆遷移時間追加メソッド
+    //ページ遷移情報追加メソッド
     var add_page = function(page){
         if(sessionStorage.getItem("page_list")){
             var page_list = JSON.parse(sessionStorage.getItem("page_list"));
@@ -199,8 +124,6 @@
         sessionStorage.setItem("time_list", JSON.stringify(time_list));
     }
 
-
-  
     //商品をカートに追加
     $(function(){
         $('.add_cart').on('click', function(e) {
@@ -314,86 +237,24 @@
             modal.find('.modal-title').text(candy.name+'の口コミ')
             if(reviews.length != 0){
                 for(i=0; i<reviews.length; i++){
-                    if(reviews[i].score == 0){
-                        const HTML = `
-                            <hr class="m-1">
-                            <div id="app" class="row">
-                                <p class="col">${reviews[i].name}</p>
-                                <p class="col">${reviews[i].review_time}</p>
-                                <p class="col">
-                                    (${reviews[i].score})
-                                </p>
-                            </div>
-                        `
-                        modal.find('.modal-body > .reviews').append(HTML)
-                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                    }else if(reviews[i].score == 1){
-                        const HTML = `
-                            <hr class="m-1">
-                            <div id="app" class="row">
-                                <p class="col">${reviews[i].name}</p>
-                                <p class="col">${reviews[i].review_time}</p>
-                                <p class="col">
-                                    ★(${reviews[i].score})
-                                </p>
-                            </div>
-                        `
-                        modal.find('.modal-body > .reviews').append(HTML)
-                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                    }else if(reviews[i].score == 2){
-                        const HTML = `
-                            <hr class="m-1">
-                            <div id="app" class="row">
-                                <p class="col">${reviews[i].name}</p>
-                                <p class="col">${reviews[i].review_time}</p>
-                                <p class="col">
-                                    ★★(${reviews[i].score})
-                                </p>
-                            </div>
-                        `
-                        modal.find('.modal-body > .reviews').append(HTML)
-                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                    }else if(reviews[i].score == 3){
-                        const HTML = `
-                            <hr class="m-1">
-                            <div id="app" class="row">
-                                <p class="col">${reviews[i].name}</p>
-                                <p class="col">${reviews[i].review_time}</p>
-                                <p class="col">
-                                    ★★★(${reviews[i].score})
-                                </p>
-                            </div>
-                        `
-                        modal.find('.modal-body > .reviews').append(HTML)
-                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                    }else if(reviews[i].score == 4){
-                        const HTML = `
-                            <hr class="m-1">
-                            <div id="app" class="row">
-                                <p class="col">${reviews[i].name}</p>
-                                <p class="col">${reviews[i].review_time}</p>
-                                <p class="col">
-                                    ★★★★(${reviews[i].score})
-                                </p>
-                            </div>
-                        `
-                        modal.find('.modal-body > .reviews').append(HTML)
-                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                    }else if(reviews[i].score == 5){
-                        const HTML = `
-                            <hr class="m-1">
-                            <div id="app" class="row">
-                                <p class="col">${reviews[i].name}</p>
-                                <p class="col">${reviews[i].review_time}</p>
-                                <p class="col">
-                                    ★★★★★(${reviews[i].score})
-                                </p>
-                            </div>
-                        `
-                        modal.find('.modal-body > .reviews').append(HTML)
-                        modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                    }
-                } 
+                    const HTML = `
+                        <hr class="m-1">
+                        <div id="app" class="row">
+                            <p class="col">${reviews[i].name}</p>
+                            <p class="col">${reviews[i].review_time}</p>
+                            <p class="col">
+                                <star-rating :rating="${reviews[i].score}" 
+                                                        :read-only="true" 
+                                                        :increment="0.01"
+                                                        v-bind:star-size="15"
+                                                        v-bind:increment="0.1"
+                                ></star-rating>
+                            </p>
+                        </div>
+                    `
+                    modal.find('.modal-body > .reviews').append(HTML)
+                    modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
+                }
             }else{
                 modal.find('.modal-body > .reviews').append('<p>この商品に口コミはありません</p>')
             }
