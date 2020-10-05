@@ -433,9 +433,14 @@
             var item = JSON.parse(sessionStorage.getItem("cart_list"));
             var move = JSON.parse(sessionStorage.getItem("page_list"));
             var move_time = JSON.parse(sessionStorage.getItem("time_list"));
-            if(item.length < 5){
-                alert('カートに5つの商品を追加してください');
-            }else{
+            //カート内合計金額計算
+            var sum_price = 0;
+            for(i=0; i<item.length; i++){
+                sum_price += parseInt(item[i].cost,10);
+            }
+            // console.log("sum:"+sum_price)
+            var flag = confirm(`あと${500-sum_price}円分選択できます。\nよろしいですか？`)
+            if(flag == true){
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -453,8 +458,10 @@
                 })
                 // Ajaxリクエスト失敗時の処理
                 .fail(function(e) {
-                    alert('Ajaxリクエスト失敗したため購入できません');
+                    alert('Ajaxリクエスト失敗したため購入できません\n申し訳ないですが最初からやり直してください');
                     console.log(e)
+                    sessionStorage.clear()
+                    window.location='/questionary'
                 });
             }
         });
