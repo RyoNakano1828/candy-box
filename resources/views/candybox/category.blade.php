@@ -41,10 +41,7 @@
             </div>
         </nav>
         <div class="container p-2 mb-2 my-2 border-success bg-warning">
-            <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>5つ</strong> 選んでください</h5>
-            <p class="m-0">※カテゴリを選択してください</p>
-            <p class="m-0">※同じお菓子を複数追加しても構いません</p>
-            <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
+            <h5 class="">※カテゴリを選択してください</h5>
         </div>
         <form id="submit_form" method='GET' action="/candybox/search">
             <input type="hidden" id="category_id" name="category_id" value="">
