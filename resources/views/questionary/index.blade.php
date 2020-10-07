@@ -37,39 +37,44 @@
         <div class="p-2 mb-4 container">
             <p class="p-3 lead">
             早稲田大学 創造理工学部 経営システム工学科 4年の中野と申します。</br></br>
-            このアンケートの目的は、人はどのような時にどのようなお菓子を食べたくなるのかを架空のお菓子販売サイト（CandyBox）を用いて検証することです。</br></br>
+            このアンケートの目的は、私の卒業論文にて、ECサイトにおける「迷い」を考慮した探索行動に関する研究をするにあたり、分析に必要なデータを集めることです。</br></br>
             アンケートは3つのパートからなり、各パートの回答目安時間は下記のようになります。
             </P>
             <div class="table-responsive">
                 <table class="table table-bordered m-0 p-0">
                     <tr>
-                        <th class="text-nowrap">タイトル</th>
+                        <th class="text-nowrap"></th>
                         <th class="text-nowrap">説明</th>
                         <th class="text-nowrap">回答目安時間(質問数)</th>
                     </tr>
                     <tr>
                         <td>Part1</td>
-                        <td>事前アンケートです。あまり考えず直感的に選んでください</td>
-                        <td>約2分(23問×5秒)</td>
+                        <td>事前アンケートです。日常におけるの消費行動についての質問が中心になります。</td>
+                        <td>2分(23問×5秒)</td>
                     </tr>
                     <tr>
                         <td>Part2</td>
-                        <td>架空のお菓子販売サイト（CandyBox）で5つのお菓子を選んでください</td>
-                        <td>約2～5分(1問)</td>
+                        <td>架空のお菓子販売サイトで1000円以内に収まるようにお菓子を選んでください。</br>※実際に購入はされませんので安心して選んでください。</td>
+                        <td>2～3分(1問)</td>
                     </tr>
                     <tr>
                         <td>Part3</td>
-                        <td>事後アンケートです。</td>
-                        <td>約1分(2問)</td>
+                        <td>事後アンケートです。感想をお聞かせください。</td>
+                        <td>1分(4問)</td>
                     </tr>
                 </table>
             </div>
+            </br>
             <p class="p-3 lead mb-3">
-                ご協力よろしくお願いいたします。
+                卒業するためには多くのデータが必要になることが予測されるため、どうかご協力よろしくお願いいたします。
             </p>
             <a href="{{ url('/questionary/form') }}">
                 <button class="btn btn-primary btn-block">Part1へ進む</button>
             </a>
+            </br>
+            <p class="p-3 lead mb-3">
+                ※アンケートに関して、質問等ございましたら ryoku.nkn.18@toki.waseda.jp までお問い合わせください。
+            </p>
         </div>
     </body>
 </html>

@@ -48,19 +48,55 @@
                                     <label><input type="radio" name="assessment" id="radio1" value="1" checked> とても使いやすかった</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="assessment" id="radio2" value="2"> 使いやすかった</label>
+                                    <label><input type="radio" name="assessment" id="radio2" value="2"> どちらかというと使いやすかった</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="assessment" id="radio3" value="3"> どちらかというと使いやすかった</label>
+                                    <label><input type="radio" name="assessment" id="radio3" value="3"> どちらかというと使いにくかった</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="assessment" id="radio4" value="4"> どちらかというと使いにくかった</label>
+                                    <label><input type="radio" name="assessment" id="radio4" value="4"> とても使いにくかった</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-auto">
+                    <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
+                        <div class="card">
+                            <h5 class="card-header">商品を選ぶのにどれくらい迷いましたか？</h5>
+                            <div class="card-body">
+                                <div class="radio">
+                                    <label><input type="radio" name="indecisive" id="radio1" value="1" checked> とても迷った</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="assessment" id="radio5" value="5"> 使いにくかった</label>
+                                    <label><input type="radio" name="indecisive" id="radio2" value="2">少し迷った</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="assessment" id="radio6" value="6"> とても使いにくかった</label>
+                                    <label><input type="radio" name="indecisive" id="radio3" value="3"> あまり迷わなかった</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="indecisive" id="radio4" value="4"> 全く迷わなかった</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-auto">
+                    <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
+                        <div class="card">
+                            <h5 class="card-header">選んだ商品に対する満足感を教えてください</h5>
+                            <div class="card-body">
+                                <div class="radio">
+                                    <label><input type="radio" name="consent" id="radio1" value="1" checked> とても満足している</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="consent" id="radio2" value="2"> 少し満足している</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="consent" id="radio3" value="3"> あまり満足していない</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="consent" id="radio4" value="4"> 全く満足していない</label>
                                 </div>
                             </div>
                         </div>
@@ -69,10 +105,10 @@
                 <div class="row mx-auto mb-3">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
-                            <h5 class="card-header">アンケートについての感想をお願いします。</h5>
+                            <h5 class="card-header">他にほしいお菓子がある場合は記入してください</h5>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <textarea id="textarea1" name='comment' class="form-control"></textarea>
+                                    <textarea id="textarea1" name='other_candy' class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>

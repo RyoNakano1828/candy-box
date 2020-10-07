@@ -43,6 +43,17 @@ class CandyboxController extends Controller
         $select_candy_list = array_merge($select_candy_list, [386,387,391,392,393,404,407,408,409]);
 
         $candies = Candy::whereIn('id',$select_candy_list)->get();
+
+        //合計金額の計算
+        /*
+        $sum_cost = 0;
+        foreach($candies as $candy){
+            $sum_cost += $candy->price;
+            // Log::debug($candy);
+        }
+        Log::debug("合計金額：".$sum_cost);
+        */
+        
         // $candies = Candy::where('category_id',9)->get();
         $reviews = Review::all();
         $categories = Category::all();

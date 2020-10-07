@@ -41,7 +41,7 @@
             </div>
         </nav>
         <div class="container p-2 mb-2 my-2 border-success bg-warning">
-            <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>5つ</strong> 選んでください</h5>
+            <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>合計金額1000円まで</strong> 選んでください</h5>
             <p class="m-0">※カテゴリを選択してください</p>
             <p class="m-0">※同じお菓子を複数追加しても構いません</p>
             <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
@@ -221,50 +221,6 @@
         });
     });
     
-    //口コミモーダル
-    $(function(){
-        $("#modal1").on('show.bs.modal',function(event){
-            //口コミ情報取得
-            var button = $(event.relatedTarget)
-            var reviews = button.data('reviews')
-            var candy = button.data('candy')
-            var index = button.data('id')
-            // console.log(reviews)
-
-            //モーダル内に書き込み
-            var modal = $(this)
-            $(".modal-body > .reviews").empty();    
-            modal.find('.modal-title').text(candy.name+'の口コミ')
-            if(reviews.length != 0){
-                for(i=0; i<reviews.length; i++){
-                    const HTML = `
-                        <hr class="m-1">
-                        <div id="app" class="row">
-                            <p class="col">${reviews[i].name}</p>
-                            <p class="col">${reviews[i].review_time}</p>
-                            <p class="col">
-                                <star-rating :rating="${reviews[i].score}" 
-                                                        :read-only="true" 
-                                                        :increment="0.01"
-                                                        v-bind:star-size="15"
-                                                        v-bind:increment="0.1"
-                                ></star-rating>
-                            </p>
-                        </div>
-                    `
-                    modal.find('.modal-body > .reviews').append(HTML)
-                    modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                }
-            }else{
-                modal.find('.modal-body > .reviews').append('<p>この商品に口コミはありません</p>')
-            }
-            //ページ遷移情報追加
-            var page = 'review'+index;
-            add_page(page)
-        });
-    });
-
-    
     //購入情報送信Ajax
     $(function() {
         $('.purchase').on('click', function() {
@@ -298,68 +254,68 @@
         });
     });
 
-    //ゴミ検索ロジック
+    //ゴミカテゴリ検索ロジック
     $(function(){
         $("#category1").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category1").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category1").firstElementChild.textContent;
+            add_page("search_category1")
             $('#category_id').attr('value', 1);
             $("#submit_form").submit();
         });
         $("#category2").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category2").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category2").firstElementChild.textContent;
+            add_page("search_category2")
             $('#category_id').attr('value', 2);
             $("#submit_form").submit();
         });
         $("#category3").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category3").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category3").firstElementChild.textContent;
+            add_page("search_category3")
             $('#category_id').attr('value', 3);
             $("#submit_form").submit();
         });
         $("#category4").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category4").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category4").firstElementChild.textContent;
+            add_page("search_category4")
             $('#category_id').attr('value', 4);
             $("#submit_form").submit();
         });
         $("#category5").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category5").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category5").firstElementChild.textContent;
+            add_page("search_category5")
             $('#category_id').attr('value', 5);
             $("#submit_form").submit();
         });
         $("#category6").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category6").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category6").firstElementChild.textContent;
+            add_page("search_category6")
             $('#category_id').attr('value', 6);
             $("#submit_form").submit();
         });
         $("#category7").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category7").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category7").firstElementChild.textContent;
+            add_page("search_category7")
             $('#category_id').attr('value', 7);
             $("#submit_form").submit();
         });
         $("#category8").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category8").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category8").firstElementChild.textContent;
+            add_page("search_category8")
             $('#category_id').attr('value', 8);
             $("#submit_form").submit();
         });
         $("#category9").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category9").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category9").firstElementChild.textContent;
+            add_page("search_category9")
             $('#category_id').attr('value', 9);
             $("#submit_form").submit();
         });

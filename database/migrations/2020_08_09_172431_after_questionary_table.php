@@ -17,8 +17,10 @@ class AfterQuestionaryTable extends Migration
             $table->increments('id');
             $table->integer('questionary_id')->unsigned();
             $table->foreign('questionary_id')->references('id')->on('questionaries')->onDelete('cascade');
+            $table->integer('indecisive')->nullable();
+            $table->integer('consent')->nullable();
             $table->integer('assessment')->nullable();
-            $table->string('comment')->nullable();
+            $table->string('other_candy')->nullable();
             $table->timestamps();
         });
     }
