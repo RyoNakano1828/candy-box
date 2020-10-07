@@ -465,7 +465,7 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">味覚センスに自身がある</h5>
+                                <h5 class="col-10 p-0 m-0">味覚センスに自信がある</h5>
                                 <h5 class="text-left col-2 p-0 m-0">19/23</h5>
                             </div>
                             <div class="card-body">
