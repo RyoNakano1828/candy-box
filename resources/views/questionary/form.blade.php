@@ -37,7 +37,7 @@
         <div class="container mb-5">
             <form name="questionary" action="/questionary/store" method="post">
                 {{ csrf_field() }}
-                <h5 class='m-3 text-center'>事前アンケートです。あまり考えず直感的に選んでください</h5>
+                <h5 class='m-3 text-center'>事前アンケートです。日常におけるの消費行動についての質問が中心になります。</h5>
                 <div class="row mx-auto">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">

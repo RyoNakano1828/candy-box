@@ -41,7 +41,7 @@
             </div>
         </nav>
         <div class="container p-2 mb-2 my-2 border-success bg-warning">
-            <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>合計金額500円まで</strong> 選んでください</h5>
+            <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>合計金額1000円まで</strong> 選んでください</h5>
             <p class="m-0">※
                 <button type="button" class="p-1 m-1">追加 <i class="fas fa-cart-arrow-down"></i></button>
                 からお菓子をカートに追加して、
@@ -134,7 +134,7 @@
                                     <div class="modal-dialog modal-xl" role="document">
                                         <div class="modal-content w-100">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>合計500円まで</strong>選んでください</h5>
+                                                <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>合計1000円まで</strong>選んでください</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -143,11 +143,7 @@
                                                 <div class="sum-price">
                                                 </div>
                                                 <div class="cart_items row">
-                                                    <!-- <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item0"></div>
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item1"></div>
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item2"></div>
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item3"></div>
-                                                    <div class="col-sm-2 col-4 mx-auto p-1 my-1 border cart_item4"></div> -->
+                                                    
                                                 </div>
                                                 <div>
                                                     <button class='btn btn-primary btn-block purchase' type="button">購入する</button>
@@ -223,8 +219,8 @@
                 sum_price += parseInt(cart_list[i].cost,10);
             }
             console.log("sum:"+sum_price)
-            if(sum_price+parseInt(e.currentTarget.dataset['cost'],10) >= 500){
-                alert('500円以上カートに入れることはできません。カートから商品を削除してください')
+            if(sum_price+parseInt(e.currentTarget.dataset['cost'],10) >= 1000){
+                alert('1000円以上カートに入れることはできません。カートから商品を削除してください')
             }else{
                 var data = e.currentTarget.dataset['item'];
                 var index = e.currentTarget.dataset['id'];
@@ -281,7 +277,7 @@
             $(".modal-body > .cart_items").empty();
             $(".modal-body > .sum-price > h5").empty();
             if(cart_list){
-                modal.find('.modal-body > .sum-price').append(`<h5 class="text-center m-2">合計金額：${sum_price}円（あと${500-sum_price}円分選べます）</h5>`)
+                modal.find('.modal-body > .sum-price').append(`<h5 class="text-center m-2">合計金額：${sum_price}円（あと${1000-sum_price}円分選べます）</h5>`)
                 for(var i=0; i<cart_list.length; i++){
                     const HTML = `
                         <div class="col-sm-3 col-4 p-1 my-1 border float-left cart_item">
@@ -439,7 +435,7 @@
                 sum_price += parseInt(item[i].cost,10);
             }
             // console.log("sum:"+sum_price)
-            var flag = confirm(`あと${500-sum_price}円分選択できます。\nよろしいですか？`)
+            var flag = confirm(`あと${1000-sum_price}円分選択できます。\nよろしいですか？`)
             if(flag == true){
                 $.ajax({
                     headers: {
@@ -466,85 +462,5 @@
             }
         });
     });
-
-    //ゴミ検索ロジック
-    $(function(){
-        $("#category1").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category1").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 1);
-            $("#submit_form").submit();
-        });
-        $("#category2").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category2").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 2);
-            $("#submit_form").submit();
-        });
-        $("#category3").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category3").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 3);
-            $("#submit_form").submit();
-        });
-        $("#category4").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category4").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 4);
-            $("#submit_form").submit();
-        });
-        $("#category5").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category5").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 5);
-            $("#submit_form").submit();
-        });
-        $("#category6").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category6").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 6);
-            $("#submit_form").submit();
-        });
-        $("#category7").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category7").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 7);
-            $("#submit_form").submit();
-        });
-        $("#category8").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category8").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 8);
-            $("#submit_form").submit();
-        });
-        $("#category9").on('click', function(){
-            //ページ遷移情報追加
-            var page = document.getElementById("category9").firstElementChild.textContent;
-            add_page("search_category"+page)
-            $('#category_id').attr('value', 9);
-            $("#submit_form").submit();
-        });
-        // $("#submit_sort").change(function(){
-        //     //ページ遷移情報追加
-        //     var page = document.getElementById("submit_sort").value;
-        //     add_page("search_sort"+page)
-        //     $("#submit_form").submit();
-        // });
-        // $("#submit_keyword").change(function(){
-        //     //ページ遷移情報追加
-        //     var page = document.getElementById("submit_keyword").value;
-        //     add_page("search_keyword"+page)
-        //     $("#submit_form").submit();
-        // });
-    });
-
 
 </script>

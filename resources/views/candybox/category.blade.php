@@ -41,7 +41,10 @@
             </div>
         </nav>
         <div class="container p-2 mb-2 my-2 border-success bg-warning">
-            <h5 class="">※カテゴリを選択してください</h5>
+            <h5 class="">あなたが今、家にあったらうれしいお菓子を <strong>合計金額1000円まで</strong> 選んでください</h5>
+            <p class="m-0">※カテゴリを選択してください</p>
+            <p class="m-0">※同じお菓子を複数追加しても構いません</p>
+            <p  class="m-0">※架空の販売サイトですので、実際に購入はされません</p>
         </div>
         <form id="submit_form" method='GET' action="/candybox/search">
             <input type="hidden" id="category_id" name="category_id" value="">
@@ -217,50 +220,6 @@
             add_page(page)
         });
     });
-    
-    //口コミモーダル
-    $(function(){
-        $("#modal1").on('show.bs.modal',function(event){
-            //口コミ情報取得
-            var button = $(event.relatedTarget)
-            var reviews = button.data('reviews')
-            var candy = button.data('candy')
-            var index = button.data('id')
-            // console.log(reviews)
-
-            //モーダル内に書き込み
-            var modal = $(this)
-            $(".modal-body > .reviews").empty();    
-            modal.find('.modal-title').text(candy.name+'の口コミ')
-            if(reviews.length != 0){
-                for(i=0; i<reviews.length; i++){
-                    const HTML = `
-                        <hr class="m-1">
-                        <div id="app" class="row">
-                            <p class="col">${reviews[i].name}</p>
-                            <p class="col">${reviews[i].review_time}</p>
-                            <p class="col">
-                                <star-rating :rating="${reviews[i].score}" 
-                                                        :read-only="true" 
-                                                        :increment="0.01"
-                                                        v-bind:star-size="15"
-                                                        v-bind:increment="0.1"
-                                ></star-rating>
-                            </p>
-                        </div>
-                    `
-                    modal.find('.modal-body > .reviews').append(HTML)
-                    modal.find('.modal-body > .reviews').append('<p class="text-info">'+reviews[i].review+'</p>')
-                }
-            }else{
-                modal.find('.modal-body > .reviews').append('<p>この商品に口コミはありません</p>')
-            }
-            //ページ遷移情報追加
-            var page = 'review'+index;
-            add_page(page)
-        });
-    });
-
     
     //購入情報送信Ajax
     $(function() {
