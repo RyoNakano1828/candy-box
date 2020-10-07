@@ -6,6 +6,7 @@ use App\Models\Candy;
 use App\Models\Category;
 use App\Models\Review;
 use App\Models\Purchase;
+use App\Models\SelectedCandy;
 
 use Illuminate\Http\Request;
 
@@ -23,26 +24,27 @@ class CandyboxController extends Controller
     //商品一覧
     public function index(Request $request)
     {
-        //1チョコ
-        $select_candy_list = [1,2,5,6,7,13,20,22,23];
-        //2スナック
-        $select_candy_list = array_merge($select_candy_list, [26,27,29,31,32,33,34,35,68]);
-        //4キャラメル・飴
-        $select_candy_list = array_merge($select_candy_list, [73,74,79,80,81,82,83,86,87]);
-        //5クッキー・おせんべい
-        $select_candy_list = array_merge($select_candy_list, [70,69,96,97,101,102,109,110,111]);
-        //3豆・ナッツ
-        $select_candy_list = array_merge($select_candy_list, [112,119,126,131,153,149,151,152,179]);
-        //6フルーツ
-        $select_candy_list = array_merge($select_candy_list, [113,114,125,130,144,146,166,167,168]);
-        //7おつまみ
-        $select_candy_list = array_merge($select_candy_list, [189,191,253,232,241,261,262,268,269]);
-        //8和菓子
-        $select_candy_list = array_merge($select_candy_list, [364,365,366,367,371,372,373,380,385]);
-        //9洋菓子・ケーキ
-        $select_candy_list = array_merge($select_candy_list, [386,387,391,392,393,404,407,408,409]);
+        //良さげな81商品
+        // //1チョコ
+        // $select_candy_list = [1,2,5,6,7,13,20,22,23];
+        // //2スナック
+        // $select_candy_list = array_merge($select_candy_list, [26,27,29,31,32,33,34,35,68]);
+        // //4キャラメル・飴
+        // $select_candy_list = array_merge($select_candy_list, [73,74,79,80,81,82,83,86,87]);
+        // //5クッキー・おせんべい
+        // $select_candy_list = array_merge($select_candy_list, [70,69,96,97,101,102,109,110,111]);
+        // //3豆・ナッツ
+        // $select_candy_list = array_merge($select_candy_list, [112,119,126,131,153,149,151,152,179]);
+        // //6フルーツ
+        // $select_candy_list = array_merge($select_candy_list, [113,114,125,130,144,146,166,167,168]);
+        // //7おつまみ
+        // $select_candy_list = array_merge($select_candy_list, [189,191,253,232,241,261,262,268,269]);
+        // //8和菓子
+        // $select_candy_list = array_merge($select_candy_list, [364,365,366,367,371,372,373,380,385]);
+        // //9洋菓子・ケーキ
+        // $select_candy_list = array_merge($select_candy_list, [386,387,391,392,393,404,407,408,409]);
 
-        $candies = Candy::whereIn('id',$select_candy_list)->get();
+        // $candies = Candy::whereIn('id',$select_candy_list)->get();
 
         //合計金額の計算
         /*
@@ -53,8 +55,15 @@ class CandyboxController extends Controller
         }
         Log::debug("合計金額：".$sum_cost);
         */
-        
-        // $candies = Candy::where('category_id',9)->get();
+
+        //購入者ID
+        $questionary_id = $request->session()->get('questionary_id');
+
+        //ランダムに9×9商品取得する(SelectedCandyから取得)
+        $select_candy_list = SelectedCandy::where('questionary_id', $questionary_id)->pluck('candy_id');
+        Log::debug("selected_candies:".$select_candy_list);
+        $candies = Candy::whereIn('id',$select_candy_list)->get();
+
         $reviews = Review::all();
         $categories = Category::all();
         $url = config('filesystems.disks.s3.url');
@@ -77,8 +86,6 @@ class CandyboxController extends Controller
 
     public function store(Request $request)
     {
-        Log::debug($request->input("purcahse"));
-
         //購入者ID
         $questionary_id = $request->session()->get('questionary_id');
 
@@ -89,7 +96,6 @@ class CandyboxController extends Controller
             $purchase_info .= $candy['id'].'-';
         }
         $purchase_info = rtrim($purchase_info, '-');
-        Log::debug($purchase_info);
 
         //画面遷移情報を文字列に変換
         $move_list = $request->input("movement");
@@ -98,7 +104,6 @@ class CandyboxController extends Controller
             $move_info .= $move['id'].'-';
         }
         $move_info = rtrim($move_info, '-');
-        Log::debug($move_info);
 
         //画面遷移時間情報を文字列に変換
         $time_list = $request->input("movement_time");
@@ -107,7 +112,6 @@ class CandyboxController extends Controller
             $time_info .= $time['time'].'-';
         }
         $time_info = rtrim($time_info, '-');
-        Log::debug($time_info);
 
         $purchase = new Purchase();
         $purchase->questionary_id = $questionary_id;
@@ -128,32 +132,42 @@ class CandyboxController extends Controller
         
         $reviews = Review::all();
         $categories = Category::all();
-        $query = Candy::query();
-        //1チョコ
-        $select_candy_list = [1,2,5,6,7,13,20,22,23];
-        //2スナック
-        $select_candy_list = array_merge($select_candy_list, [26,27,29,31,32,33,34,35,68]);
-        //4キャラメル・飴
-        $select_candy_list = array_merge($select_candy_list, [73,74,79,80,81,82,83,86,87]);
-        //5クッキー・おせんべい
-        $select_candy_list = array_merge($select_candy_list, [70,69,96,97,101,102,109,110,111]);
-        //3豆・ナッツ
-        $select_candy_list = array_merge($select_candy_list, [112,119,126,131,153,149,151,152,179]);
-        //6フルーツ
-        $select_candy_list = array_merge($select_candy_list, [113,114,125,130,144,146,166,167,168]);
-        //7おつまみ
-        $select_candy_list = array_merge($select_candy_list, [189,191,253,232,241,261,262,268,269]);
-        //8和菓子
-        $select_candy_list = array_merge($select_candy_list, [364,365,366,367,371,372,373,380,385]);
-        //9洋菓子・ケーキ
-        $select_candy_list = array_merge($select_candy_list, [386,387,391,392,393,404,407,408,409]);
 
-        $query->whereIn('id',$select_candy_list);
+        //良さげな81商品の時
+        // $query = Candy::query();
+        // //1チョコ
+        // $select_candy_list = [1,2,5,6,7,13,20,22,23];
+        // //2スナック
+        // $select_candy_list = array_merge($select_candy_list, [26,27,29,31,32,33,34,35,68]);
+        // //4キャラメル・飴
+        // $select_candy_list = array_merge($select_candy_list, [73,74,79,80,81,82,83,86,87]);
+        // //5クッキー・おせんべい
+        // $select_candy_list = array_merge($select_candy_list, [70,69,96,97,101,102,109,110,111]);
+        // //3豆・ナッツ
+        // $select_candy_list = array_merge($select_candy_list, [112,119,126,131,153,149,151,152,179]);
+        // //6フルーツ
+        // $select_candy_list = array_merge($select_candy_list, [113,114,125,130,144,146,166,167,168]);
+        // //7おつまみ
+        // $select_candy_list = array_merge($select_candy_list, [189,191,253,232,241,261,262,268,269]);
+        // //8和菓子
+        // $select_candy_list = array_merge($select_candy_list, [364,365,366,367,371,372,373,380,385]);
+        // //9洋菓子・ケーキ
+        // $select_candy_list = array_merge($select_candy_list, [386,387,391,392,393,404,407,408,409]);
+
+        // $query->whereIn('id',$select_candy_list);
+
         $url = config('filesystems.disks.s3.url');
-    
+
+        //購入者ID
+        $questionary_id = $req->session()->get('questionary_id');
+
         if($searchCategory !== null && $searchCategory !== ''){
-            $candies = $query->where('category_id', $searchCategory)->get();
+            //ランダムに9×9商品取得する(SelectedCandyから取得)
+            $select_candy_list = SelectedCandy::where('questionary_id', $questionary_id)->where('category_id', $searchCategory)->pluck('candy_id');
+            Log::debug("selected_and_category_candies:".$select_candy_list);
+            $candies = Candy::whereIn('id',$select_candy_list)->get();
         }
+
         // if($searchKeyword !== null && $searchKeyword !== ''){
         //     $query->where('keyword_id', $searchKeyword);
         // }

@@ -10,4 +10,9 @@ class Candy extends Model
     {
         return $this->hasMany('App\Models\Review', 'candy_id');
     }
+
+    public function selected_candies()
+    {
+        return $this->hasMany('App\Models\SelectedCandy', 'candy_id');
+    }
 }

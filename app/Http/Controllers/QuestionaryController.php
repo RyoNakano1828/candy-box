@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Models\Questionary;
 use App\Models\AfterQuestionary;
-
+use App\Models\Candy;
+use App\Models\SelectedCandy;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
 
 class QuestionaryController extends Controller
 {
@@ -73,6 +73,21 @@ class QuestionaryController extends Controller
         $questionary->save();
         //回答者のIDをセッションに追加
         $req->session()->put('questionary_id', $questionary->id);
+
+        //ランダムに9×9商品取得する
+        for($i=0; $i<9; $i++){
+            $query = Candy::query();
+            $query->where('category_id',$i+1)->inRandomOrder()->limit(9);
+            $candies = $query->get();
+            //Log::debug($candies);
+            foreach($candies as $candy){
+                $selected_candy = new SelectedCandy();
+                $selected_candy->questionary_id = $questionary->id;
+                $selected_candy->candy_id = $candy->id;
+                $selected_candy->category_id = $i+1;
+                $selected_candy->save();
+            }
+        }
         return redirect('/candybox/category');
     }
 

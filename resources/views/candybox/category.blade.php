@@ -130,13 +130,19 @@
             }else{
                 var cart_list = [];
             }
-            if(cart_list.length >= 5){
-                alert('5つ以上カートに入れることはできません。カートから商品を削除してください')
+            //カート内合計金額計算
+            var sum_price = 0;
+            for(i=0; i<cart_list.length; i++){
+                sum_price += parseInt(cart_list[i].cost,10);
+            }
+            console.log("sum:"+sum_price)
+            if(sum_price+parseInt(e.currentTarget.dataset['cost'],10) >= 1000){
+                alert('1000円以上カートに入れることはできません。カートから商品を削除してください')
             }else{
                 var data = e.currentTarget.dataset['item'];
                 var index = e.currentTarget.dataset['id'];
                 var cost = e.currentTarget.dataset['cost'];
-                cart_list.push({id:index, name:data, cost:cost})
+                cart_list.push({id:index,   name:data, cost:cost})
                 console.log(cart_list)
                 sessionStorage.setItem("cart_list", JSON.stringify(cart_list));
                 
@@ -173,6 +179,8 @@
             $('#cartModal').modal('hide');
         });
     });
+
+   
     
     //カートモーダル
     $(function(){
@@ -234,9 +242,14 @@
             var item = JSON.parse(sessionStorage.getItem("cart_list"));
             var move = JSON.parse(sessionStorage.getItem("page_list"));
             var move_time = JSON.parse(sessionStorage.getItem("time_list"));
-            if(item.length < 5){
-                alert('カートに5つの商品を追加してください');
-            }else{
+            //カート内合計金額計算
+            var sum_price = 0;
+            for(i=0; i<item.length; i++){
+                sum_price += parseInt(item[i].cost,10);
+            }
+            // console.log("sum:"+sum_price)
+            var flag = confirm(`あと${1000-sum_price}円分選択できます。\nよろしいですか？`)
+            if(flag == true){
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -254,13 +267,15 @@
                 })
                 // Ajaxリクエスト失敗時の処理
                 .fail(function(e) {
-                    alert('Ajaxリクエスト失敗したため購入できません');
+                    alert('Ajaxリクエスト失敗したため購入できません\n申し訳ないですが最初からやり直してください');
                     console.log(e)
+                    sessionStorage.clear()
+                    window.location='/questionary'
                 });
             }
         });
     });
-
+    
     //ゴミカテゴリ検索ロジック
     $(function(){
         $("#category1").on('click', function(){
