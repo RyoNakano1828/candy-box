@@ -295,68 +295,68 @@
         });
     });
 
-    //ゴミ検索ロジック
+    //ゴミカテゴリ検索ロジック
     $(function(){
         $("#category1").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category1").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category1").firstElementChild.textContent;
+            add_page("search_category1")
             $('#category_id').attr('value', 1);
             $("#submit_form").submit();
         });
         $("#category2").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category2").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category2").firstElementChild.textContent;
+            add_page("search_category2")
             $('#category_id').attr('value', 2);
             $("#submit_form").submit();
         });
         $("#category3").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category3").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category3").firstElementChild.textContent;
+            add_page("search_category3")
             $('#category_id').attr('value', 3);
             $("#submit_form").submit();
         });
         $("#category4").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category4").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category4").firstElementChild.textContent;
+            add_page("search_category4")
             $('#category_id').attr('value', 4);
             $("#submit_form").submit();
         });
         $("#category5").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category5").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category5").firstElementChild.textContent;
+            add_page("search_category5")
             $('#category_id').attr('value', 5);
             $("#submit_form").submit();
         });
         $("#category6").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category6").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category6").firstElementChild.textContent;
+            add_page("search_category6")
             $('#category_id').attr('value', 6);
             $("#submit_form").submit();
         });
         $("#category7").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category7").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category7").firstElementChild.textContent;
+            add_page("search_category7")
             $('#category_id').attr('value', 7);
             $("#submit_form").submit();
         });
         $("#category8").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category8").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category8").firstElementChild.textContent;
+            add_page("search_category8")
             $('#category_id').attr('value', 8);
             $("#submit_form").submit();
         });
         $("#category9").on('click', function(){
             //ページ遷移情報追加
-            var page = document.getElementById("category9").firstElementChild.textContent;
-            add_page("search_category"+page)
+            // var page = document.getElementById("category9").firstElementChild.textContent;
+            add_page("search_category9")
             $('#category_id').attr('value', 9);
             $("#submit_form").submit();
         });

@@ -79,16 +79,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">現在、一緒に住んでいる人の人数を教えてください</h5>
+                                <h5 class="col-10 p-0 m-0">どの商品/どのブランドを選択するか店頭でよく迷う</h5>
                                 <h5 class="text-left col-2 p-0 m-0">3/23</h5>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <select name="family" id="family" class="form-control">
-                                    @for ($i = 1; $i < 11; $i++)
-                                        <option value="{{ $i }}">{{ $i }}人</option>
-                                    @endfor
-                                    </select>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q1" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q1" id="radio2" value="2"> やや当てはまる</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q1" id="radio3" value="3"> あまり当てはまらない</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q1" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -98,27 +103,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">普段インターネットショッピングはどれくらいしますか</h5>
+                                <h5 class="col-10 p-0 m-0">お店でどの商品を買うか考えているときが楽しい</h5>
                                 <h5 class="text-left col-2 p-0 m-0">4/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="ec_frequency" id="radio1" value="1" checked> ほぼ毎日</label>
+                                    <label><input type="radio" name="Q2" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="ec_frequency" id="radio2" value="2"> 週に3回以上</label>
+                                    <label><input type="radio" name="Q2" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="ec_frequency" id="radio3" value="3"> 週に1回くらい</label>
+                                    <label><input type="radio" name="Q2" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="ec_frequency" id="radio4" value="4"> 月に数回</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="ec_frequency" id="radio5" value="5"> 年に数回</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="ec_frequency" id="radio6" value="6"> ほとんどしない</label>
+                                    <label><input type="radio" name="Q2" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -128,28 +127,22 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">普段どれくらいお菓子を食べますか</h5>
+                                <h5 class="col-10 p-0 m-0">商品ごとに買い物をするお店が決まっている</h5>
                                 <h5 class="text-left col-2 p-0 m-0">5/23</h5>
                             </div>
                             <h5 class="card-header"></h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="eat_frequency" id="radio1" value="1" checked> ほぼ毎日</label>
+                                    <label><input type="radio" name="Q3" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="eat_frequency" id="radio2" value="2"> 週に3回以上</label>
+                                    <label><input type="radio" name="Q3" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="eat_frequency" id="radio3" value="3"> 週に1回くらい</label>
+                                    <label><input type="radio" name="Q3" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="eat_frequency" id="radio4" value="4"> 月に数回</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="eat_frequency" id="radio5" value="5"> 年に数回</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="eat_frequency" id="radio6" value="6"> ほとんど食べない</label>
+                                    <label><input type="radio" name="Q3" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -159,27 +152,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">普段何時頃にお菓子を食べることが多いですか</h5>
+                                <h5 class="col-10 p-0 m-0">よく衝動買いをする</h5>
                                 <h5 class="text-left col-2 p-0 m-0">6/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sweets_time" id="radio1" value="1" checked> 8:00~12:00</label>
+                                    <label><input type="radio" name="Q4" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sweets_time" id="radio2" value="2"> 12:00~16:00</label>
+                                    <label><input type="radio" name="Q4" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sweets_time" id="radio3" value="3"> 16:00~20:00</label>
+                                    <label><input type="radio" name="Q4" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sweets_time" id="radio4" value="4"> 20:00~24:00</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sweets_time" id="radio5" value="5"> 24:00以降</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sweets_time" id="radio6" value="6"> 特に決まっていない</label>
+                                    <label><input type="radio" name="Q4" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -189,27 +176,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">経済的な余裕がある方だ</h5>
+                                <h5 class="col-10 p-0 m-0">高かったり手間がかかっても、環境によいものを買う</h5>
                                 <h5 class="text-left col-2 p-0 m-0">7/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="money" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q5" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="money" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q5" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="money" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q5" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="money" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="money" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="money" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q5" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -219,27 +200,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">時間的なゆとりがある方だ</h5>
+                                <h5 class="col-10 p-0 m-0">自分のセンスや直感で、商品、ブランドを選択・購入する</h5>
                                 <h5 class="text-left col-2 p-0 m-0">8/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="margin" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q6" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="margin" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q6" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="margin" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q6" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="margin" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="margin" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="margin" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q6" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -249,27 +224,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">インターネットやパソコンなどに詳しい方だ</h5>
+                                <h5 class="col-10 p-0 m-0">商品・サービスは自分の好みに合わせて、できるだけこだわって買う</h5>
                                 <h5 class="text-left col-2 p-0 m-0">9/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="it" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q7" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="it" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q7" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="it" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q7" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="it" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="it" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="it" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q7" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -279,27 +248,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">買い物に行くときは先に買うものが決まっている</h5>
+                                <h5 class="col-10 p-0 m-0">商品やサービスは、価格が高くても品質の良いものを選ぶ</h5>
                                 <h5 class="text-left col-2 p-0 m-0">10/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="plan" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q8" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="plan" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q8" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="plan" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q8" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="plan" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="plan" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="plan" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q8" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -309,28 +272,22 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">よく衝動買いをしてしまう</h5>
+                                <h5 class="col-10 p-0 m-0">商品・サービスは、一通り安心できれば、あまりこだわらずに購入する</h5>
                                 <h5 class="text-left col-2 p-0 m-0">11/23</h5>
                             </div>
                             <h5 class="card-header"></h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="impulse" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q9" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="impulse" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q9" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="impulse" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q9" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="impulse" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="impulse" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="impulse" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q9" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -340,27 +297,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">時間をかけて安いものを選ぶようにしている</h5>
+                                <h5 class="col-10 p-0 m-0">店頭のポスター・ステッカー・説明書などを参考にして選択・購入する</h5>
                                 <h5 class="text-left col-2 p-0 m-0">12/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="cheap" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q10" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="cheap" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q10" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="cheap" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q10" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="cheap" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="cheap" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="cheap" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q10" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -370,27 +321,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">よく同じお菓子を買う</h5>
+                                <h5 class="col-10 p-0 m-0">SNSやブログ、サイトなどで推奨されているものを購入することが多い</h5>
                                 <h5 class="text-left col-2 p-0 m-0">13/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="repeat" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q11" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="repeat" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q11" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="repeat" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q11" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="repeat" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="repeat" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="repeat" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q11" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -400,27 +345,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">セールやクーポンを意識して買い物をする</h5>
+                                <h5 class="col-10 p-0 m-0">購入する商品の良し悪しは、自分で確認したい</h5>
                                 <h5 class="text-left col-2 p-0 m-0">14/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sale" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q12" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sale" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q12" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sale" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q12" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sale" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sale" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sale" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q12" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -430,27 +369,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">甘いものが好きである</h5>
+                                <h5 class="col-10 p-0 m-0">商品を購入するときに役立つのはクチコミ情報だ</h5>
                                 <h5 class="text-left col-2 p-0 m-0">15/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sweet" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q13" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sweet" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q13" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sweet" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q13" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sweet" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sweet" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sweet" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q13" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -460,27 +393,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">辛いものが好きである</h5>
+                                <h5 class="col-10 p-0 m-0">季節限定や数量限定の食品が売られているとつい買ってしまう</h5>
                                 <h5 class="text-left col-2 p-0 m-0">16/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="spicy" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q14" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="spicy" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q14" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="spicy" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q14" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="spicy" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="spicy" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="spicy" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q14" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -490,27 +417,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">すっぱいものが好きである</h5>
+                                <h5 class="col-10 p-0 m-0">スマートフォンやタブレット端末からネットで注文する通信販売には抵抗がない</h5>
                                 <h5 class="text-left col-2 p-0 m-0">17/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sour" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q15" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sour" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q15" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sour" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q15" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sour" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sour" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sour" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q15" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -520,27 +441,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">しょっぱいものが好きである</h5>
+                                <h5 class="col-10 p-0 m-0">店頭よりもネットで買い物することの方が多い</h5>
                                 <h5 class="text-left col-2 p-0 m-0">18/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="salty" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q16" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="salty" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q16" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="salty" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q16" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="salty" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="salty" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="salty" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q16" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -550,27 +465,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">ストレス解消のためにお菓子を食べることがある</h5>
+                                <h5 class="col-10 p-0 m-0">味覚センスに自身がある</h5>
                                 <h5 class="text-left col-2 p-0 m-0">19/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="stress" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q17" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="stress" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q17" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="stress" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q17" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="stress" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="stress" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="stress" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q17" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -580,27 +489,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">お酒のつまみでお菓子を食べることがある</h5>
+                                <h5 class="col-10 p-0 m-0">おいしいものを食べたり、食生活を楽しむためにお金をかけたい</h5>
                                 <h5 class="text-left col-2 p-0 m-0">20/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="sake" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q18" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sake" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q18" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sake" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q18" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="sake" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sake" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="sake" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q18" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -610,27 +513,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">仕事や勉強をしながらお菓子を食べることがある</h5>
+                                <h5 class="col-10 p-0 m-0">食品を購入するときは、セールなど少しでも安い食品を優先して選ぶ</h5>
                                 <h5 class="text-left col-2 p-0 m-0">21/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="work" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q19" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="work" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q19" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="work" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q19" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="work" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="work" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="work" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q19" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -640,27 +537,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">お菓子を食べるときに罪悪感を感じる</h5>
+                                <h5 class="col-10 p-0 m-0">食品を選ぶときにはカロリー表示を気にする</h5>
                                 <h5 class="text-left col-2 p-0 m-0">22/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="guilty" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q20" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="guilty" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q20" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="guilty" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q20" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="guilty" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="guilty" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="guilty" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q20" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
@@ -670,27 +561,21 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">新商品を見るとつい買ってしまう</h5>
+                                <h5 class="col-10 p-0 m-0">食品を選ぶときは、賞味期限や鮮度をよく見て買う</h5>
                                 <h5 class="text-left col-2 p-0 m-0">23/23</h5>
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="new_item" id="radio1" value="1" checked> 良く当てはまる</label>
+                                    <label><input type="radio" name="Q21" id="radio1" value="1" checked> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="new_item" id="radio2" value="2"> 少し当てはまる</label>
+                                    <label><input type="radio" name="Q21" id="radio2" value="2"> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="new_item" id="radio3" value="3"> どちらかというと当てはまる</label>
+                                    <label><input type="radio" name="Q21" id="radio3" value="3"> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="new_item" id="radio4" value="4"> どちらかというと当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="new_item" id="radio5" value="5"> あまり当てはまらない</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="new_item" id="radio6" value="6"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q21" id="radio4" value="4"> 全く当てはまらない</label>
                                 </div>
                             </div>
                         </div>
