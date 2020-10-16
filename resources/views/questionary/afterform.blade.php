@@ -4,6 +4,17 @@
         <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            var ua = navigator.userAgent.toLowerCase();
+            var isiOS = (ua.indexOf('iphone') > -1) || (ua.indexOf('ipad') > -1);
+            if(isiOS) {
+                var viewport = document.querySelector('meta[name="viewport"]');
+                if(viewport) {
+                    var viewportContent = viewport.getAttribute('content');
+                    viewport.setAttribute('content', viewportContent + ', user-scalable=no');
+                }
+            }
+        </script>
         <link rel="stylesheet" href="/css/app.css">
         <title>QuestionaryPart3</title>
         <!-- Scripts -->

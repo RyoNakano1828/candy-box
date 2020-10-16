@@ -48,12 +48,12 @@
         <div class="container mb-5">
             <form name="questionary" action="/questionary/store" method="post">
                 {{ csrf_field() }}
-                <h5 class='m-3 text-center'>事前アンケートです。日常におけるの消費行動についての質問が中心になります。</h5>
+                <h5 class='m-3 text-center'>事前アンケートです。普段の消費行動について教えてください。</h5>
                 <div class="row mx-auto">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">性別を教えてください</h5>
+                                <h5 class="col-10 p-0 m-0">性別</h5>
                                 <h5 class="text-left col-2 p-0 m-0">1/23</h5>
                             </div>
                             <div class="card-body">
@@ -71,7 +71,7 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
-                                <h5 class="col-10 p-0 m-0">年齢を教えてください</h5>
+                                <h5 class="col-10 p-0 m-0">年齢</h5>
                                 <h5 class="text-left col-2 p-0 m-0">2/23</h5>
                             </div>
                             <div class="card-body">
