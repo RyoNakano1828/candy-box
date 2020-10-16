@@ -16,7 +16,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('custom/css/custom.css') }}" rel="stylesheet">
 
         
         <title>CandyBox</title>
@@ -49,46 +49,54 @@
         <form id="submit_form" method='GET' action="/candybox/search">
             <input type="hidden" id="category_id" name="category_id" value="">
             <div class='container-fluid'>
-
-                <div id="app" class='row mb-5'>
-                    @foreach ($categories as $category)
-                        <div id='category{{$category->id}}' class='fly col-4 float-left p-1 my-1 border'>
-                            <p class='text-center'>{{$category->name}}</p>
-                            <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
-                        </div>
-                    @endforeach
-
-                    <!-- カートモーダル -->
-                    <div class="modal fade show" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
-                        <div class="modal-dialog modal-xl" role="document">
-                            <div class="modal-content w-100">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>合計1000円まで</strong>選んでください</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="sum-price">
-                                    </div>
-                                    <div class="cart_items row">
-                                        
-                                    </div>
-                                    <div>
-                                        <button class='btn btn-primary btn-block purchase' type="button">購入する</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
-                    </div>
-                    
-                    <footer class="footer fixed-bottom bg-info p-1">
-                        <div class="cart_items">
-                        </div>
-                        <button type="button" class="btn btn-primary btn-block m-1" data-toggle="modal" data-target="#cartModal">
-                            カートを見る
+                <div class="card">
+                    <div class="card-header bg-primary row p-0 pb-2 pt-2 sticky-top">
+                        <button type="button" class="btn btn-primary btn-block m-1 view-index">
+                                商品一覧を見る
                         </button>
-                    </footer>
+                    </div>
+                    <div class="card-body m-auto mb-5 maxWidth">
+                        <div id="app" class='row mb-5'>
+                            @foreach ($categories as $category)
+                                <div id='category{{$category->id}}' class='fly col-4 float-left p-1 my-1 border'>
+                                    <p class='text-center'>{{$category->name}}</p>
+                                    <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
+                                </div>
+                            @endforeach
+
+                            <!-- カートモーダル -->
+                            <div class="modal fade show" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="Modal" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                    <div class="modal-content w-100">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="Modal">あなたが今、家にあったらうれしいお菓子を<strong>合計1000円まで</strong>選んでください</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="sum-price">
+                                            </div>
+                                            <div class="cart_items row">
+                                                
+                                            </div>
+                                            <div>
+                                                <button class='btn btn-primary btn-block purchase' type="button">購入する</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            
+                            <footer class="footer fixed-bottom bg-info p-1">
+                                <div class="cart_items">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-block m-1" data-toggle="modal" data-target="#cartModal">
+                                    カートを見る
+                                </button>
+                            </footer>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -121,6 +129,15 @@
         console.log(time_list)
         sessionStorage.setItem("time_list", JSON.stringify(time_list));
     }
+
+    //商品一覧画面へ遷移
+    $(function(){
+        $('.view-index').on('click', function(e){
+            window.location='/candybox/'
+            var page = 'showidnex'
+            add_page(page);
+        })
+    })
 
     //商品をカートに追加
     $(function(){
@@ -179,7 +196,6 @@
             $('#cartModal').modal('hide');
         });
     });
-
    
     
     //カートモーダル
@@ -189,13 +205,15 @@
             var modal = $(this)
             //カート内合計金額計算
             var sum_price = 0;
-            for(i=0; i<cart_list.length; i++){
-                sum_price += parseInt(cart_list[i].cost,10);
+            if(cart_list && cart_list.length != 0){
+                for(i=0; i<cart_list.length; i++){
+                    sum_price += parseInt(cart_list[i].cost,10);
+                }
             }
             console.log("sum:"+sum_price)
             $(".modal-body > .cart_items").empty();
             $(".modal-body > .sum-price > h5").empty();
-            if(cart_list){
+            if(cart_list && cart_list.length != 0){
                 modal.find('.modal-body > .sum-price').append(`<h5 class="text-center m-2">合計金額：${sum_price}円（あと${1000-sum_price}円分選べます）</h5>`)
                 for(var i=0; i<cart_list.length; i++){
                     const HTML = `
@@ -220,8 +238,7 @@
                 //     modal.find('.modal-body > .cart_items > .cart_item'+x).append('</div>')
                 // }
             }else{
-                $(".modal-body > .cart_items").empty();
-                modal.find('.modal-body > .cart_items').append('<h5 class="text-center m-2">カートにお菓子を追加してください。</h5>')
+                modal.find('.modal-body > .sum-price').append(`<h5 class="text-center m-2">合計金額：${sum_price}円（あと${1000-sum_price}円分選べます）</h5></br><h5 class="text-center m-2 mb-4">カートにお菓子を追加してください。</h5>`)
                 // for(var j=0; j<5; j++){
                 //     modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
                 //     modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100">')
@@ -244,11 +261,17 @@
             var move_time = JSON.parse(sessionStorage.getItem("time_list"));
             //カート内合計金額計算
             var sum_price = 0;
-            for(i=0; i<item.length; i++){
-                sum_price += parseInt(item[i].cost,10);
+            if(item && item.length != 0){
+                for(i=0; i<item.length; i++){
+                    sum_price += parseInt(item[i].cost,10);
+                }
             }
             // console.log("sum:"+sum_price)
-            var flag = confirm(`あと${1000-sum_price}円分選択できます。\nよろしいですか？`)
+            if(item && item.length != 0){
+                var flag = confirm(`あと${1000-sum_price}円分選択できます。\nよろしいですか？`)
+            }else{
+                alert('1つ以上お菓子をカートに追加してください')
+            }
             if(flag == true){
                 $.ajax({
                     headers: {

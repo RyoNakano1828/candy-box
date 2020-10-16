@@ -77,7 +77,7 @@ class QuestionaryController extends Controller
         //ランダムに9×9商品取得する
         for($i=0; $i<9; $i++){
             $query = Candy::query();
-            $query->where('category_id',$i+1)->inRandomOrder()->limit(9);
+            $query->where('category_id',$i+1)->inRandomOrder()->limit(12);
             $candies = $query->get();
             //Log::debug($candies);
             foreach($candies as $candy){

@@ -16,7 +16,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('custom/css/custom.css') }}" rel="stylesheet">
 
         
         <title>CandyBox</title>
@@ -69,7 +69,7 @@
                     <div class="card-body mb-5">
                         <div id="app" class='row'>
                             @foreach ($candies as $candy)
-                                <div class='col-4 float-left p-1 my-1 border'>
+                                <div class='col-md-2 col-sm-3 col-4 float-left p-1 my-1 border'>
                                     @php
                                         $image_num = $candy->id - 1;
                                         $reviews = $candy->reviews;
@@ -270,13 +270,15 @@
             var modal = $(this)
             //カート内合計金額計算
             var sum_price = 0;
-            for(i=0; i<cart_list.length; i++){
-                sum_price += parseInt(cart_list[i].cost,10);
+            if(cart_list && cart_list.length != 0){
+                for(i=0; i<cart_list.length; i++){
+                    sum_price += parseInt(cart_list[i].cost,10);
+                }
             }
             console.log("sum:"+sum_price)
             $(".modal-body > .cart_items").empty();
             $(".modal-body > .sum-price > h5").empty();
-            if(cart_list){
+            if(cart_list && cart_list.length != 0){
                 modal.find('.modal-body > .sum-price').append(`<h5 class="text-center m-2">合計金額：${sum_price}円（あと${1000-sum_price}円分選べます）</h5>`)
                 for(var i=0; i<cart_list.length; i++){
                     const HTML = `
@@ -301,8 +303,7 @@
                 //     modal.find('.modal-body > .cart_items > .cart_item'+x).append('</div>')
                 // }
             }else{
-                $(".modal-body > .cart_items").empty();
-                modal.find('.modal-body > .cart_items').append('<h5 class="text-center m-2">カートにお菓子を追加してください。</h5>')
+                modal.find('.modal-body > .sum-price').append(`<h5 class="text-center m-2">合計金額：${sum_price}円（あと${1000-sum_price}円分選べます）</h5></br><h5 class="text-center m-2 mb-4">カートにお菓子を追加してください。</h5>`)
                 // for(var j=0; j<5; j++){
                 //     modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100"><img class="w-100" src="{{$url}}/no-item.png"></div>')
                 //     modal.find('.modal-body > .cart_items > .cart_item'+j).append('<div class="w-100">')
@@ -431,11 +432,18 @@
             var move_time = JSON.parse(sessionStorage.getItem("time_list"));
             //カート内合計金額計算
             var sum_price = 0;
-            for(i=0; i<item.length; i++){
-                sum_price += parseInt(item[i].cost,10);
+            console.log(item)
+            if(item && item.length != 0){
+                for(i=0; i<item.length; i++){
+                    sum_price += parseInt(item[i].cost,10);
+                }
             }
             // console.log("sum:"+sum_price)
-            var flag = confirm(`あと${1000-sum_price}円分選択できます。\nよろしいですか？`)
+            if(item && item.length != 0){
+                var flag = confirm(`あと${1000-sum_price}円分選択できます。\nよろしいですか？`)
+            }else{
+                alert('1つ以上お菓子をカートに追加してください')
+            }
             if(flag == true){
                 $.ajax({
                     headers: {
