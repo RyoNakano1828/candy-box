@@ -32,7 +32,11 @@
   transform: translateY(-5px);
 }
 
-.maxWidth {
-  max-width: 1170px;
+@media screen and (min-width: 1024px) {
+  /*　画面サイズが1024pxからはここを読み込む　*/
+
+  .maxWidth {
+    max-width: 1170px;
+  }
 }
 

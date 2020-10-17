@@ -55,7 +55,7 @@
                                 商品一覧を見る
                         </button>
                     </div>
-                    <div class="card-body m-auto mb-5 maxWidth">
+                    <div class="card-body m-auto p-0 mb-5 maxWidth">
                         <div id="app" class='row mb-5'>
                             @foreach ($categories as $category)
                                 <div id='category{{$category->id}}' class='fly col-4 float-left p-1 my-1 border'>
