@@ -89,7 +89,7 @@
                                             ></star-rating>
                                         </p>
                                         <p class="text-danger font-weight-bold mb-0 text-center">価格：<strong>{{$candy->price}}</strong> 円</p>
-                                        <p class="overf low-auto mb-0 text-center" style="height:30px">容量：{{$candy->weight}}</p>
+                                        <p class="overf low-auto mb-0 text-center" style="height:40px">容量：{{$candy->weight}}</p>
                                         @foreach($reviews as $review)
                                             @if($review->candy_id == $candy->id)
                                                 @php

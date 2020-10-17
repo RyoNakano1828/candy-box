@@ -60,7 +60,7 @@
                             @foreach ($categories as $category)
                                 @if($category->id != 10)
                                     <div id='category{{$category->id}}' class='fly col-4 float-left p-1 my-1 border'>
-                                        <p class='text-center overflow-auto' style="height:25   px">{{$category->name}}</p>
+                                        <p class='text-center overflow-auto' style="height:25px">{{$category->name}}</p>
                                         <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
                                     </div>
                                 @endif
