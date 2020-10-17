@@ -66,8 +66,8 @@
                                 カテゴリ選択画面へ
                         </button>
                     </div>
-                    <div class="card-body mb-5">
-                        <div id="app" class='row'>
+                    <div class="card-body mb-5 p-0">
+                        <div id="app" class='row m-0'>
                             @foreach ($candies as $candy)
                                 <div class='col-md-2 col-sm-3 col-4 float-left p-1 my-1 border'>
                                     @php
@@ -79,7 +79,7 @@
                                     <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $image_num }}.png" alt="{{ $candy->name }}"></div>
                                     <div class="w-100 text-center">
                                         <p class="font-weight-bold overflow-auto mb-0" style="height:40px">{{$candy->name}}</p>
-                                        <div class="m-auto w-50">
+                                        <p class="marginLefttttt m-0">
                                             <star-rating
                                                 :rating="{{$candy->score}}" 
                                                 :read-only="true" 
@@ -87,9 +87,9 @@
                                                 v-bind:star-size="15"
                                                 v-bind:increment="0.1"
                                             ></star-rating>
-                                        </div>
+                                        </p>
                                         <p class="text-danger font-weight-bold mb-0 text-center">価格：<strong>{{$candy->price}}</strong> 円</p>
-                                        <p class="overflow-auto mb-0 text-center" style="height:30px">容量：{{$candy->weight}}</p>
+                                        <p class="overf low-auto mb-0 text-center" style="height:30px">容量：{{$candy->weight}}</p>
                                         @foreach($reviews as $review)
                                             @if($review->candy_id == $candy->id)
                                                 @php

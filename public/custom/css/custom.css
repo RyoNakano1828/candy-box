@@ -32,11 +32,19 @@
   transform: translateY(-5px);
 }
 
+.categoryFont {
+  font-size: 20pt;
+}
+
 @media screen and (min-width: 1024px) {
   /*　画面サイズが1024pxからはここを読み込む　*/
 
   .maxWidth {
     max-width: 1170px;
+  }
+
+  .marginLefttttt {
+    padding-left: 40px;
   }
 }
 

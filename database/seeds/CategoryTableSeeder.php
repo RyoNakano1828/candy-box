@@ -22,11 +22,11 @@ class CategoryTableSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'name' => 'キャンディー・ガム・キャラメル',
+                'name' => 'キャンディー・ガム',
             ],
             [
                 'id' => 5,
-                'name' => 'クッキー・ビスケット',
+                'name' => 'クッキー・せんべい',
             ],
             [
                 'id' => 3,
@@ -47,6 +47,10 @@ class CategoryTableSeeder extends Seeder
             [
                 'id' => 9,
                 'name' => '洋菓子',
+            ],
+            [
+                'id' => 10,
+                'name' => 'その他',
             ],
         ]);
     }

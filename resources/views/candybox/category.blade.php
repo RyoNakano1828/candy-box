@@ -58,10 +58,12 @@
                     <div class="card-body m-auto p-0 mb-5 maxWidth">
                         <div id="app" class='row mb-5'>
                             @foreach ($categories as $category)
-                                <div id='category{{$category->id}}' class='fly col-4 float-left p-1 my-1 border'>
-                                    <p class='text-center'>{{$category->name}}</p>
-                                    <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
-                                </div>
+                                @if($category->id != 10)
+                                    <div id='category{{$category->id}}' class='fly col-4 float-left p-1 my-1 border'>
+                                        <p class='text-center overflow-auto' style="height:25   px">{{$category->name}}</p>
+                                        <div class="w-100"><img class="w-100" src="{{ $url }}/{{ $category->name }}.png" alt="{{ $category->name }}"></div>
+                                    </div>
+                                @endif
                             @endforeach
 
                             <!-- カートモーダル -->
