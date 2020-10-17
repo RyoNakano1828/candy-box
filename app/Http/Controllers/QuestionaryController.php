@@ -115,6 +115,9 @@ class QuestionaryController extends Controller
         return redirect('/thanks');
     }
     public function thanks(){
-        return view('questionary.thanks');
+        $url = config('filesystems.disks.s3.url');
+
+        return view('questionary.thanks')
+            ->with('url', $url);
     }
 }
