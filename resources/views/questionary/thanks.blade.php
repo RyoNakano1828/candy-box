@@ -21,13 +21,16 @@
         
     </head>
     <body>
-        <h4 class="text-center p-3">これでアンケートは終了です。</h4>
-        <div class="text-center">
-            <h2 class="text-center p-3">ご協力、誠にありがとうございました！</h2>
-            <img class="w-100 maxWidth2" src="{{$url}}/wasebare.jpeg">
-            <a class="text-center" href="{{ url('/questionary') }}">
-                <button class="btn btn-primary btn-block">別の回答を記録する</button>
-            </a>
+        <div class="p-2 mb-4 container">
+
+            <h4 class="text-center p-3">これでアンケートは終了です。</h4>
+            <div class="text-center">
+                <h2 class="text-center p-3">ご協力、誠にありがとうございました！</h2>
+                <img class="w-100 maxWidth2" src="{{$url}}/wasebare.jpeg">
+                <a class="text-center" href="{{ url('/questionary') }}">
+                    <button class="btn btn-primary btn-block">別の回答を記録する</button>
+                </a>
+            </div>
         </div>
     </body>
 </html>
