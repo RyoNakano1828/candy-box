@@ -12,6 +12,8 @@ use App\Models\SelectedCandy;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+use Illuminate\Support\Facades\Input;
+
 class QuestionaryController extends Controller
 {
     public function index(){
@@ -44,6 +46,42 @@ class QuestionaryController extends Controller
     public function store(Request $req){
 
         Log::debug($req);   
+        $inputs = $req->all();
+
+        // validation ここから追加
+        $rules = [
+            'gender' => ['required'],
+            'age' => ['required'],
+            'Q1' => ['required'],
+            'Q2' => ['required'],
+            'Q3' => ['required'],
+            'Q3' => ['required'],
+            'Q4' => ['required'],
+            'Q5' => ['required'],
+            'Q6' => ['required'],
+            'Q7' => ['required'],
+            'Q8' => ['required'],
+            'Q9' => ['required'],
+            'Q10' => ['required'],
+            'Q11' => ['required'],
+            'Q12' => ['required'],
+            'Q13' => ['required'],
+            'Q14' => ['required'],
+            'Q15' => ['required'],
+            'Q16' => ['required'],
+            'Q17' => ['required'],
+            'Q18' => ['required'],
+            'Q19' => ['required'],
+            'Q20' => ['required'],
+            'Q21' => ['required'],
+        ];
+        
+        $validation = \Validator::make($inputs,$rules);
+        //if fails
+        if($validation->fails())
+        {
+            return redirect()->back()->withErrors($validation->errors())->withInput();
+        }
 
         $questionary = new Questionary();
         $questionary->gender = $req->input('gender');

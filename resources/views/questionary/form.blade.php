@@ -49,6 +49,12 @@
             <form name="questionary" action="/questionary/store" method="post">
                 {{ csrf_field() }}
                 <h5 class='m-3 text-center'>事前アンケートです。普段の消費行動について教えてください。</h5>
+                {{-- エラーメッセージ --}}
+                @if ($errors->any())
+                    <div class="alert alert-danger m-0">
+                        <h4>すべての項目を入力してください</h4>
+                    </div>
+                @endif
                 <div class="row mx-auto">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
@@ -58,11 +64,14 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="gender" id="radio1" value="1" checked> 男性</label>
+                                    <label><input type="radio" name="gender" id="radio1" value="1" {{ old('gender') == '1' ? 'checked' : '' }}> 男性</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="gender" id="radio2" value="2"> 女性</label>
+                                    <label><input type="radio" name="gender" id="radio2" value="2" {{ old('gender') == '2' ? 'checked' : '' }}> 女性</label>
                                 </div>
+                                @error('gender')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -78,7 +87,7 @@
                                 <div class="form-group">
                                     <select name="age" id="age" class="form-control">
                                     @for ($i = 17; $i < 101; $i++)
-                                        <option value="{{ $i }}">{{ $i }}歳</option>
+                                        <option value="{{ $i }}" @if(old('age') == "$i") selected @endif>{{ $i }}歳</option>
                                     @endfor
                                     </select>
                                 </div>
@@ -95,17 +104,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q1" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q1" id="radio1" value="1" {{ old('Q1') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q1" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q1" id="radio2" value="2" {{ old('Q1') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q1" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q1" id="radio3" value="3" {{ old('Q1') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q1" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q1" id="radio4" value="4" {{ old('Q1') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q1')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -119,17 +131,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q2" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q2" id="radio1" value="1" {{ old('Q2') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q2" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q2" id="radio2" value="2" {{ old('Q2') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q2" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q2" id="radio3" value="3" {{ old('Q2') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q2" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q2" id="radio4" value="4" {{ old('Q2') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q2')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -141,20 +156,22 @@
                                 <h5 class="col-10 p-0 m-0">商品ごとに買い物をするお店が決まっている</h5>
                                 <h5 class="text-left col-2 p-0 m-0">5/23</h5>
                             </div>
-                            <h5 class="card-header"></h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q3" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q3" id="radio1" value="1" {{ old('Q3') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q3" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q3" id="radio2" value="2" {{ old('Q3') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q3" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q3" id="radio3" value="3" {{ old('Q3') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q3" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q3" id="radio4" value="4" {{ old('Q3') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q3')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -168,17 +185,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q4" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q4" id="radio1" value="1" {{ old('Q4') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q4" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q4" id="radio2" value="2" {{ old('Q4') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q4" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q4" id="radio3" value="3" {{ old('Q4') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q4" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q4" id="radio4" value="4" {{ old('Q4') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q4')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -192,17 +212,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q5" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q5" id="radio1" value="1" {{ old('Q5') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q5" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q5" id="radio2" value="2" {{ old('Q5') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q5" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q5" id="radio3" value="3" {{ old('Q5') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q5" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q5" id="radio4" value="4" {{ old('Q5') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q5')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -216,17 +239,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q6" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q6" id="radio1" value="1" {{ old('Q6') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q6" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q6" id="radio2" value="2" {{ old('Q6') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q6" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q6" id="radio3" value="3" {{ old('Q6') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q6" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q6" id="radio4" value="4" {{ old('Q6') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q6')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -240,17 +266,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q7" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q7" id="radio1" value="1" {{ old('Q7') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q7" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q7" id="radio2" value="2" {{ old('Q7') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q7" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q7" id="radio3" value="3" {{ old('Q7') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q7" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q7" id="radio4" value="4" {{ old('Q7') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q7')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -264,17 +293,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q8" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q8" id="radio1" value="1" {{ old('Q8') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q8" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q8" id="radio2" value="2" {{ old('Q8') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q8" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q8" id="radio3" value="3" {{ old('Q8') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q8" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q8" id="radio4" value="4" {{ old('Q8') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q8')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -289,17 +321,20 @@
                             <h5 class="card-header"></h5>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q9" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q9" id="radio1" value="1" {{ old('Q9') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q9" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q9" id="radio2" value="2" {{ old('Q9') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q9" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q9" id="radio3" value="3" {{ old('Q9') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q9" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q9" id="radio4" value="4" {{ old('Q9') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q9')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -313,17 +348,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q10" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q10" id="radio1" value="1" {{ old('Q10') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q10" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q10" id="radio2" value="2" {{ old('Q10') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q10" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q10" id="radio3" value="3" {{ old('Q10') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q10" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q10" id="radio4" value="4" {{ old('Q10') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q10')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -337,17 +375,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q11" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q11" id="radio1" value="1" {{ old('Q11') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q11" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q11" id="radio2" value="2" {{ old('Q11') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q11" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q11" id="radio3" value="3" {{ old('Q11') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q11" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q11" id="radio4" value="4" {{ old('Q11') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q11')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -361,17 +402,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q12" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q12" id="radio1" value="1" {{ old('Q12') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q12" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q12" id="radio2" value="2" {{ old('Q12') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q12" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q12" id="radio3" value="3" {{ old('Q12') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q12" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q12" id="radio4" value="4" {{ old('Q12') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q12')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -385,17 +429,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q13" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q13" id="radio1" value="1" {{ old('Q13') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q13" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q13" id="radio2" value="2" {{ old('Q13') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q13" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q13" id="radio3" value="3" {{ old('Q13') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q13" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q13" id="radio4" value="4" {{ old('Q13') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q13')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -409,17 +456,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q14" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q14" id="radio1" value="1" {{ old('Q14') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q14" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q14" id="radio2" value="2" {{ old('Q14') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q14" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q14" id="radio3" value="3" {{ old('Q14') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q14" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q14" id="radio4" value="4" {{ old('Q14') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q14')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -433,17 +483,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q15" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q15" id="radio1" value="1" {{ old('Q15') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q15" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q15" id="radio2" value="2" {{ old('Q15') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q15" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q15" id="radio3" value="3" {{ old('Q15') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q15" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q15" id="radio4" value="4" {{ old('Q15') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q15')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -457,17 +510,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q16" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q16" id="radio1" value="1" {{ old('Q16') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q16" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q16" id="radio2" value="2" {{ old('Q16') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q16" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q16" id="radio3" value="3" {{ old('Q16') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q16" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q16" id="radio4" value="4" {{ old('Q16') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q16')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -481,17 +537,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q17" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q17" id="radio1" value="1" {{ old('Q17') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q17" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q17" id="radio2" value="2" {{ old('Q17') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q17" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q17" id="radio3" value="3" {{ old('Q17') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q17" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q17" id="radio4" value="4" {{ old('Q17') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q17')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -505,17 +564,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q18" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q18" id="radio1" value="1" {{ old('Q18') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q18" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q18" id="radio2" value="2" {{ old('Q18') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q18" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q18" id="radio3" value="3" {{ old('Q18') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q18" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q18" id="radio4" value="4" {{ old('Q18') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q18')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -529,17 +591,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q19" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q19" id="radio1" value="1" {{ old('Q19') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q19" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q19" id="radio2" value="2" {{ old('Q19') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q19" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q19" id="radio3" value="3" {{ old('Q19') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q19" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q19" id="radio4" value="4" {{ old('Q19') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q19')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -553,17 +618,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q20" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q20" id="radio1" value="1" {{ old('Q20') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q20" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q20" id="radio2" value="2" {{ old('Q20') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q20" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q20" id="radio3" value="3" {{ old('Q20') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q20" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q20" id="radio4" value="4" {{ old('Q20') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q20')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -577,17 +645,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="radio">
-                                    <label><input type="radio" name="Q21" id="radio1" value="1" checked> 非常に当てはまる</label>
+                                    <label><input type="radio" name="Q21" id="radio1" value="1" {{ old('Q21') == '1' ? 'checked' : '' }}> 非常に当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q21" id="radio2" value="2"> やや当てはまる</label>
+                                    <label><input type="radio" name="Q21" id="radio2" value="2" {{ old('Q21') == '2' ? 'checked' : '' }}> やや当てはまる</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q21" id="radio3" value="3"> あまり当てはまらない</label>
+                                    <label><input type="radio" name="Q21" id="radio3" value="3" {{ old('Q21') == '3' ? 'checked' : '' }}> あまり当てはまらない</label>
                                 </div>
                                 <div class="radio">
-                                    <label><input type="radio" name="Q21" id="radio4" value="4"> 全く当てはまらない</label>
+                                    <label><input type="radio" name="Q21" id="radio4" value="4" {{ old('Q21') == '4' ? 'checked' : '' }}> 全く当てはまらない</label>
                                 </div>
+                                @error('Q21')
+                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
+                                @enderror
                             </div>
                         </div>
                     </div>
