@@ -102,10 +102,15 @@ class QuestionaryController extends Controller
 
         $after_questionary = new AfterQuestionary();
         $after_questionary->questionary_id = $questionary_id;
+        //使いやすさ
         $after_questionary->assessment = $req->input('assessment');
+        $after_questionary->assessment_reason = $req->input('assessment_reason');
+        //迷ったか
         $after_questionary->indecisive = $req->input('indecisive');
+        $after_questionary->indecisive_reason = $req->input('indecisive_reason');
+        //満足度
         $after_questionary->consent = $req->input('consent');
-        $after_questionary->other_candy = $req->input('other_candy');
+        $after_questionary->consent_reason = $req->input('consent_reason');
         $after_questionary->save();
 
         //sessionリセット

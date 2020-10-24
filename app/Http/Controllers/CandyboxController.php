@@ -7,6 +7,9 @@ use App\Models\Category;
 use App\Models\Review;
 use App\Models\Purchase;
 use App\Models\SelectedCandy;
+use App\Models\Transition;
+use App\Models\Questionary;
+
 
 use Illuminate\Http\Request;
 
@@ -84,6 +87,18 @@ class CandyboxController extends Controller
                 ->with('url',$url);
     }
 
+    //***************************************
+    // 日時の差を計算
+    //***************************************
+    public function time_diff($time_from, $time_to) 
+    {
+        // 日時差を秒数で取得
+        $dif_time = $time_to - $time_from;
+        // 時間単位の差
+        // $dif_time = date("H:i:s", $dif);
+        return "{$dif_time}";
+    }
+
     public function store(Request $request)
     {
         //購入者ID
@@ -119,6 +134,48 @@ class CandyboxController extends Controller
         $purchase->page_info = $move_info;
         $purchase->time_info = $time_info;
         $purchase->save();
+        
+        Log::debug($move_list);
+        Log::debug($time_list);
+
+        $page_name = 'movecategory';
+        $start_time = Questionary::where('id',$questionary_id)->get('created_at');
+        Log::debug($start_time[0]);
+        $from = strtotime($start_time[0]["created_at"]);
+        $to = strtotime($time_list[0]["time"]);
+        Log::debug($from);
+        Log::debug($to);
+        $stay_time = $this->time_diff($from, $to);
+        Log::debug($stay_time); 
+
+        for($i = 0; $i < count($move_list); $i++){
+            Log::debug($i);
+            $transition = new Transition();
+            $transition->questionary_id = $questionary_id;
+            $transition->page_name = $page_name;
+            $transition->stay_time = $stay_time;
+            $transition->transition_num = $i+1;
+            $transition->next_action = $move_list[$i]['id'];
+            $transition->save();
+
+            if($i+1 < count($move_list)){
+                $page_name = $move_list[$i]['id'];
+                $from = strtotime($time_list[$i]['time']);
+                $to = strtotime($time_list[$i+1]['time']);
+                $stay_time = $this->time_diff($from, $to);
+            }
+        }
+
+        $last_stay_time = $this->time_diff(strtotime($time_list[count($time_list)-1]["time"]),strtotime(now()));
+
+        $transition = new Transition();
+        $transition->questionary_id = $questionary_id;
+        $transition->page_name = "checkcart";
+        $transition->stay_time = $last_stay_time;
+        $transition->transition_num = count($move_list)+1;
+        $transition->next_action = "submit";
+        $transition->save();
+
         //事後アンケートへ
         return response()->json(['url'=>url('/after_questionary/form')]);
     }

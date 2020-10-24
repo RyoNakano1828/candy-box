@@ -71,6 +71,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mx-auto mb-3">
+                    <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
+                        <div class="card">
+                            <h5 class="card-header">上の質問の選択肢を選んだ理由を教えてください</h5>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <textarea id="textarea1" name='assessment_reason' class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row mx-auto">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
@@ -87,6 +99,18 @@
                                 </div>
                                 <div class="radio">
                                     <label><input type="radio" name="indecisive" id="radio4" value="4"> 全く迷わなかった</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-auto mb-3">
+                    <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
+                        <div class="card">
+                            <h5 class="card-header">上の質問の選択肢を選んだ理由を教えてください</h5>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <textarea id="textarea1" name='indecisive_reason' class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -116,10 +140,10 @@
                 <div class="row mx-auto mb-3">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
-                            <h5 class="card-header">他にほしいお菓子がある場合は記入してください</h5>
+                            <h5 class="card-header">上の質問の選択肢を選んだ理由を教えてください</h5>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <textarea id="textarea1" name='other_candy' class="form-control"></textarea>
+                                    <textarea id="textarea1" name='consent_reason' class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>

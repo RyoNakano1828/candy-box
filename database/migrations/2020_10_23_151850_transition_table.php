@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AfterQuestionaryTable extends Migration
+class TransitionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class AfterQuestionaryTable extends Migration
      */
     public function up()
     {
-        Schema::create('after_questionaries', function (Blueprint $table) {
+        Schema::create('transitions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('questionary_id')->unsigned();
             $table->foreign('questionary_id')->references('id')->on('questionaries')->onDelete('cascade');
-            $table->integer('indecisive')->nullable();
-            $table->integer('consent')->nullable();
-            $table->integer('assessment')->nullable();
-            $table->string('indecisive_reason')->nullable();
-            $table->string('consent_reason')->nullable();
-            $table->string('assessment_reason')->nullable();
+            $table->string('page_name')->nullable();
+            $table->string('stay_time')->nullable();
+            $table->integer('transition_num')->nullable();
+            $table->string('next_action')->nullable();
             $table->timestamps();
         });
     }
