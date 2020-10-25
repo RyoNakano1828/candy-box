@@ -136,6 +136,22 @@ class QuestionaryController extends Controller
     public function afterstore(Request $req){
         Log::debug($req);
 
+        $inputs = $req->all();
+
+        // validation ここから追加
+        $rules = [
+            'assessment' => ['required'],
+            'indecisive' => ['required'],
+            'consent' => ['required'],
+        ];
+        
+        $validation = \Validator::make($inputs,$rules);
+        //if fails
+        if($validation->fails())
+        {
+            return redirect()->back()->withErrors($validation->errors())->withInput();
+        }
+
         $questionary_id = $req->session()->get('questionary_id');
 
         $after_questionary = new AfterQuestionary();
