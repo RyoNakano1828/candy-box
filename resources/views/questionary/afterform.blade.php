@@ -131,7 +131,7 @@
                 <div class="row mx-auto">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
-                            <h5 class="card-header">選んだ商品に対する満足感を教えてください</h5>
+                            <h5 class="card-header">商品の選択に対する満足度を教えてください</h5>
                             <div class="card-body">
                                 <div class="radio">
                                     <label><input type="radio" name="consent" id="radio1" value="1" {{ old('consent') == '1' ? 'checked' : '' }}> とても満足している</label>
