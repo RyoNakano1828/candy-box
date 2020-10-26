@@ -155,7 +155,7 @@
                 sum_price += parseInt(cart_list[i].cost,10);
             }
             console.log("sum:"+sum_price)
-            if(sum_price+parseInt(e.currentTarget.dataset['cost'],10) >= 1000){
+            if(sum_price+parseInt(e.currentTarget.dataset['cost'],10) > 1000){
                 alert('1000円以上カートに入れることはできません。カートから商品を削除してください')
             }else{
                 var data = e.currentTarget.dataset['item'];
