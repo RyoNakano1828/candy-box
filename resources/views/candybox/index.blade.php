@@ -61,8 +61,8 @@
         
             <div class='container-fluid'>
                 <div class="card">
-                    <div class="card-header bg-primary row p-0 pb-2 pt-2 sticky-top">
-                        <button type="submit" class="btn btn-primary btn-block m-1 back-to-the-category">
+                    <div class="card-header row p-0 pb-1 pt-1 sticky-top" style="background-color:#FFD033;">
+                        <button type="submit" class="btn btn-primary btn-block p-2 ml-1 mr-1 back-to-the-category border-0" style="background-color:orange;">
                                 カテゴリ選択画面へ
                         </button>
                     </div>
@@ -154,10 +154,10 @@
                                 </div>
                             @endforeach
                             
-                            <footer class="footer fixed-bottom bg-info p-1">
+                            <footer class="footer fixed-bottom bg-info pb-1 pt-1">
                                 <div class="cart_items">
                                 </div>
-                                <button type="button" class="btn btn-primary btn-block m-1" data-toggle="modal" data-target="#cartModal">
+                                <button type="button" class="btn btn-primary btn-block ml-1 mr-1" data-toggle="modal" data-target="#cartModal">
                                     カートを見る
                                 </button>
                             </footer>

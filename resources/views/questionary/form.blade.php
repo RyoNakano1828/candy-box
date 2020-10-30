@@ -59,6 +59,26 @@
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">
                             <div class="card-header row m-0">
+                                <h5 class="col-10 p-0 m-0">このアンケートに答えるのは何回目ですか？</h5>
+                                <h5 class="text-left col-2 p-0 m-0">2/23</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <select name="how_many" id="how_many" class="form-control">
+                                        <option value="1" @if(old('how_many') == "1") selected @else selected @endif>初めて</option>
+                                        @for ($i = 2; $i < 11; $i++)
+                                            <option value="{{ $i }}" @if(old('how_many') == "$i") selected @endif>{{ $i }}回目</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-auto">
+                    <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
+                        <div class="card">
+                            <div class="card-header row m-0">
                                 <h5 class="col-10 p-0 m-0">性別</h5>
                                 <h5 class="text-left col-2 p-0 m-0">1/23</h5>
                             </div>
@@ -95,6 +115,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="row mx-auto">
                     <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
                         <div class="card">

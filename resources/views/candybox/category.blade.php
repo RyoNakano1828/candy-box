@@ -50,9 +50,9 @@
             <input type="hidden" id="category_id" name="category_id" value="">
             <div class='container-fluid'>
                 <div class="card">
-                    <div class="card-header bg-primary row p-0 pb-2 pt-2 sticky-top">
-                        <button type="button" class="btn btn-primary btn-block m-1 view-index">
-                                商品一覧を見る
+                    <div class="card-header row p-0 pb-1 pt-1 sticky-top" style="background-color:#FFD033;">
+                        <button type="button" class="btn btn-primary btn-block p-2 ml-1 mr-1 view-index border-0" style="background-color:orange;">
+                            商品一覧を見る
                         </button>
                     </div>
                     <div class="card-body m-auto p-0 mb-5 maxWidth">

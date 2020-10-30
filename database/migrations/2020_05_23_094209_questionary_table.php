@@ -17,6 +17,7 @@ class QuestionaryTable extends Migration
             $table->increments('id');
             $table->enum('gender',[1,2]);
             $table->integer('age');
+            $table->integer('how_many');
             $table->integer('Q1');
             $table->integer('Q2');
             $table->integer('Q3');

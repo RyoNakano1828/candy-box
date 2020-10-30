@@ -52,6 +52,7 @@ class QuestionaryController extends Controller
         $rules = [
             'gender' => ['required'],
             'age' => ['required'],
+            'how_many' => ['required'],
             'Q1' => ['required'],
             'Q2' => ['required'],
             'Q3' => ['required'],
@@ -85,6 +86,7 @@ class QuestionaryController extends Controller
 
         $questionary = new Questionary();
         $questionary->gender = $req->input('gender');
+        $questionary->how_many = $req->input('how_many');
         $questionary->age = $req->input('age');
         $questionary->Q1 = $req->input('Q1');
         $questionary->Q2 = $req->input('Q2');
@@ -165,6 +167,8 @@ class QuestionaryController extends Controller
         //満足度
         $after_questionary->consent = $req->input('consent');
         $after_questionary->consent_reason = $req->input('consent_reason');
+        //謝礼用メールアドレス
+        $after_questionary->mail_address = $req->input('mail_address');
         $after_questionary->save();
 
         //sessionリセット

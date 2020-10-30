@@ -23,6 +23,7 @@ class AfterQuestionaryTable extends Migration
             $table->string('indecisive_reason')->nullable();
             $table->string('consent_reason')->nullable();
             $table->string('assessment_reason')->nullable();
+            $table->string('mail_address')->nullable();
             $table->timestamps();
         });
     }
