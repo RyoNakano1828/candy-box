@@ -50,7 +50,6 @@ class QuestionaryController extends Controller
 
         // validation ここから追加
         $rules = [
-            'gender' => ['required'],
             'age' => ['required'],
             'how_many' => ['required'],
             'Q1' => ['required'],

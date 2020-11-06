@@ -60,7 +60,7 @@
                         <div class="card">
                             <div class="card-header row m-0">
                                 <h5 class="col-10 p-0 m-0">このアンケートに答えるのは何回目ですか？</h5>
-                                <h5 class="text-left col-2 p-0 m-0">2/23</h5>
+                                <h5 class="text-left col-2 p-0 m-0"></h5>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -89,9 +89,6 @@
                                 <div class="radio">
                                     <label><input type="radio" name="gender" id="radio2" value="2" {{ old('gender') == '2' ? 'checked' : '' }}> 女性</label>
                                 </div>
-                                @error('gender')
-                                    <div class="alert alert-danger m-0"><strong>選択してください</strong></div>
-                                @enderror
                             </div>
                         </div>
                     </div>
