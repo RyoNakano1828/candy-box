@@ -15,8 +15,9 @@ class QuestionaryTable extends Migration
     {
         Schema::create('questionaries', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('gender',[1,2]);
+            $table->integer('gender')->nullable();
             $table->integer('age');
+            $table->integer('how_many');
             $table->integer('Q1');
             $table->integer('Q2');
             $table->integer('Q3');

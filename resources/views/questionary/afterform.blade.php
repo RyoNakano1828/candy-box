@@ -164,6 +164,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row mx-auto mb-3">
+                    <div class="mx-auto col-sm-11 col-md-8 p-1 m-1">
+                        <div class="card">
+                            <h5 class="card-header">メールアドレス※謝礼を希望する方はお書きください（受け取りの際には受領のサインが必要となりますのでご了承ください）</h5>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <textarea id="textarea1" name='mail_address' class="form-control">{{ old('mail_address') }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="menu-submit">
                     <button type="submit" class="btn btn-primary btn-block">回答する</button>
